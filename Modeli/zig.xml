@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zahtev_za_priznavanje_ziga>
+    
+    <podnosilac_prijave>
+        <ime_prezime_ili_poslovno_ime> </ime_prezime_ili_poslovno_ime>
+        <adresa>
+            <ulica></ulica>
+            <broj></broj>
+            <postanski_broj></postanski_broj>
+            <mesto></mesto>
+            <drzava></drzava>
+        </adresa>
+        <telefon></telefon>
+        <email></email>
+        <faks></faks>
+    </podnosilac_prijave>
+    
+    <punomocnik>
+        <ime_prezime_ili_poslovno_ime></ime_prezime_ili_poslovno_ime>
+        <adresa>
+            <ulica></ulica>
+            <broj></broj>
+            <postanski_broj></postanski_broj>
+            <mesto></mesto>
+            <drzava></drzava>
+        </adresa>
+        <telefon></telefon>
+        <email></email>
+        <faks></faks>
+    </punomocnik>
+    
+    <zajednicki_predstavnik>
+        <ime_prezime_ili_poslovno_ime></ime_prezime_ili_poslovno_ime>
+        <adresa>
+            <ulica></ulica>
+            <broj></broj>
+            <postanski_broj></postanski_broj>
+            <mesto></mesto>
+            <drzava></drzava>
+        </adresa>
+        <telefon></telefon>
+        <email></email>
+        <faks></faks>
+    </zajednicki_predstavnik>
+    
+    <namena_prijave>
+        <tip_ziga>
+            <individualni/>
+        </tip_ziga>
+        <tip_znaka>
+            <trodimenzionalni/>
+        </tip_znaka>
+        <izgled_znaka></izgled_znaka>
+    </namena_prijave>
+    
+    <detalji_znaka>
+        <boje_znaka></boje_znaka>
+        <transliteracija_znaka></transliteracija_znaka>
+        <prevod_znaka></prevod_znaka>
+        <opis_znaka></opis_znaka>
+    </detalji_znaka>
+    
+    <nicanska_klasifikacija>
+        <broj></broj>
+        <broj></broj>
+    </nicanska_klasifikacija>
+    
+    <pravo_prvenstva_i_osnov>
+        <zatrazeno_pravo/>
+        <osnov></osnov>
+    </pravo_prvenstva_i_osnov>
+    
+    <placene_takse>
+        <osnovna_taksa></osnovna_taksa>
+        <kompleksna_taksa>
+            <naziv_klase></naziv_klase>
+            <taksa></taksa>
+        </kompleksna_taksa>
+        <ukupna_taksa></ukupna_taksa>
+        <potpis></potpis>
+    </placene_takse>
+    
+    <informacije-zavoda>
+        <prilozi_uz_zahtev>
+            <primerak_znaka/>
+            <spisak_robe_i_usluga/>
+            <punomocje/>
+            <naknadno_dostavljeno_punomocje/>
+        </prilozi_uz_zahtev>
+        <broj_prijave></broj_prijave>
+        <datum_podnosenja>
+            <dan> </dan>
+            <mesec> </mesec>
+            <godina> </godina>
+        </datum_podnosenja>
+    </informacije-zavoda>
+    
+    
+</zahtev_za_priznavanje_ziga>
