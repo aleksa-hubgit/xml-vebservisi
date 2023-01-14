@@ -1,3 +1,4 @@
+
 package com.projekti.xmlvs.parsers;
 
 import com.projekti.xmlvs.patent.Prijava;
