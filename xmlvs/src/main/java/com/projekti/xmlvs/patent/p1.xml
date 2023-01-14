@@ -1,13 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<prijava xmlns="http://www.ftn.uns.ac.rs/patent"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.ftn.uns.ac.rs/patent ../../Patent.xsd">
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<prijava xmlns="http://www.ftn.uns.ac.rs/patent">
     <detalji_prijave>
         <broj_prijave>1</broj_prijave>
-        <datum_podnosenja>2000-01-01</datum_podnosenja>
-        <priznati_datum_podnosenja>2000-01-01</priznati_datum_podnosenja>
+        <datum_podnosenja>2020-01-01</datum_podnosenja>
+        <priznati_datum_podnosenja>2020-01-01</priznati_datum_podnosenja>
         <potpis></potpis>
-        <pecat></pecat>
     </detalji_prijave>
     <zahtev>
         <naziv_pronalaska>
@@ -16,18 +13,20 @@
         </naziv_pronalaska>
         <podnosilac_prijave>
             <adresa>
-                <ulica></ulica>
+                <ulica>Alekse Santica</ulica>
                 <broj></broj>
                 <postanski_broj>11000</postanski_broj>
                 <mesto></mesto>
                 <drzava></drzava>
             </adresa>
             <kontakt>
-                <broj_telefona></broj_telefona>
+                <broj_telefona>061777777</broj_telefona>
                 <broj_faksa></broj_faksa>
                 <e_posta></e_posta>
             </kontakt>
-            <drzavljanstvo></drzavljanstvo>
+            <pronalazac>false</pronalazac>
+            <navedeni>false</navedeni>
+            <drzavljanstvo>Srpsko</drzavljanstvo>
         </podnosilac_prijave>
         <pronalazac>
             <adresa>
@@ -42,6 +41,10 @@
                 <broj_faksa></broj_faksa>
                 <e_posta></e_posta>
             </kontakt>
+            <ime></ime>
+            <prezime></prezime>
+            <naveden>false</naveden>
+            <navedeni>false</navedeni>
         </pronalazac>
         <punomocnik>
             <adresa>
@@ -56,6 +59,7 @@
                 <broj_faksa></broj_faksa>
                 <e_posta></e_posta>
             </kontakt>
+            <tip_punomocja>PUNOMOCNIK_ZA_ZASTUPANJE</tip_punomocja>
         </punomocnik>
         <adresa_za_dostavljanje>
             <ulica></ulica>
@@ -65,21 +69,21 @@
             <drzava></drzava>
         </adresa_za_dostavljanje>
         <nacin_dostavljanja>
-            <elektronsko>false</elektronsko>
+            <elektronsko>true</elektronsko>
             <papirno>true</papirno>
         </nacin_dostavljanja>
-        <tip_prijave>dopunska</tip_prijave>
+        <tip_prijave>DOPUNSKA</tip_prijave>
         <prvobitna_prijava>
             <broj_prijave>1</broj_prijave>
-            <datum_podnosenja>2000-01-01</datum_podnosenja>
+            <datum_podnosenja>2020-01-01</datum_podnosenja>
         </prvobitna_prijava>
         <prethodne_prijave>
             <prethodna_prijava>
                 <broj_prijave>1</broj_prijave>
-                <datum_podnosenja>2000-01-01</datum_podnosenja>
+                <datum_podnosenja>2020-01-01</datum_podnosenja>
                 <dvoslovna_oznaka>SR</dvoslovna_oznaka>
             </prethodna_prijava>
         </prethodne_prijave>
-        <dodatni_podaci>true</dodatni_podaci>
+        <dodatni_podaci>false</dodatni_podaci>
     </zahtev>
 </prijava>

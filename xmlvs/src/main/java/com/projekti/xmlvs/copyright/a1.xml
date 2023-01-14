@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<autorksa xmlns="http://www.ftn.uns.ac.rs/autorksa"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.ftn.uns.ac.rs/autorksa a1_sema.xsd">
+    <podnosilac_prijave>
+        <adresa>
+            <ulica></ulica>
+            <broj></broj>
+            <postanski_broj>11000</postanski_broj>
+            <mesto></mesto>
+            <drzava></drzava>
+        </adresa>
+        <kontakt>
+            <broj_telefona></broj_telefona>
+            <e_posta></e_posta>
+        </kontakt>
+        <drzavljanstvo></drzavljanstvo>
+    </podnosilac_prijave>
+    <punomocnik>
+        <ime></ime>
+        <prezime></prezime>
+    </punomocnik>
+    <podaci_o_naslovu>
+        <naslov></naslov>
+        <alternativni_naslov></alternativni_naslov>
+    </podaci_o_naslovu>
+    <podaci_o_preradi>
+        <naslov></naslov>
+        <autor>
+            <ime></ime>
+            <prezime></prezime>
+        </autor>
+    </podaci_o_preradi>
+    <vrsta_dela></vrsta_dela>
+    <podaci_o_autorima>
+        <autori>
+            <autor>
+                <ime></ime>
+                <prezime></prezime>
+                <godina_smrti>2020-01-01</godina_smrti>
+            </autor>
+        </autori>
+    </podaci_o_autorima>
+    <radnom_odnosu>false</radnom_odnosu>
+    <namena_dela></namena_dela>
+    <potpis></potpis>
+</autorksa>
