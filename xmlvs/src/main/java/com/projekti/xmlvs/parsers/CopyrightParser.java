@@ -1,7 +1,4 @@
 package com.projekti.xmlvs.parsers;
-
-
-<<<<<<< HEAD
 import com.projekti.xmlvs.copyright.Autorksa;
 import com.projekti.xmlvs.copyright.TPodnosilacPrijave;
 import jakarta.xml.bind.JAXBContext;
@@ -10,8 +7,6 @@ import jakarta.xml.bind.Marshaller;
 import jakarta.xml.bind.Unmarshaller;
 
 import java.io.File;
-=======
->>>>>>> 0926d8b3ba9510cae95cf4cd8ec68e55baa9a833
 
 public class CopyrightParser extends OurParser {
 
