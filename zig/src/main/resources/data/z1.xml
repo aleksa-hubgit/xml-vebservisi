@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Prijava xmlns="http://www.ftn.uns.ac.rs/zig"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.ftn.uns.ac.rs/zig ../../../../../resources/xml_files/Zig.xsd">
+    <Podnosilac_prijave xsi:type="TFizickoLice">
+        <adresa>
+            <ulica>Petra Kocica</ulica>
+            <broj>38</broj>
+            <postanski_broj>35000</postanski_broj>
+            <mesto>Jagodina</mesto>
+            <drzava>Srbija</drzava>
+        </adresa>
+        <kontakt>
+            <broj_telefona>066222111</broj_telefona>
+            <broj_faksa>15</broj_faksa>
+            <e_posta>stefan.milosevic.e14@gmail.com</e_posta>
+        </kontakt>
+        <ime>Stefan</ime>
+        <prezime>Milosevic</prezime>
+    </Podnosilac_prijave>
+    <Punomocnik xsi:type="TFizickoLice">
+        <adresa>
+            <ulica>Milana Mijalkovica</ulica>
+            <broj>22</broj>
+            <postanski_broj>35000</postanski_broj>
+            <mesto>Jagodina</mesto>
+            <drzava>Srbija</drzava>
+        </adresa>
+        <kontakt>
+            <broj_telefona>066112222</broj_telefona>
+            <broj_faksa>11</broj_faksa>
+            <e_posta>nekaadresa@gmail.com</e_posta>
+        </kontakt>
+        <ime>Nenad</ime>
+        <prezime>Miladinovic</prezime>
+    </Punomocnik>
+    <Zajednicki_predstavnik xsi:type="TFizickoLice">
+        <adresa>
+            <ulica>Zumze Zumzilica</ulica>
+            <broj>11</broj>
+            <postanski_broj>35000</postanski_broj>
+            <mesto>Jagodina</mesto>
+            <drzava>Srbija</drzava>
+        </adresa>
+        <kontakt>
+            <broj_telefona>021021021</broj_telefona>
+            <broj_faksa>021</broj_faksa>
+            <e_posta>zumza@gmail.com</e_posta>
+        </kontakt>
+        <ime>Zumza</ime>
+        <prezime>Stevanovic</prezime>
+    </Zajednicki_predstavnik>
+    <Informacije_o_zigu>
+        <Tip_ziga>INDIVIDUALNI_ZIG</Tip_ziga>
+        <Tip_znaka>TRODIMENZIONALNI_ZNAK</Tip_znaka>
+        <Izgled_znaka></Izgled_znaka>
+        <Boje_znaka>
+            <Boja>Crvena</Boja>
+        </Boje_znaka>
+        <Opis_znaka></Opis_znaka>
+        <Nicanska_klasifikacija>
+            <Klasa>2</Klasa>
+            <Klasa>5</Klasa>
+            <Klasa>17</Klasa>
+        </Nicanska_klasifikacija>
+    </Informacije_o_zigu>
+    <Takse>
+        <Osnovna_taksa>222</Osnovna_taksa>
+        <Ukupna_taksa>2222</Ukupna_taksa>
+    </Takse>
+    <Informacija_zavoda>
+        <Broj_prijave></Broj_prijave>
+        <Datum_podnosenja>2020-02-02</Datum_podnosenja>
+        <Prilozi>
+            <Primerak_znaka></Primerak_znaka>
+            <Spisak_robe_i_usluga></Spisak_robe_i_usluga>
+            <Punomocje></Punomocje>
+            <Naknadno_dostavljeno_punomocje>false</Naknadno_dostavljeno_punomocje>
+            <Generalno_punomocje></Generalno_punomocje>
+            <Opsti_akt></Opsti_akt>
+            <Dokaz_o_pravu_prvenstva></Dokaz_o_pravu_prvenstva>
+            <Dokaz_o_uplati_takse></Dokaz_o_uplati_takse>
+        </Prilozi>
+    </Informacija_zavoda>
+</Prijava>
