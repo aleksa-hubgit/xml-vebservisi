@@ -59,21 +59,21 @@ import jakarta.xml.bind.annotation.XmlType;
 public class TPrilozi {
 
     @XmlElement(name = "Primerak_znaka", namespace = "http://www.ftn.uns.ac.rs/zig", required = true)
-    protected String primerakZnaka;
+    protected boolean primerakZnaka;
     @XmlElement(name = "Spisak_robe_i_usluga", namespace = "http://www.ftn.uns.ac.rs/zig", required = true)
-    protected TPrilozi.SpisakRobeIUsluga spisakRobeIUsluga;
+    protected boolean spisakRobeIUsluga;
     @XmlElement(name = "Punomocje", namespace = "http://www.ftn.uns.ac.rs/zig", required = true)
-    protected String punomocje;
+    protected boolean punomocje;
     @XmlElement(name = "Naknadno_dostavljeno_punomocje", namespace = "http://www.ftn.uns.ac.rs/zig")
     protected boolean naknadnoDostavljenoPunomocje;
     @XmlElement(name = "Generalno_punomocje", namespace = "http://www.ftn.uns.ac.rs/zig", required = true)
-    protected String generalnoPunomocje;
+    protected boolean generalnoPunomocje;
     @XmlElement(name = "Opsti_akt", namespace = "http://www.ftn.uns.ac.rs/zig", required = true)
-    protected String opstiAkt;
+    protected boolean opstiAkt;
     @XmlElement(name = "Dokaz_o_pravu_prvenstva", namespace = "http://www.ftn.uns.ac.rs/zig", required = true)
-    protected String dokazOPravuPrvenstva;
+    protected boolean dokazOPravuPrvenstva;
     @XmlElement(name = "Dokaz_o_uplati_takse", namespace = "http://www.ftn.uns.ac.rs/zig", required = true)
-    protected String dokazOUplatiTakse;
+    protected boolean dokazOUplatiTakse;
 
     /**
      * Gets the value of the primerakZnaka property.
@@ -83,7 +83,7 @@ public class TPrilozi {
      *     {@link String }
      *     
      */
-    public String getPrimerakZnaka() {
+    public boolean getPrimerakZnaka() {
         return primerakZnaka;
     }
 
@@ -95,7 +95,7 @@ public class TPrilozi {
      *     {@link String }
      *     
      */
-    public void setPrimerakZnaka(String value) {
+    public void setPrimerakZnaka(boolean value) {
         this.primerakZnaka = value;
     }
 
@@ -107,7 +107,7 @@ public class TPrilozi {
      *     {@link TPrilozi.SpisakRobeIUsluga }
      *     
      */
-    public TPrilozi.SpisakRobeIUsluga getSpisakRobeIUsluga() {
+    public boolean getSpisakRobeIUsluga() {
         return spisakRobeIUsluga;
     }
 
@@ -119,7 +119,7 @@ public class TPrilozi {
      *     {@link TPrilozi.SpisakRobeIUsluga }
      *     
      */
-    public void setSpisakRobeIUsluga(TPrilozi.SpisakRobeIUsluga value) {
+    public void setSpisakRobeIUsluga(boolean value) {
         this.spisakRobeIUsluga = value;
     }
 
@@ -131,7 +131,7 @@ public class TPrilozi {
      *     {@link String }
      *     
      */
-    public String getPunomocje() {
+    public boolean getPunomocje() {
         return punomocje;
     }
 
@@ -143,7 +143,7 @@ public class TPrilozi {
      *     {@link String }
      *     
      */
-    public void setPunomocje(String value) {
+    public void setPunomocje(boolean value) {
         this.punomocje = value;
     }
 
@@ -171,7 +171,7 @@ public class TPrilozi {
      *     {@link String }
      *     
      */
-    public String getGeneralnoPunomocje() {
+    public boolean getGeneralnoPunomocje() {
         return generalnoPunomocje;
     }
 
@@ -183,7 +183,7 @@ public class TPrilozi {
      *     {@link String }
      *     
      */
-    public void setGeneralnoPunomocje(String value) {
+    public void setGeneralnoPunomocje(boolean value) {
         this.generalnoPunomocje = value;
     }
 
@@ -195,7 +195,7 @@ public class TPrilozi {
      *     {@link String }
      *     
      */
-    public String getOpstiAkt() {
+    public boolean getOpstiAkt() {
         return opstiAkt;
     }
 
@@ -207,7 +207,7 @@ public class TPrilozi {
      *     {@link String }
      *     
      */
-    public void setOpstiAkt(String value) {
+    public void setOpstiAkt(boolean value) {
         this.opstiAkt = value;
     }
 
@@ -219,7 +219,7 @@ public class TPrilozi {
      *     {@link String }
      *     
      */
-    public String getDokazOPravuPrvenstva() {
+    public boolean getDokazOPravuPrvenstva() {
         return dokazOPravuPrvenstva;
     }
 
@@ -231,7 +231,7 @@ public class TPrilozi {
      *     {@link String }
      *     
      */
-    public void setDokazOPravuPrvenstva(String value) {
+    public void setDokazOPravuPrvenstva(boolean value) {
         this.dokazOPravuPrvenstva = value;
     }
 
@@ -243,7 +243,7 @@ public class TPrilozi {
      *     {@link String }
      *     
      */
-    public String getDokazOUplatiTakse() {
+    public boolean getDokazOUplatiTakse() {
         return dokazOUplatiTakse;
     }
 
@@ -255,7 +255,7 @@ public class TPrilozi {
      *     {@link String }
      *     
      */
-    public void setDokazOUplatiTakse(String value) {
+    public void setDokazOUplatiTakse(boolean value) {
         this.dokazOUplatiTakse = value;
     }
 
