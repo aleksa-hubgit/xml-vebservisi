@@ -23,4 +23,17 @@ public class TrademarkRequestDTO {
     private TPrilozi prilozi;
 
 
+
+    public TrademarkRequestDTO(Prijava prijava){
+
+        this.podnosilacPrijave = new TLiceDTO(prijava.getPodnosilacPrijave());
+        this.punomocnik = new TLiceDTO(prijava.getPunomocnik());
+        this.zajednickiPredstavnik = new TLiceDTO(prijava.getZajednickiPredstavnik());
+        this.informacijeOZigu = prijava.getInformacijeOZigu();
+        this.pravoPrvenstva = prijava.getPravoPrvenstva();
+        this.takse = prijava.getTakse();
+        this.prilozi = prijava.getInformacijaZavoda().getPrilozi();
+
+    }
+
 }

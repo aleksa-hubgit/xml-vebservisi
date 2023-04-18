@@ -1,5 +1,7 @@
 package com.example.zig.util;
 
+import com.example.zig.dto.TrademarkRequestDTO;
+import com.example.zig.model.Prijava;
 import org.exist.xmldb.EXistResource;
 import org.xmldb.api.DatabaseManager;
 import org.xmldb.api.base.Collection;
@@ -8,12 +10,15 @@ import org.xmldb.api.base.XMLDBException;
 import org.xmldb.api.modules.CollectionManagementService;
 import org.xmldb.api.modules.XMLResource;
 
+import javax.xml.transform.OutputKeys;
 import java.io.IOException;
 import java.io.OutputStream;
-
-import static org.exist.security.utils.Utils.getOrCreateCollection;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class DatabaseUtilities {
+
 
     private static AuthenticationUtilities.ConnectionProperties conn;
 
@@ -111,6 +116,45 @@ public class DatabaseUtilities {
             return getOrCreateCollection(collectionUri, ++pathSegmentOffset);
         } else {
             return col;
+        }
+    }
+
+    public static List<Prijava> getAll(String collectionId) {
+
+        Collection col = null;
+        XMLResource res = null;
+        try {
+            MarshallingUtils marshallingUtils = new MarshallingUtils();
+            List<Prijava> zahtevi = new ArrayList<>();
+            col = DatabaseManager.getCollection(conn.uri + collectionId, conn.user, conn.password);
+            col.setProperty(OutputKeys.INDENT, "yes");
+            for(String s: col.listResources()){
+                res = (XMLResource)col.getResource(s);
+                zahtevi.add(marshallingUtils.unmarshallFromNode(res.getContentAsDOM()));
+            }
+
+            return zahtevi;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Collections.emptyList();
+        } finally {
+
+            if(res != null) {
+                try {
+                    ((EXistResource)res).freeResources();
+                } catch (XMLDBException xe) {
+                    xe.printStackTrace();
+                }
+            }
+
+            if(col != null) {
+                try {
+                    col.close();
+                } catch (XMLDBException xe) {
+                    xe.printStackTrace();
+                }
+            }
         }
     }
 }

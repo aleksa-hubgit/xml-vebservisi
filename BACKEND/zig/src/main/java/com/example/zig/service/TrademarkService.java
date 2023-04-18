@@ -12,6 +12,7 @@ import org.apache.fop.apps.Fop;
 import org.apache.fop.apps.FopFactory;
 import org.apache.fop.apps.MimeConstants;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.xml.sax.SAXException;
 import org.xmldb.api.base.XMLDBException;
@@ -26,8 +27,10 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.sax.SAXResult;
 import javax.xml.transform.stream.StreamSource;
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 @Service
 public class TrademarkService {
@@ -156,6 +159,16 @@ public class TrademarkService {
             e.printStackTrace();
         }
         return xmlDate;
+
+    }
+
+    public List<TrademarkRequestDTO> getAll() {
+        List<Prijava> prijavas = zigRepository.getAll();
+        List<TrademarkRequestDTO> trademarks = new ArrayList<>();
+        for (Prijava p:prijavas){
+            trademarks.add(new TrademarkRequestDTO(p));
+        }
+        return trademarks;
 
     }
 }
