@@ -1,4 +1,4 @@
-class NicanskaKlasifikacija{
+export class NicanskaKlasifikacija{
 
     constructor(
 

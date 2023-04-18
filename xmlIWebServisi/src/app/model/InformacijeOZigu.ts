@@ -1,4 +1,7 @@
-class InformacijeOZigu{
+import { BojeZnaka } from "./BojeZnaka";
+import { NicanskaKlasifikacija } from "./NicanskaKlasifikacija";
+
+export class InformacijeOZigu{
 
     constructor(
         public tipZiga:string='',

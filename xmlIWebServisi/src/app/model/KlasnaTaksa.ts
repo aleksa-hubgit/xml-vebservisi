@@ -1,4 +1,4 @@
-class KlasnaTaksa{
+export class KlasnaTaksa{
 
     constructor(
         public brojKlasa:number=0,

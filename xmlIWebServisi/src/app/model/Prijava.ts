@@ -1,4 +1,10 @@
-class Prijava{
+import { InformacijeOZigu } from "./InformacijeOZigu";
+import { PravoPrvenstva } from "./PravoPrvenstva";
+import { TLice } from "./TLice";
+import { TPrilozi } from "./TPrilozi";
+import { Takse } from "./Takse";
+
+export class Prijava{
     constructor(
         public podnosilacPrijave:TLice = new TLice(),
         public punomocnik:TLice = new TLice(),

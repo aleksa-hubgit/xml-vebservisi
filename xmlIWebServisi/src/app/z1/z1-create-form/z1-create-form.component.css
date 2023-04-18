@@ -24,3 +24,19 @@
     padding: 10px;
     border: 1px
   }
+
+  input {
+    border: 1px solid #000; /* 1px solid black border */
+    padding: 5px; /* Add padding for better appearance */
+  }
+  
+  /* Define hover and focus styles for input elements */
+  input:hover,
+  input:focus {
+    border: 1px solid #000; /* 1px solid blue border on hover and focus */
+    /* You can customize the color and style of the border to your preference */
+  }
+
+  /* Style the container for the checkbox and label */
+
+/* Style the checkbox */

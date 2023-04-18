@@ -1,4 +1,6 @@
-class Takse{
+import { KlasnaTaksa } from "./KlasnaTaksa";
+
+export class Takse{
     constructor(
         public osnovnaTaksa:number=0,
         public taksaZaGrafickoResenje:number=0,

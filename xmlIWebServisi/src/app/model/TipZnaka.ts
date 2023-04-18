@@ -1,4 +1,4 @@
-public enum TTipZnaka {
+export  enum TTipZnaka {
 
     VERBALNI_ZNAK,
     GRAFICKI_ZNAK,

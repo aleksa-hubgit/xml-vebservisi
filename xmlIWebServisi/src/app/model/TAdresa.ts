@@ -1,4 +1,4 @@
-class TAdresa {
+export class TAdresa {
     constructor(
       public ulica: string = '',
       public broj: string = '',

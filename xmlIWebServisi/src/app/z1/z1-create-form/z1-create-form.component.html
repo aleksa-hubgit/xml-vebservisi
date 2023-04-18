@@ -4,121 +4,346 @@
     <form  class="form-container">
       <div>
       <h2 class="form-title">Podnosilac prijave</h2>
-      <div class="form-group">
-        <label for="ime">Ime i prezime/poslovno ime</label>
-        <input id="ime"   name="ime" type="text" class="form-control" required>
+      <select class="form-select"  aria-label="Vrsta podnosioca"  name = "podnosilac" [(ngModel)]="podnosilacLice">
+        <option value="Fizicko lice" selected>Fizicko lice</option>
+        <option value="Pravno lice">Pravno lice</option>
+      </select>
+
+      <div class="row pb-2" *ngIf="podnosilacLice === 'Fizicko lice'">
+        <div class="form-group col-3">
+          <label for="ime_podnosioca">Ime:</label>
+          <input type="text" class="form-control" name="ime_podnosioca" [(ngModel)]="prijava.podnosilacPrijave.ime">
+        </div>
+        <div class="form-group col-3">
+          <label for="prezime_podnosioca">Prezime:</label>
+          <input type="text" class="form-control" name="prezime_podnosioca" [(ngModel)]="prijava.podnosilacPrijave.prezime">
+        </div>
+        
       </div>
+
+      <div class="row pb-2" *ngIf="podnosilacLice === 'Pravno lice'">
+        <div class="form-group col-4">
+          <label for="poslovno_ime_podnosioca">Poslovno ime:</label>
+          <input type="text" class="form-control" name="poslovno_ime_podnosioca" [(ngModel)]="prijava.podnosilacPrijave.naziv">
+        </div>
+      </div>
+
      
       <div class="form-group">
-        <label for="ulicaIBroj">Ulica i broj</label>
-        <input id="ulicaIBroj"  name="ulicaIBroj" type="text" class="form-control" required>
+        <label for="ulicaIBroj">Ulica</label>
+        <input id="ulicaIBroj"  name="ulica" type="text" class="form-control"  [(ngModel)]="prijava.podnosilacPrijave.adresa.ulica" required>
+      </div>
+      <div class="form-group">
+        <label for="ulicaIBroj">Broj</label>
+        <input id="ulicaIBroj"  name="Broj" type="number" class="form-control"  [(ngModel)]="prijava.podnosilacPrijave.adresa.broj" required>
       </div>
       <div class="form-group">
         <label for="postanskiBroj">Poštanski broj</label>
-        <input id="postanskiBroj"   name="postanskiBroj" type="text" class="form-control" required>
+        <input id="postanskiBroj"   name="postanskiBroj" type="text" class="form-control"  [(ngModel)]="prijava.podnosilacPrijave.adresa.postanskiBroj" required>
       </div>
       <div class="form-group">
         <label for="mesto">Mesto</label>
-        <input id="mesto"  name="mesto" type="text" class="form-control" required>
+        <input id="mesto"  name="mesto" type="text" class="form-control" [(ngModel)]="prijava.podnosilacPrijave.adresa.mesto" required>
       </div>
       <div class="form-group">
         <label for="drzava">Država prebivališta/sedišta</label>
-        <input id="drzava"   name="drzava" type="text" class="form-control" required>
+        <input id="drzava"   name="drzava" type="text" class="form-control" [(ngModel)]="prijava.podnosilacPrijave.adresa.drzava" required>
       </div>
       <div class="form-group">
         <label for="mobilni">Mobilni</label>
-        <input id="mobilni"   name="mobilni" type="text" class="form-control" required>
+        <input id="mobilni"   name="mobilni" type="text" class="form-control" [(ngModel)]="prijava.podnosilacPrijave.kontakt.brojTelefona" required>
       </div>
       <div class="form-group">
         <label for="email">Email</label>
-        <input id="email"  name="email" type="email" class="form-control" required>
+        <input id="email"  name="email" type="email" class="form-control" [(ngModel)]="prijava.podnosilacPrijave.kontakt.ePosta" required>
       </div>
       <div class="form-group">
         <label for="faks">Faks</label>
-        <input id="faks"   name="faks" type="text" class="form-control" required>
+        <input id="faks"   name="faks" type="text" class="form-control" [(ngModel)]="prijava.podnosilacPrijave.kontakt.brojFaksa" required>
       </div>
       </div>
       <div>
       <h2 class="form-title"> Punomocnik
       </h2>
+      <select class="form-select"  aria-label="Vrsta podnosioca"  name = "podnosilac" [(ngModel)]="punomocnikLice">
+        <option value="Fizicko lice" selected>Fizicko lice</option>
+        <option value="Pravno lice">Pravno lice</option>
+      </select>
+
+      <div class="row pb-2" *ngIf="punomocnikLice === 'Fizicko lice'">
+        <div class="form-group col-3">
+          <label for="ime_podnosioca">Ime:</label>
+          <input type="text" class="form-control" name="ime_podnosioca" [(ngModel)]="prijava.punomocnik.ime">
+        </div>
+        <div class="form-group col-3">
+          <label for="prezime_podnosioca">Prezime:</label>
+          <input type="text" class="form-control" name="prezime_podnosioca" [(ngModel)]="prijava.punomocnik.prezime">
+        </div>
+        
+      </div>
+
+      <div class="row pb-2" *ngIf="punomocnikLice === 'Pravno lice'">
+        <div class="form-group col-4">
+          <label for="poslovno_ime_podnosioca">Poslovno ime:</label>
+          <input type="text" class="form-control" name="poslovno_ime_podnosioca" [(ngModel)]="prijava.punomocnik.naziv">
+        </div>
+      </div>
+
+     
       <div class="form-group">
-        <label for="ime">Ime</label>
-        <input id="ime"   name="ime" type="text" class="form-control" required>
+        <label for="ulicaIBroj">Ulica</label>
+        <input id="ulicaIBroj"  name="ulica" type="text" class="form-control"  [(ngModel)]="prijava.punomocnik.adresa.ulica" required>
       </div>
       <div class="form-group">
-        <label for="prezime">Prezime/poslovno ime</label>
-        <input id="prezime"   name="prezime" type="text" class="form-control" required>
-      </div>
-      <div class="form-group">
-        <label for="ulicaIBroj">Ulica i broj</label>
-        <input id="ulicaIBroj"  name="ulicaIBroj" type="text" class="form-control" required>
+        <label for="ulicaIBroj">Broj</label>
+        <input id="ulicaIBroj"  name="Broj" type="number" class="form-control"  [(ngModel)]="prijava.punomocnik.adresa.broj" required>
       </div>
       <div class="form-group">
         <label for="postanskiBroj">Poštanski broj</label>
-        <input id="postanskiBroj"   name="postanskiBroj" type="text" class="form-control" required>
+        <input id="postanskiBroj"   name="postanskiBroj" type="text" class="form-control"  [(ngModel)]="prijava.punomocnik.adresa.postanskiBroj" required>
       </div>
       <div class="form-group">
         <label for="mesto">Mesto</label>
-        <input id="mesto"  name="mesto" type="text" class="form-control" required>
+        <input id="mesto"  name="mesto" type="text" class="form-control" [(ngModel)]="prijava.punomocnik.adresa.mesto" required>
       </div>
       <div class="form-group">
         <label for="drzava">Država prebivališta/sedišta</label>
-        <input id="drzava"   name="drzava" type="text" class="form-control" required>
+        <input id="drzava"   name="drzava" type="text" class="form-control" [(ngModel)]="prijava.punomocnik.adresa.drzava" required>
       </div>
       <div class="form-group">
         <label for="mobilni">Mobilni</label>
-        <input id="mobilni"   name="mobilni" type="text" class="form-control" required>
+        <input id="mobilni"   name="mobilni" type="text" class="form-control" [(ngModel)]="prijava.punomocnik.kontakt.brojTelefona" required>
       </div>
       <div class="form-group">
         <label for="email">Email</label>
-        <input id="email"  name="email" type="email" class="form-control" required>
+        <input id="email"  name="email" type="email" class="form-control" [(ngModel)]="prijava.punomocnik.kontakt.ePosta" required>
       </div>
       <div class="form-group">
         <label for="faks">Faks</label>
-        <input id="faks"   name="faks" type="text" class="form-control" required>
+        <input id="faks"   name="faks" type="text" class="form-control" [(ngModel)]="prijava.punomocnik.kontakt.brojFaksa" required>
       </div>
+      </div>
+      <div>
     
     <div>
       <h2 class="form-title"> Podaci o zajednickom predstavniku ako postoji vise podnosilaca prijave
       </h2>
+      <select class="form-select"  aria-label="Vrsta podnosioca"  name = "podnosilac" [(ngModel)]="treceLice">
+        <option value="Fizicko lice" selected>Fizicko lice</option>
+        <option value="Pravno lice">Pravno lice</option>
+      </select>
+
+      <div class="row pb-2" *ngIf="treceLice === 'Fizicko lice'">
+        <div class="form-group col-3">
+          <label for="ime_podnosioca">Ime:</label>
+          <input type="text" class="form-control" name="ime_podnosioca" [(ngModel)]="prijava.zajednickiPredstavnik.ime">
+        </div>
+        <div class="form-group col-3">
+          <label for="prezime_podnosioca">Prezime:</label>
+          <input type="text" class="form-control" name="prezime_podnosioca" [(ngModel)]="prijava.zajednickiPredstavnik.prezime">
+        </div>
+        
+      </div>
+
+      <div class="row pb-2" *ngIf="treceLice === 'Pravno lice'">
+        <div class="form-group col-4">
+          <label for="poslovno_ime_podnosioca">Poslovno ime:</label>
+          <input type="text" class="form-control" name="poslovno_ime_podnosioca" [(ngModel)]="prijava.zajednickiPredstavnik.naziv">
+        </div>
+      </div>
+
+     
       <div class="form-group">
-        <label for="ime">Ime</label>
-        <input id="ime"   name="ime" type="text" class="form-control" required>
+        <label for="ulicaIBroj">Ulica</label>
+        <input id="ulicaIBroj"  name="ulica" type="text" class="form-control"  [(ngModel)]="prijava.zajednickiPredstavnik.adresa.ulica" required>
       </div>
       <div class="form-group">
-        <label for="prezime">Prezime/poslovno ime</label>
-        <input id="prezime"   name="prezime" type="text" class="form-control" required>
-      </div>
-      <div class="form-group">
-        <label for="ulicaIBroj">Ulica i broj</label>
-        <input id="ulicaIBroj"  name="ulicaIBroj" type="text" class="form-control" required>
+        <label for="ulicaIBroj">Broj</label>
+        <input id="ulicaIBroj"  name="Broj" type="number" class="form-control"  [(ngModel)]="prijava.zajednickiPredstavnik.adresa.broj" required>
       </div>
       <div class="form-group">
         <label for="postanskiBroj">Poštanski broj</label>
-        <input id="postanskiBroj"   name="postanskiBroj" type="text" class="form-control" required>
+        <input id="postanskiBroj"   name="postanskiBroj" type="text" class="form-control"  [(ngModel)]="prijava.zajednickiPredstavnik.adresa.postanskiBroj" required>
       </div>
       <div class="form-group">
         <label for="mesto">Mesto</label>
-        <input id="mesto"  name="mesto" type="text" class="form-control" required>
+        <input id="mesto"  name="mesto" type="text" class="form-control" [(ngModel)]="prijava.zajednickiPredstavnik.adresa.mesto" required>
       </div>
       <div class="form-group">
         <label for="drzava">Država prebivališta/sedišta</label>
-        <input id="drzava"   name="drzava" type="text" class="form-control" required>
+        <input id="drzava"   name="drzava" type="text" class="form-control" [(ngModel)]="prijava.zajednickiPredstavnik.adresa.drzava" required>
       </div>
       <div class="form-group">
         <label for="mobilni">Mobilni</label>
-        <input id="mobilni"   name="mobilni" type="text" class="form-control" required>
+        <input id="mobilni"   name="mobilni" type="text" class="form-control" [(ngModel)]="prijava.zajednickiPredstavnik.kontakt.brojTelefona" required>
       </div>
       <div class="form-group">
         <label for="email">Email</label>
-        <input id="email"  name="email" type="email" class="form-control" required>
+        <input id="email"  name="email" type="email" class="form-control" [(ngModel)]="prijava.zajednickiPredstavnik.kontakt.ePosta" required>
       </div>
       <div class="form-group">
         <label for="faks">Faks</label>
-        <input id="faks"   name="faks" type="text" class="form-control" required>
+        <input id="faks"   name="faks" type="text" class="form-control" [(ngModel)]="prijava.zajednickiPredstavnik.kontakt.brojFaksa" required>
       </div>
-      <button type="submit">Podnesi prijavu</button>
+      </div>
+      <div>
+    <div class="form-group">
+      <h2>Zig</h2>
+    </div>
+
+    <div class="form-group">
+      <div class="form-group">
+        <div>
+          Tip ziga
+        </div>
+        <div>
+          <select class="form-select" aria-label="Tip ziga"  name ="tipZiga" [(ngModel)]="prijava.informacijeOZigu.tipZiga"  >
+            <option value="INDIVIDUALNI" selected>Individualni</option>
+            <option value="KOLEKTIVNI">Kolektivni</option>
+            <option value="ZIG_GARANCIJE">Zig garancije</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div>
+          Vrsta znaka
+        </div>
+
+        <div>
+          <select class="form-select" #vrstaZnaka aria-label="Vrsta znaka" name="vrstaZnaka" [(ngModel)]="prijava.informacijeOZigu.tipZnaka" >
+            <option value="VERBALNI" selected>Verbalni</option>
+            <option value="GRAFICKI">Graficki</option>
+            <option value="KOMBINOVANI" selected>Kombinovani</option>
+            <option value="TRODIMENZIONALNI">Trodimenzionalni</option>
+            <option value="OSTALO" selected>Ostalo</option>
+          </select>
+        </div>
+
+      </div>
+
+      <div class="form-group" *ngIf="vrstaZnaka.value == 'OSTALO'">
+        <div>Navesti vrstu</div>
+        <input class="form-control" name="tipZnaka" type="text" [(ngModel)]="ostalo">
+      </div>
+
+    </div>
+    <div class="form-group">
+        <div>Transliteracija</div>
+        <input class="form-control" name="transliteracija" type="text"  [(ngModel)]="prijava.informacijeOZigu.transliteracijaZnaka">
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <div>Prevod</div>
+      <input class="form-control " name="prevod" type="text" [(ngModel)]="prijava.informacijeOZigu.prevodZnaka" >
+    </div>
+
+    <div class="form-group">
+      <div class="col-3">
+        <div>Opis</div>
+        <input class="form-control" name="opis" type="text" [(ngModel)]="prijava.informacijeOZigu.opisZnaka" >
+      </div>
+      
+    <div class="form-group">
+
+      <div class="form-group">
+        <div>Boje (Razdvojiti zarezom)</div>
+        <input class="form-control " name="boja" type="text"   [(ngModel)]="boje">
+      </div>
+      <div class="col-2">
+        <div>Klase (brojevi od 1 do 45 Razdvojiti zarezom)</div>
+        <input class="form-control " name="klasa" type="text"  [(ngModel)]="nicanska">
+      </div>
+
+      <div >
+        <h2>Takse</h2>
+      </div>
+
+      <div class="form-group">
+        <div class="form-group">
+          <div>Osnovna taksa</div>
+          <input class="form-control " name="osnovna" min="0" type="number" [(ngModel)]="prijava.takse.osnovnaTaksa"/>
+        </div>
+
+        
+
+        <div class="col-3">
+          <div>Broj klasa</div>
+          <input class="form-control my-1" name="broj" min="0" max = "45" type="number" [(ngModel)]="prijava.takse.klasnaTaksa.brojKlasa">
+        </div>
+
+        <div class="col-3">
+          <div>Iznos za klase</div>
+          <input class="form-control my-1" name="iznos" min="0" type="number" [(ngModel)]="prijava.takse.klasnaTaksa.iznos">
+        </div>
+
+        <div class="col-3">
+          <div>Taksa za graficko resenje</div>
+          <input class="form-control my-1" name="graficko" min="0" type="number" [(ngModel)]="prijava.takse.taksaZaGrafickoResenje">
+        </div>
+
+        <div class="col-3">
+          <div>Ukupne takse</div>
+          <input class="form-control my-1" name="ukupna" min="0" type="number" [(ngModel)]="prijava.takse.ukupnaTaksa">
+        </div>
+
+        <div >
+          <h2>Prilozi</h2>
+        </div>
+    <div class="checkbox-container">
+       <input type="checkbox" name="primerakZnaka" [(ngModel)]="prijava.prilozi.primerakZnaka">
+       <label for="myCheckbox">primerak Znaka</label>
+      <span class="checkbox-label"></span>
+    </div>
+    <div class="checkbox-container">
+      <input type="checkbox" name="spisakRobeIUsluga"  [(ngModel)]="prijava.prilozi.spisakRobeIUsluga">
+      <label for="myCheckbox">spisak Robe I Usluga</label>
+     <span class="checkbox-label"></span>
+   </div>
+   <div class="checkbox-container">
+    <input type="checkbox" name="punomocje"  [(ngModel)]="prijava.prilozi.punomocje" >
+    <label for="myCheckbox">punomocje</label>
+   <span class="checkbox-label"></span>
+  </div>
+  <div class="checkbox-container">
+    <input type="checkbox" name="naknadnoDostavljenoPunomocje"  [(ngModel)]="prijava.prilozi.naknadnoDostavljenoPunomocje">
+    <label for="myCheckbox">naknadno Dostavljeno Punomocje</label>
+  <span class="checkbox-label"></span>
+  </div>
+
+  <div class="checkbox-container">
+    <input type="checkbox" name="generalnoPunomocje"  [(ngModel)]="prijava.prilozi.generalnoPunomocje" >
+    <label for="myCheckbox">generalno Punomocje</label>
+  <span class="checkbox-label"></span>
+  </div>
+  <div class="checkbox-container">
+    <input type="checkbox" name="opstiAkt"  [(ngModel)]="prijava.prilozi.opstiAkt" >
+    <label for="myCheckbox">opsti Akt</label>
+  <span class="checkbox-label"></span>
+  </div>
+  <div>
+  <div class="checkbox-container">
+    <input type="checkbox" name="dokazOPravuPrvenstva"  [(ngModel)]="prijava.prilozi.dokazOPravuPrvenstva" >
+    <label for="myCheckbox">dokaz O Pravu Prvenstva</label>
+  <span class="checkbox-label"></span>
+  </div>
+</div>
+
+
+  <div>
+  <div class="checkbox-container">
+    <input type="checkbox" name="dokazOUplatiTakse"  [(ngModel)]="prijava.prilozi.dokazOUplatiTakse" >
+    <label for="myCheckbox">dokaz O Uplati Takse</label>
+  <span class="checkbox-label"></span>
+  </div>
+</div>
+      </div>
+
+    </div>
+      <button type="submit" (click)="sendRequest()">Podnesi prijavu</button>
     </div>  
       </div>
     </form>
     </div>
+

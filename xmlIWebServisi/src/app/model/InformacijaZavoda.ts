@@ -1,4 +1,4 @@
-class InformacijaZavoda{
+export class InformacijaZavoda{
 
     constructor(
         public brojPrijave:string='',
