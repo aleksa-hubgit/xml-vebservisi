@@ -1,15 +1,15 @@
 package com.example.zig.controller;
 
 
+import com.example.zig.dto.TrademarkRequestDTO;
+import com.example.zig.model.Prijava;
 import com.example.zig.service.TrademarkService;
 import com.itextpdf.text.DocumentException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 
@@ -20,6 +20,13 @@ public class TrademarkController {
     @Autowired
     private TrademarkService trademarkService;
 
+
+    @PostMapping(produces = "application/xml", consumes = "application/xml")
+    public void createRequest(@RequestBody Prijava request){
+
+        trademarkService.createRequest(request);
+
+    }
 
     @GetMapping(value="createPDF")
     public void createPdfDocument() throws DocumentException, IOException {

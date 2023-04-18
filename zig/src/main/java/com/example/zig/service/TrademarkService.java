@@ -1,5 +1,6 @@
 package com.example.zig.service;
 
+import com.example.zig.model.Prijava;
 import com.example.zig.util.PdfTransformer;
 import com.itextpdf.text.DocumentException;
 import org.apache.fop.apps.FOUserAgent;
@@ -72,5 +73,11 @@ public class TrademarkService {
         System.out.println("[INFO] File \"" + HTML_OUTPUT_FILE + "\" generated successfully.");
         System.out.println("[INFO] End.");
         return "eto";
+    }
+
+    public void createRequest(Prijava request) {
+
+
+
     }
 }

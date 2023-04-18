@@ -56,6 +56,7 @@
         <Izgled_znaka></Izgled_znaka>
         <Boje_znaka>
             <Boja>Crvena</Boja>
+            <Boja>Plava</Boja>
         </Boje_znaka>
         <Opis_znaka></Opis_znaka>
         <Nicanska_klasifikacija>
@@ -72,11 +73,11 @@
         <Broj_prijave></Broj_prijave>
         <Datum_podnosenja>2020-02-02</Datum_podnosenja>
         <Prilozi>
-            <Primerak_znaka></Primerak_znaka>
+            <Primerak_znaka>true</Primerak_znaka>
             <Spisak_robe_i_usluga></Spisak_robe_i_usluga>
             <Punomocje></Punomocje>
             <Naknadno_dostavljeno_punomocje>false</Naknadno_dostavljeno_punomocje>
-            <Generalno_punomocje></Generalno_punomocje>
+            <Generalno_punomocje>true</Generalno_punomocje>
             <Opsti_akt></Opsti_akt>
             <Dokaz_o_pravu_prvenstva></Dokaz_o_pravu_prvenstva>
             <Dokaz_o_uplati_takse></Dokaz_o_uplati_takse>
