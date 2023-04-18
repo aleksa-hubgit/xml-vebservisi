@@ -6,7 +6,8 @@ class Prijava{
         public informacijeOZigu:InformacijeOZigu = new InformacijeOZigu(),
         public pravoPrvenstva:PravoPrvenstva = new PravoPrvenstva(),
         public takse:Takse = new Takse(),
-        public informacijaZavoda:InformacijaZavoda = new InformacijaZavoda()
+        public prilozi:TPrilozi = new TPrilozi()
+
     ){}
 
 
