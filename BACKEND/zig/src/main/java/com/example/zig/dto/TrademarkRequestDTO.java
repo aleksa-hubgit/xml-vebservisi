@@ -8,10 +8,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@XmlRootElement(name="prijavaZaZig")
 public class TrademarkRequestDTO {
 
     private TLiceDTO podnosilacPrijave;

@@ -15,7 +15,7 @@ public class MarshallingUtils {
     private final JAXBContext context;
 
     public MarshallingUtils() throws JAXBException {
-        this.context = JAXBContext.newInstance("project.z1.model.z1");
+        this.context = JAXBContext.newInstance("com.example.zig.model");
     }
 
     public OutputStream marshall(Prijava prijava) throws JAXBException {

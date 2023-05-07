@@ -8,7 +8,7 @@ import * as JsonToXML from 'js2xmlparser';
 })
 export class ZigService {
   constructor(private _http: HttpClient) {}
-  url = 'http://localhost:8080/trademark/';
+  url = 'http://localhost:9000/trademark/';
 
   sendRequest(prijava: Prijava) {
     const xml = JsonToXML.parse('prijavaZaZig', prijava);
