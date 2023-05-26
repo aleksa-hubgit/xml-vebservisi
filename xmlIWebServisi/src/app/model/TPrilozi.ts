@@ -5,7 +5,7 @@ export class TPrilozi{
         public spisakRobeIUsluga:boolean = false,
         public punomocje:boolean = false,
         public naknadnoDostavljenoPunomocje:boolean = false,
-        public generalnoPunomocje:boolean = true,
+        public generalnoPunomocje:boolean = false,
         public opstiAkt:boolean = false,
         public dokazOPravuPrvenstva:boolean = false,
         public dokazOUplatiTakse:boolean = false
