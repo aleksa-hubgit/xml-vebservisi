@@ -440,7 +440,7 @@ public class Autorksa {
 
         protected TPodnosilacPrijave autor;
         protected Autori autori;
-        protected Boolean anonimno;
+        protected boolean anonimno;
 
         /**
          * Gets the value of the autor property.
@@ -510,7 +510,7 @@ public class Autorksa {
          *     {@link Boolean }
          *     
          */
-        public void setAnonimno(Boolean value) {
+        public void setAnonimno(boolean value) {
             this.anonimno = value;
         }
 
@@ -825,7 +825,7 @@ public class Autorksa {
     public static class PodaciOPreradi {
 
         @XmlElement(required = true)
-        protected Object naslov;
+        protected String naslov;
         @XmlElement(required = true)
         protected Autor autor;
 
@@ -837,7 +837,7 @@ public class Autorksa {
          *     {@link Object }
          *     
          */
-        public Object getNaslov() {
+        public String getNaslov() {
             return naslov;
         }
 
@@ -849,7 +849,7 @@ public class Autorksa {
          *     {@link Object }
          *     
          */
-        public void setNaslov(Object value) {
+        public void setNaslov(String value) {
             this.naslov = value;
         }
 
