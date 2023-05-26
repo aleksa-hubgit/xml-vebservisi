@@ -12,8 +12,8 @@ import lombok.Setter;
 @NoArgsConstructor
 public class TLiceDTO {
 
-    private TKontaktInformacije kontakt;
-    private TAdresa adresa;
+    private KontaktInformacijeDTO kontakt;
+    private AdresaDTO adresa;
     private String naziv;
     private String ime;
     private String prezime;
@@ -27,9 +27,21 @@ public class TLiceDTO {
         else{
             this.naziv = ((TPravnoLice) podnosilacPrijave).getNaziv();
         }
-        this.adresa = podnosilacPrijave.getAdresa();
-        this.kontakt = podnosilacPrijave.getKontakt();
+
+        this.adresa = new AdresaDTO(podnosilacPrijave.getAdresa());
+        this.kontakt = new KontaktInformacijeDTO(podnosilacPrijave.getKontakt());
 
 
+    }
+
+    @Override
+    public String toString() {
+        return "TLiceDTO{" +
+                "kontakt=" + kontakt +
+                ", adresa=" + adresa +
+                ", naziv='" + naziv + '\'' +
+                ", ime='" + ime + '\'' +
+                ", prezime='" + prezime + '\'' +
+                '}';
     }
 }

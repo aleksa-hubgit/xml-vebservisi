@@ -1,6 +1,8 @@
 
 package com.example.zig.model;
 
+import com.example.zig.dto.KontaktInformacijeDTO;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -43,6 +45,15 @@ public class TKontaktInformacije {
     @XmlElement(name = "e_posta", namespace = "http://www.ftn.uns.ac.rs/zig", required = true)
     protected String ePosta;
 
+    public TKontaktInformacije(KontaktInformacijeDTO kontakt) {
+        this.brojTelefona = kontakt.brojTelefona;
+        this.brojFaksa = kontakt.brojFaksa;
+        this.ePosta = kontakt.ePosta;
+    }
+
+    public TKontaktInformacije(){
+
+    }
     /**
      * Gets the value of the brojTelefona property.
      * 
@@ -115,4 +126,12 @@ public class TKontaktInformacije {
         this.ePosta = value;
     }
 
+    @Override
+    public String toString() {
+        return "TKontaktInformacije{" +
+                "brojTelefona='" + brojTelefona + '\'' +
+                ", brojFaksa='" + brojFaksa + '\'' +
+                ", ePosta='" + ePosta + '\'' +
+                '}';
+    }
 }

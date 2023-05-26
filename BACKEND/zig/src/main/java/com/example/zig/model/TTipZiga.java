@@ -24,9 +24,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlEnum
 public enum TTipZiga {
 
-    INDIVIDUALNI_ZIG,
-    KOLEKTIVNI_ZIG,
-    GARANTNI_ZIG;
+    INDIVIDUALNI,
+    KOLEKTIVNI,
+    GARANTNI;
 
     public String value() {
         return name();

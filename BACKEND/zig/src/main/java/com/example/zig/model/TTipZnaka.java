@@ -26,10 +26,10 @@ import javax.xml.bind.annotation.XmlType;
 @XmlEnum
 public enum TTipZnaka {
 
-    VERBALNI_ZNAK,
-    GRAFICKI_ZNAK,
-    KOMBINOVANI_ZNAK,
-    TRODIMENZIONALNI_ZNAK,
+    VERBALNI,
+    GRAFICKI,
+    KOMBINOVANI,
+    TRODIMENZIONALNI,
     DRUGA_VRSTA;
 
     public String value() {

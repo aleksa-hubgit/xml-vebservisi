@@ -26,6 +26,7 @@ public class TrademarkController {
     @PostMapping(value ="createRequest", consumes = MediaType.APPLICATION_XML_VALUE)
     public void createRequest(@RequestBody TrademarkRequestDTO request) throws JAXBException, XMLDBException {
 
+        System.out.println(request);
         trademarkService.createRequest(request);
 
     }
