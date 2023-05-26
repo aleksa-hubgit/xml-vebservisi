@@ -1,5 +1,5 @@
 import { TAdresaDTO } from './TAdresaDTO';
-
+import { TKontaktInformacijeDTO } from './TKontaktInformacijeDTO';
 export class TPodnosilacPrijaveDTO{
 
     constructor(
