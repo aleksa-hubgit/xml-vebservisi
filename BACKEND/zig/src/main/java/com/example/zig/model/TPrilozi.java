@@ -1,12 +1,14 @@
 
 package com.example.zig.model;
 
+import com.example.zig.dto.TPriloziDTO;
+
 import java.util.ArrayList;
 import java.util.List;
-import jakarta.xml.bind.annotation.XmlAccessType;
-import jakarta.xml.bind.annotation.XmlAccessorType;
-import jakarta.xml.bind.annotation.XmlElement;
-import jakarta.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
 
 
 /**
@@ -74,6 +76,34 @@ public class TPrilozi {
     protected boolean dokazOPravuPrvenstva;
     @XmlElement(name = "Dokaz_o_uplati_takse", namespace = "http://www.ftn.uns.ac.rs/zig", required = true)
     protected boolean dokazOUplatiTakse;
+
+    public TPrilozi(TPriloziDTO prilozi) {
+        this.primerakZnaka = prilozi.primerakZnaka;
+        this.spisakRobeIUsluga = prilozi.spisakRobeIUsluga;
+        this.punomocje = prilozi.punomocje;
+        this.naknadnoDostavljenoPunomocje = prilozi.naknadnoDostavljenoPunomocje;
+        this.generalnoPunomocje = prilozi.generalnoPunomocje;
+        this.opstiAkt = prilozi.opstiAkt;
+        this.dokazOPravuPrvenstva = prilozi.dokazOPravuPrvenstva;
+        this.dokazOUplatiTakse = prilozi.dokazOUplatiTakse;
+    }
+
+    public TPrilozi(){}
+
+
+    @Override
+    public String toString() {
+        return "TPrilozi{" +
+                "primerakZnaka=" + primerakZnaka +
+                ", spisakRobeIUsluga=" + spisakRobeIUsluga +
+                ", punomocje=" + punomocje +
+                ", naknadnoDostavljenoPunomocje=" + naknadnoDostavljenoPunomocje +
+                ", generalnoPunomocje=" + generalnoPunomocje +
+                ", opstiAkt=" + opstiAkt +
+                ", dokazOPravuPrvenstva=" + dokazOPravuPrvenstva +
+                ", dokazOUplatiTakse=" + dokazOUplatiTakse +
+                '}';
+    }
 
     /**
      * Gets the value of the primerakZnaka property.

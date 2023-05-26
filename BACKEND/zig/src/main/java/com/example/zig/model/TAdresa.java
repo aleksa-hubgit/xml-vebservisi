@@ -1,10 +1,12 @@
 
 package com.example.zig.model;
 
-import jakarta.xml.bind.annotation.XmlAccessType;
-import jakarta.xml.bind.annotation.XmlAccessorType;
-import jakarta.xml.bind.annotation.XmlElement;
-import jakarta.xml.bind.annotation.XmlType;
+import com.example.zig.dto.AdresaDTO;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
 
 
 /**
@@ -65,6 +67,17 @@ public class TAdresa {
     protected String mesto;
     @XmlElement(namespace = "http://www.ftn.uns.ac.rs/zig", required = true)
     protected String drzava;
+
+    public TAdresa(AdresaDTO adresa) {
+        this.ulica = adresa.ulica;
+        this.broj = adresa.broj;
+        this.postanskiBroj = adresa.postanskiBroj;
+        this.mesto = adresa.mesto;
+        this.drzava = adresa.drzava;
+
+    }
+    public TAdresa() {
+    }
 
     /**
      * Gets the value of the ulica property.
@@ -178,4 +191,14 @@ public class TAdresa {
         this.drzava = value;
     }
 
+    @Override
+    public String toString() {
+        return "TAdresa{" +
+                "ulica='" + ulica + '\'' +
+                ", broj='" + broj + '\'' +
+                ", postanskiBroj=" + postanskiBroj +
+                ", mesto='" + mesto + '\'' +
+                ", drzava='" + drzava + '\'' +
+                '}';
+    }
 }

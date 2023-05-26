@@ -1,8 +1,8 @@
 
 package com.example.zig.model;
 
-import jakarta.xml.bind.annotation.XmlEnum;
-import jakarta.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.XmlEnum;
+import javax.xml.bind.annotation.XmlType;
 
 
 /**
@@ -24,9 +24,9 @@ import jakarta.xml.bind.annotation.XmlType;
 @XmlEnum
 public enum TTipZiga {
 
-    INDIVIDUALNI_ZIG,
-    KOLEKTIVNI_ZIG,
-    GARANTNI_ZIG;
+    INDIVIDUALNI,
+    KOLEKTIVNI,
+    GARANTNI;
 
     public String value() {
         return name();

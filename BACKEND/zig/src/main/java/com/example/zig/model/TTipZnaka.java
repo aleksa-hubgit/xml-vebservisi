@@ -1,8 +1,8 @@
 
 package com.example.zig.model;
 
-import jakarta.xml.bind.annotation.XmlEnum;
-import jakarta.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.XmlEnum;
+import javax.xml.bind.annotation.XmlType;
 
 
 /**
@@ -26,10 +26,10 @@ import jakarta.xml.bind.annotation.XmlType;
 @XmlEnum
 public enum TTipZnaka {
 
-    VERBALNI_ZNAK,
-    GRAFICKI_ZNAK,
-    KOMBINOVANI_ZNAK,
-    TRODIMENZIONALNI_ZNAK,
+    VERBALNI,
+    GRAFICKI,
+    KOMBINOVANI,
+    TRODIMENZIONALNI,
     DRUGA_VRSTA;
 
     public String value() {

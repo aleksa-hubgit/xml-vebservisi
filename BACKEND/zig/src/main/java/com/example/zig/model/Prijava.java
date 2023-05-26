@@ -1,15 +1,17 @@
 
 package com.example.zig.model;
 
+import com.example.zig.dto.*;
+
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.datatype.XMLGregorianCalendar;
-import jakarta.xml.bind.annotation.XmlAccessType;
-import jakarta.xml.bind.annotation.XmlAccessorType;
-import jakarta.xml.bind.annotation.XmlElement;
-import jakarta.xml.bind.annotation.XmlRootElement;
-import jakarta.xml.bind.annotation.XmlSchemaType;
-import jakarta.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlSchemaType;
+import javax.xml.bind.annotation.XmlType;
 
 
 /**
@@ -519,7 +521,7 @@ public class Prijava {
      * 
      */
     @XmlAccessorType(XmlAccessType.FIELD)
-    @XmlType(name = "", propOrder = {
+    @XmlType(name = "informacijeOZigu", propOrder = {
         "tipZiga",
         "tipZnaka",
         "izgledZnaka",
@@ -531,24 +533,51 @@ public class Prijava {
     })
     public static class InformacijeOZigu {
 
-        @XmlElement(name = "Tip_ziga", namespace = "http://www.ftn.uns.ac.rs/zig", required = true)
+        @XmlElement(name = "tipZiga", namespace = "http://www.ftn.uns.ac.rs/zig", required = true)
         @XmlSchemaType(name = "string")
         protected TTipZiga tipZiga;
-        @XmlElement(name = "Tip_znaka", namespace = "http://www.ftn.uns.ac.rs/zig", required = true)
+        @XmlElement(name = "tipZnaka", namespace = "http://www.ftn.uns.ac.rs/zig", required = true)
         @XmlSchemaType(name = "string")
         protected TTipZnaka tipZnaka;
-        @XmlElement(name = "Izgled_znaka", namespace = "http://www.ftn.uns.ac.rs/zig", required = true)
+        @XmlElement(name = "izgledZnaka", namespace = "http://www.ftn.uns.ac.rs/zig", required = true)
         protected String izgledZnaka;
-        @XmlElement(name = "Boje_znaka", namespace = "http://www.ftn.uns.ac.rs/zig", required = true)
+        @XmlElement(name = "bojeZnaka", namespace = "http://www.ftn.uns.ac.rs/zig", required = true)
         protected Prijava.InformacijeOZigu.BojeZnaka bojeZnaka;
-        @XmlElement(name = "Transliteracija_znaka", namespace = "http://www.ftn.uns.ac.rs/zig")
+        @XmlElement(name = "transliteracijaZnaka", namespace = "http://www.ftn.uns.ac.rs/zig")
         protected String transliteracijaZnaka;
-        @XmlElement(name = "Prevod_znaka", namespace = "http://www.ftn.uns.ac.rs/zig")
+        @XmlElement(name = "prevodZnaka", namespace = "http://www.ftn.uns.ac.rs/zig")
         protected String prevodZnaka;
-        @XmlElement(name = "Opis_znaka", namespace = "http://www.ftn.uns.ac.rs/zig", required = true)
+        @XmlElement(name = "opisZnaka", namespace = "http://www.ftn.uns.ac.rs/zig", required = true)
         protected String opisZnaka;
-        @XmlElement(name = "Nicanska_klasifikacija", namespace = "http://www.ftn.uns.ac.rs/zig", required = true)
+        @XmlElement(name = "nicanskaKlasifikacija", namespace = "http://www.ftn.uns.ac.rs/zig", required = true)
         protected Prijava.InformacijeOZigu.NicanskaKlasifikacija nicanskaKlasifikacija;
+
+        public InformacijeOZigu(InformacijeOZiguDTO informacijeOZigu) {
+            this.tipZiga = TTipZiga.valueOf(informacijeOZigu.tipZiga);
+            this.tipZnaka = TTipZnaka.valueOf(informacijeOZigu.tipZnaka);
+            this.izgledZnaka = informacijeOZigu.izgledZnaka;
+            this.bojeZnaka = new BojeZnaka(informacijeOZigu.bojeZnaka);
+            this.transliteracijaZnaka = informacijeOZigu.transliteracijaZnaka;
+            this.prevodZnaka = informacijeOZigu.prevodZnaka;
+            this.opisZnaka = informacijeOZigu.opisZnaka;
+            this.nicanskaKlasifikacija = new NicanskaKlasifikacija(informacijeOZigu.nicanskaKlasifikacija);
+        }
+        public InformacijeOZigu() {
+        }
+
+        @Override
+        public String toString() {
+            return "InformacijeOZigu{" +
+                    "tipZiga=" + tipZiga +
+                    ", tipZnaka=" + tipZnaka +
+                    ", izgledZnaka='" + izgledZnaka + '\'' +
+                    ", bojeZnaka=" + bojeZnaka +
+                    ", transliteracijaZnaka='" + transliteracijaZnaka + '\'' +
+                    ", prevodZnaka='" + prevodZnaka + '\'' +
+                    ", opisZnaka='" + opisZnaka + '\'' +
+                    ", nicanskaKlasifikacija=" + nicanskaKlasifikacija +
+                    '}';
+        }
 
         /**
          * Gets the value of the tipZiga property.
@@ -771,6 +800,21 @@ public class Prijava {
             @XmlElement(name = "Boja", namespace = "http://www.ftn.uns.ac.rs/zig", required = true)
             protected List<String> boja;
 
+            public BojeZnaka(BojeZnakaDTO bojeZnaka) {
+                this.boja = bojeZnaka.boja;
+            }
+
+            public BojeZnaka(){
+
+            }
+
+            @Override
+            public String toString() {
+                return "BojeZnaka{" +
+                        "boja=" + boja +
+                        '}';
+            }
+
             /**
              * Gets the value of the boja property.
              * 
@@ -839,6 +883,19 @@ public class Prijava {
             @XmlElement(name = "Klasa", namespace = "http://www.ftn.uns.ac.rs/zig", type = Integer.class)
             protected List<Integer> klasa;
 
+            public NicanskaKlasifikacija(NicanskaKlasifikacijaDTO nicanskaKlasifikacija) {
+                this.klasa = nicanskaKlasifikacija.klasa;
+            }
+            public NicanskaKlasifikacija(){
+
+            }
+            @Override
+            public String toString() {
+                return "NicanskaKlasifikacija{" +
+                        "klasa=" + klasa +
+                        '}';
+            }
+
             /**
              * Gets the value of the klasa property.
              * 
@@ -906,6 +963,23 @@ public class Prijava {
         protected String zatrazenoPravo;
         @XmlElement(name = "Osnov", namespace = "http://www.ftn.uns.ac.rs/zig", required = true)
         protected String osnov;
+
+        public PravoPrvenstva(PravoPrvenstvaDTO pravoPrvenstva) {
+            this.zatrazenoPravo = pravoPrvenstva.zatrazenoPravo;
+            this.osnov = pravoPrvenstva.osnov;
+        }
+
+        public PravoPrvenstva(){
+
+        }
+
+        @Override
+        public String toString() {
+            return "PravoPrvenstva{" +
+                    "zatrazenoPravo='" + zatrazenoPravo + '\'' +
+                    ", osnov='" + osnov + '\'' +
+                    '}';
+        }
 
         /**
          * Gets the value of the zatrazenoPravo property.
@@ -1039,6 +1113,27 @@ public class Prijava {
         @XmlElement(name = "Ukupna_taksa", namespace = "http://www.ftn.uns.ac.rs/zig")
         protected double ukupnaTaksa;
 
+        public Takse(TakseDTO takse) {
+            this.osnovnaTaksa = takse.osnovnaTaksa;
+            this.klasnaTaksa = new KlasnaTaksa(takse.klasnaTaksa);
+            this.taksaZaGrafickoResenje = takse.taksaZaGrafickoResenje;
+            this.ukupnaTaksa = takse.ukupnaTaksa;
+        }
+
+        public Takse(){
+
+        }
+
+        @Override
+        public String toString() {
+            return "Takse{" +
+                    "osnovnaTaksa=" + osnovnaTaksa +
+                    ", klasnaTaksa=" + klasnaTaksa +
+                    ", taksaZaGrafickoResenje=" + taksaZaGrafickoResenje +
+                    ", ukupnaTaksa=" + ukupnaTaksa +
+                    '}';
+        }
+
         /**
          * Gets the value of the osnovnaTaksa property.
          * 
@@ -1163,6 +1258,22 @@ public class Prijava {
             protected int brojKlasa;
             @XmlElement(name = "Iznos", namespace = "http://www.ftn.uns.ac.rs/zig")
             protected double iznos;
+
+            public KlasnaTaksa(KlasnaTaksaDTO klasnaTaksa) {
+                this.brojKlasa = klasnaTaksa.brojKlasa;
+                this.iznos = klasnaTaksa.iznos;
+            }
+            public KlasnaTaksa(){
+
+            }
+
+            @Override
+            public String toString() {
+                return "KlasnaTaksa{" +
+                        "brojKlasa=" + brojKlasa +
+                        ", iznos=" + iznos +
+                        '}';
+            }
 
             /**
              * Gets the value of the brojKlasa property.

@@ -1,6 +1,7 @@
 package com.example.zig.service;
 
 import com.example.zig.dto.TLiceDTO;
+import com.example.zig.dto.TPriloziDTO;
 import com.example.zig.dto.TrademarkRequestDTO;
 import com.example.zig.model.*;
 import com.example.zig.repository.ZigRepository;
@@ -94,7 +95,6 @@ public class TrademarkService {
 
     public void createRequest(TrademarkRequestDTO request) throws JAXBException, XMLDBException {
         Prijava prijava = this.createRequestFromDTO(request);
-
         this.save(prijava);
 
     }
@@ -102,7 +102,7 @@ public class TrademarkService {
     private void save(Prijava prijava) throws JAXBException, XMLDBException {
         MarshallingUtils marshallingUtils = new MarshallingUtils();
         OutputStream os = marshallingUtils.marshall(prijava);
-        zigRepository.save(os, "1");
+        zigRepository.save(os, "2");
     }
 
     private Prijava createRequestFromDTO(TrademarkRequestDTO request) {
@@ -112,11 +112,11 @@ public class TrademarkService {
         Date date = new Date();
         XMLGregorianCalendar gregorianDate = createGregorianDate(date);
         informacijaZavoda.setDatumPodnosenja(gregorianDate);
-        informacijaZavoda.setPrilozi(request.getPrilozi());
-
+        informacijaZavoda.setPrilozi(new TPrilozi(request.getPrilozi()));
+        prijava.setInformacijeOZigu(new Prijava.InformacijeOZigu(request.getInformacijeOZigu()));
         prijava.setInformacijaZavoda(informacijaZavoda);
-        prijava.setPravoPrvenstva(request.getPravoPrvenstva());
-        prijava.setTakse(request.getTakse());
+        prijava.setPravoPrvenstva(new Prijava.PravoPrvenstva(request.getPravoPrvenstva()));
+        prijava.setTakse(new Prijava.Takse(request.getTakse()));
 
         prijava.setPunomocnik(createTLice(request.getPunomocnik()));
         prijava.setPodnosilacPrijave(createTLice(request.getPodnosilacPrijave()));
@@ -126,9 +126,11 @@ public class TrademarkService {
 
     }
 
+
+
     private TLice createTLice(TLiceDTO zajednickiPredstavnik) {
-        TAdresa adresa = zajednickiPredstavnik.getAdresa();
-        TKontaktInformacije kontaktInformacije = zajednickiPredstavnik.getKontakt();
+        TAdresa adresa = new TAdresa(zajednickiPredstavnik.getAdresa());
+        TKontaktInformacije kontaktInformacije = new TKontaktInformacije(zajednickiPredstavnik.getKontakt());
         if (zajednickiPredstavnik.getNaziv().equals("")){
             TPravnoLice lice = new TPravnoLice();
             lice.setNaziv(zajednickiPredstavnik.getNaziv());

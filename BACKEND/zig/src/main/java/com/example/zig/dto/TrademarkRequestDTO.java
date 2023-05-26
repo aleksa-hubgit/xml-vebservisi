@@ -8,19 +8,23 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@XmlRootElement(name="prijavaZaZig")
 public class TrademarkRequestDTO {
+
 
     private TLiceDTO podnosilacPrijave;
     private TLiceDTO punomocnik;
     private TLiceDTO zajednickiPredstavnik;
-    private Prijava.InformacijeOZigu informacijeOZigu;
-    private Prijava.PravoPrvenstva pravoPrvenstva;
-    private Prijava.Takse takse;
-    private TPrilozi prilozi;
+    private InformacijeOZiguDTO informacijeOZigu;
+    private PravoPrvenstvaDTO pravoPrvenstva;
+    private TakseDTO takse;
+    private TPriloziDTO prilozi;
 
 
 
@@ -29,11 +33,23 @@ public class TrademarkRequestDTO {
         this.podnosilacPrijave = new TLiceDTO(prijava.getPodnosilacPrijave());
         this.punomocnik = new TLiceDTO(prijava.getPunomocnik());
         this.zajednickiPredstavnik = new TLiceDTO(prijava.getZajednickiPredstavnik());
-        this.informacijeOZigu = prijava.getInformacijeOZigu();
-        this.pravoPrvenstva = prijava.getPravoPrvenstva();
-        this.takse = prijava.getTakse();
-        this.prilozi = prijava.getInformacijaZavoda().getPrilozi();
+        this.informacijeOZigu = new InformacijeOZiguDTO(prijava.getInformacijeOZigu());
+        this.pravoPrvenstva = new PravoPrvenstvaDTO(prijava.getPravoPrvenstva());
+        this.takse = new TakseDTO(prijava.getTakse());
+        this.prilozi = new TPriloziDTO(prijava.getInformacijaZavoda().getPrilozi());
 
     }
 
+    @Override
+    public String toString() {
+        return "TrademarkRequestDTO{" +
+                "podnosilacPrijave=" + podnosilacPrijave +
+                ", punomocnik=" + punomocnik +
+                ", zajednickiPredstavnik=" + zajednickiPredstavnik +
+                ", informacijeOZigu=" + informacijeOZigu +
+                ", pravoPrvenstva=" + pravoPrvenstva +
+                ", takse=" + takse +
+                ", prilozi=" + prilozi +
+                '}';
+    }
 }
