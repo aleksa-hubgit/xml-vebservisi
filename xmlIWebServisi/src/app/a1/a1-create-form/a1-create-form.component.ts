@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import {Prijava} from '../../model/Prijava';
 import { ZigService } from 'src/app/z1/zig.service';
+import { CopyrightRequestDTO } from 'src/app/model/a1/CopyrightRequestDTO';
+import * as JsonToXML from 'js2xmlparser';
 
 @Component({
   selector: 'app-z1-create-form',
@@ -8,22 +10,22 @@ import { ZigService } from 'src/app/z1/zig.service';
   styleUrls: ['./a1-create-form.component.css']
 })
 export class A1CreateFormComponent {
-  constructor(private service : ZigService) {}
+  constructor(private service : AService) {}
 
-  prijava: Prijava = new Prijava();
+  prijava: CopyrightRequestDTO = new CopyrightRequestDTO();
   podnosilacLice: string = 'Fizicko lice';
-  punomocnikLice: string = 'Fizicko lice';
-  treceLice: string = 'Fizicko lice';
-  ostalo:string = '';
-  boje:string ='';
-  nicanska:string =''
+  podnosiPunomocnik: boolean = false;
+  podnosiAutor:boolean = true;
+  prerada:boolean = false;
+  ostalo:string = "";
 
 
   sendRequest(){
-    this.prijava.informacijeOZigu.nicanskaKlasifikacija.klasa = this.nicanska.split(",").map(Number);
-    this.prijava.informacijeOZigu.bojeZnaka.boja = this.boje.split(",");
-    if (this.ostalo !== ""){
-      this.prijava.informacijeOZigu.tipZnaka = this.ostalo;
+    if (this.prijava.vrstaDela === "OSTALO"){
+      this.prijava.vrstaDela = this.ostalo;
+    }
+    if (this.prijava.vrstaDela === "OSTALO"){
+      this.prijava.vrstaDela = this.ostalo;
     }
 
     this.service.sendRequest(this.prijava).subscribe();
