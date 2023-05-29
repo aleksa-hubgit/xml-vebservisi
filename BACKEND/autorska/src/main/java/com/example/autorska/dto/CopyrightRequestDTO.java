@@ -15,11 +15,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name="autorskaPrijava")
 public class CopyrightRequestDTO {
 
-    private TPodnosilacPrijaveDTO podnosilacPrijave;
+    private TLiceDTO podnosilacPrijave;
 
     private String pseudonim;
 
-    private PunomocnikDTO punomocnik;
+    private TLiceDTO punomocnik;
 
     private PodaciONaslovuDTO podaciONaslovu;
 

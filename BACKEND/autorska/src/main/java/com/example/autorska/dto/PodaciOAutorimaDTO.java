@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class PodaciOAutorimaDTO {
 
-    public TPodnosilacPrijaveDTO autor;
+    public TLiceDTO autor;
     public AutoriDTO autori;
     public boolean anonimno;
 

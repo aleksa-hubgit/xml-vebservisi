@@ -134,6 +134,7 @@ public class Autorksa {
 
     @XmlElement(name = "podnosilac_prijave", required = true)
     protected TLice podnosilacPrijave;
+    @XmlElement(name="pseudonim")
     protected String pseudonim;
     @XmlElement(required = true)
     protected TLice punomocnik;

@@ -4,12 +4,13 @@ import { PunomocnikDTO } from "./PunomocnikDTO";
 import { PodaciONaslovuDTO } from "./PodaciONaslovuDTO";
 import { PodaciOPreradiDTO } from "./PodaciOPreradiDTO";
 import { PodaciOAutorimaDTO } from "./PodaciOAutorimaDTO";
+import { TLice } from "../TLice";
 
 export class CopyrightRequestDTO{
     constructor(
-        public podnosilacPrijave:TPodnosilacPrijaveDTO = new TPodnosilacPrijaveDTO(),
+        public podnosilacPrijave:TLice = new TLice(),
         public pseudonim:String = "",
-        public punomocnik:PunomocnikDTO = new PunomocnikDTO(),
+        public punomocnik:TLice = new TLice(),
         public podaciONaslovu:PodaciONaslovuDTO = new PodaciONaslovuDTO(),
         public podaciOPreradi:PodaciOPreradiDTO = new PodaciOPreradiDTO(),
         public vrstaDela:String = "",
