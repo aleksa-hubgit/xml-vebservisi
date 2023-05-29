@@ -69,25 +69,6 @@ public class ObjectFactory {
         return new Autorksa.PodaciOPreradi();
     }
 
-    /**
-     * Create an instance of {@link TPodnosilacPrijave }
-     * 
-     * @return
-     *     the new instance of {@link TPodnosilacPrijave }
-     */
-    public TPodnosilacPrijave createTPodnosilacPrijave() {
-        return new TPodnosilacPrijave();
-    }
-
-    /**
-     * Create an instance of {@link Autorksa.Punomocnik }
-     * 
-     * @return
-     *     the new instance of {@link Autorksa.Punomocnik }
-     */
-    public Autorksa.Punomocnik createAutorksaPunomocnik() {
-        return new Autorksa.Punomocnik();
-    }
 
     /**
      * Create an instance of {@link Autorksa.PodaciONaslovu }

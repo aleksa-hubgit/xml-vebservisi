@@ -30,7 +30,6 @@ import jakarta.xml.bind.annotation.*;
     "kontakt"
 })
 @XmlSeeAlso({
-    TPodnosilacPrijave.class,
     TPravnoLice.class,
     TFizickoLice.class
 })

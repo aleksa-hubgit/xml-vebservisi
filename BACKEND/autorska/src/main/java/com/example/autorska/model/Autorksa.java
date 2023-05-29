@@ -133,10 +133,10 @@ import java.util.List;
 public class Autorksa {
 
     @XmlElement(name = "podnosilac_prijave", required = true)
-    protected TPodnosilacPrijave podnosilacPrijave;
+    protected TLice podnosilacPrijave;
     protected String pseudonim;
     @XmlElement(required = true)
-    protected Punomocnik punomocnik;
+    protected TLice punomocnik;
     @XmlElement(name = "podaci_o_naslovu", required = true)
     protected PodaciONaslovu podaciONaslovu;
     @XmlElement(name = "podaci_o_preradi", required = true)
@@ -157,10 +157,10 @@ public class Autorksa {
      * 
      * @return
      *     possible object is
-     *     {@link TPodnosilacPrijave }
+     *     {@link TLice }
      *     
      */
-    public TPodnosilacPrijave getPodnosilacPrijave() {
+    public TLice getPodnosilacPrijave() {
         return podnosilacPrijave;
     }
 
@@ -169,10 +169,10 @@ public class Autorksa {
      * 
      * @param value
      *     allowed object is
-     *     {@link TPodnosilacPrijave }
+     *     {@link TLice }
      *     
      */
-    public void setPodnosilacPrijave(TPodnosilacPrijave value) {
+    public void setPodnosilacPrijave(TLice value) {
         this.podnosilacPrijave = value;
     }
 
@@ -205,10 +205,10 @@ public class Autorksa {
      * 
      * @return
      *     possible object is
-     *     {@link Punomocnik }
+     *     {@link TLice }
      *     
      */
-    public Punomocnik getPunomocnik() {
+    public TLice getPunomocnik() {
         return punomocnik;
     }
 
@@ -217,10 +217,10 @@ public class Autorksa {
      * 
      * @param value
      *     allowed object is
-     *     {@link Punomocnik }
+     *     {@link TLice }
      *     
      */
-    public void setPunomocnik(Punomocnik value) {
+    public void setPunomocnik(TLice value) {
         this.punomocnik = value;
     }
 
@@ -438,7 +438,7 @@ public class Autorksa {
     })
     public static class PodaciOAutorima {
 
-        protected TPodnosilacPrijave autor;
+        protected TLice autor;
         protected Autori autori;
         protected Boolean anonimno;
 
@@ -447,10 +447,10 @@ public class Autorksa {
          * 
          * @return
          *     possible object is
-         *     {@link TPodnosilacPrijave }
+         *     {@link TLice }
          *     
          */
-        public TPodnosilacPrijave getAutor() {
+        public TLice getAutor() {
             return autor;
         }
 
@@ -459,10 +459,10 @@ public class Autorksa {
          * 
          * @param value
          *     allowed object is
-         *     {@link TPodnosilacPrijave }
+         *     {@link TLice }
          *     
          */
-        public void setAutor(TPodnosilacPrijave value) {
+        public void setAutor(TLice value) {
             this.autor = value;
         }
 
@@ -963,86 +963,6 @@ public class Autorksa {
     }
 
 
-    /**
-     * <p>Java class for anonymous complex type.
-     * 
-     * <p>The following schema fragment specifies the expected content contained within this class.
-     * 
-     * <pre>{@code
-     * <complexType>
-     *   <complexContent>
-     *     <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *       <sequence>
-     *         <element name="ime" type="{http://www.w3.org/2001/XMLSchema}string"/>
-     *         <element name="prezime" type="{http://www.w3.org/2001/XMLSchema}string"/>
-     *       </sequence>
-     *     </restriction>
-     *   </complexContent>
-     * </complexType>
-     * }</pre>
-     * 
-     * 
-     */
-    @XmlAccessorType(XmlAccessType.FIELD)
-    @XmlType(name = "", propOrder = {
-        "ime",
-        "prezime"
-    })
-    public static class Punomocnik {
 
-        @XmlElement(required = true)
-        protected String ime;
-        @XmlElement(required = true)
-        protected String prezime;
-
-        /**
-         * Gets the value of the ime property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link String }
-         *     
-         */
-        public String getIme() {
-            return ime;
-        }
-
-        /**
-         * Sets the value of the ime property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *     
-         */
-        public void setIme(String value) {
-            this.ime = value;
-        }
-
-        /**
-         * Gets the value of the prezime property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link String }
-         *     
-         */
-        public String getPrezime() {
-            return prezime;
-        }
-
-        /**
-         * Sets the value of the prezime property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *     
-         */
-        public void setPrezime(String value) {
-            this.prezime = value;
-        }
-
-    }
 
 }
