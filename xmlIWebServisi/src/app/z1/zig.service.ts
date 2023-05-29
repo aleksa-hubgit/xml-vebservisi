@@ -8,12 +8,14 @@ import * as JsonToXML from 'js2xmlparser';
 })
 export class ZigService {
   constructor(private _http: HttpClient) {}
+
   url = 'http://localhost:9000/trademark/';
+
 
   sendRequest(prijava: Prijava) {
     const xml = JsonToXML.parse('prijavaZaZig', prijava);
-    const saveUrl = this.url + 'createRequest';
-    return this._http.post<any>(saveUrl, xml, {
+    const url = this.url + 'createRequest';
+    return this._http.post<any>(url, xml, {
       headers: new HttpHeaders({
         'Content-Type': 'application/xml',
         'Access-Control-Allow-Origin': '*',
