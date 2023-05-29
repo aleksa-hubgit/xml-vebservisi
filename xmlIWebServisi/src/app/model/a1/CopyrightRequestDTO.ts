@@ -1,6 +1,4 @@
 
-import { TPodnosilacPrijaveDTO } from "./TPodnosilacPrijaveDTO";
-import { PunomocnikDTO } from "./PunomocnikDTO";
 import { PodaciONaslovuDTO } from "./PodaciONaslovuDTO";
 import { PodaciOPreradiDTO } from "./PodaciOPreradiDTO";
 import { PodaciOAutorimaDTO } from "./PodaciOAutorimaDTO";
