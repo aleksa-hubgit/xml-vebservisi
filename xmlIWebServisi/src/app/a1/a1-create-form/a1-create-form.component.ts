@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import {Prijava} from '../../model/Prijava';
 import { ZigService } from 'src/app/z1/zig.service';
 import { CopyrightRequestDTO } from 'src/app/model/a1/CopyrightRequestDTO';
-import * as JsonToXML from 'js2xmlparser';
+import { AService } from './a.service';
+
 
 @Component({
   selector: 'app-z1-create-form',
