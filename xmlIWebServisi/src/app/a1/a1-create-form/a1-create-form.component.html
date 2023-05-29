@@ -10,14 +10,14 @@
       </select>
 
       <div class="form-check form-group my-2 col-4" style="margin-left: 20px">
-        <input class="form-check-input"  type="checkbox"  [checked]="podnosiPunomocnik" id="podnosiPunomopcnik" (change)="podnosiPunomocnik = !podnosiPunomocnik" [(ngModel)]="podnosiPunomocnik">
+        <input class="form-check-input"  type="checkbox"  name = "podnosiPunomocnik" [checked]="podnosiPunomocnik" id="podnosiPunomopcnik" (change)="podnosiPunomocnik = !podnosiPunomocnik" [(ngModel)]="podnosiPunomocnik">
         <label class="form-check-label" for="podnosiPunomopcnik">
           Prijavu podnosi punomocnik
         </label>
       </div>
 
       <div class="form-check form-group my-2 col-4" style="margin-left: 20px">
-        <input class="form-check-input"  type="checkbox"  [checked]="podnosiAutor" id="podnosiAutor" (change)="podnosiAutor = !podnosiAutor" [(ngModel)]="podnosiAutor">
+        <input class="form-check-input"  type="checkbox"  [checked]="podnosiAutor" id="podnosiAutor" name="podnosiAutor" (change)="podnosiAutor = !podnosiAutor" [(ngModel)]="podnosiAutor">
         <label class="form-check-label" for="podnosiPunomopcnik">
           Prijavu podnosi autor
         </label>
@@ -91,11 +91,11 @@
             <div class="row pb-2" >
               <div class="form-group col-3">
                 <label for="ime_podnosioca">Ime:</label>
-                <input type="text" class="form-control" name="ime_podnosioca" [(ngModel)]="prijava.punomocnik.ime">
+                <input type="text" class="form-control" name="ime_podnosioca2" [(ngModel)]="prijava.punomocnik.ime">
               </div>
               <div class="form-group col-3">
                 <label for="prezime_podnosioca">Prezime:</label>
-                <input type="text" class="form-control" name="prezime_podnosioca" [(ngModel)]="prijava.punomocnik.prezime">
+                <input type="text" class="form-control" name="prezime_podnosioca2" [(ngModel)]="prijava.punomocnik.prezime">
               </div>
             </div>
       
@@ -104,23 +104,23 @@
             <h4 class="form-title">Adresa</h4>
             <div class="form-group">
               <label for="ulicaIBroj">Ulica</label>
-              <input id="ulicaIBroj"  name="ulica" type="text" class="form-control"  [(ngModel)]="prijava.punomocnik.adresa.ulica" required>
+              <input id="ulicaIBroj"  name="ulica2" type="text" class="form-control"  [(ngModel)]="prijava.punomocnik.adresa.ulica" required>
             </div>
             <div class="form-group">
               <label for="ulicaIBroj">Broj</label>
-              <input id="ulicaIBroj"  name="Broj" type="number" class="form-control"  [(ngModel)]="prijava.punomocnik.adresa.broj" required>
+              <input id="ulicaIBroj"  name="Broj2" type="number" class="form-control"  [(ngModel)]="prijava.punomocnik.adresa.broj" required>
             </div>
             <div class="form-group">
               <label for="postanskiBroj">Poštanski broj</label>
-              <input id="postanskiBroj"   name="postanskiBroj" type="text" class="form-control"  [(ngModel)]="prijava.punomocnik.adresa.postanskiBroj" required>
+              <input id="postanskiBroj"   name="postanskiBroj2" type="text" class="form-control"  [(ngModel)]="prijava.punomocnik.adresa.postanskiBroj" required>
             </div>
             <div class="form-group">
               <label for="mesto">Mesto</label>
-              <input id="mesto"  name="mesto" type="text" class="form-control" [(ngModel)]="prijava.punomocnik.adresa.mesto" required>
+              <input id="mesto"  name="mesto2" type="text" class="form-control" [(ngModel)]="prijava.punomocnik.adresa.mesto" required>
             </div>
             <div class="form-group">
               <label for="drzava">Država prebivališta/sedišta</label>
-              <input id="drzava"   name="drzava" type="text" class="form-control" [(ngModel)]="prijava.punomocnik.adresa.drzava" required>
+              <input id="drzava"   name="drzava2" type="text" class="form-control" [(ngModel)]="prijava.punomocnik.adresa.drzava" required>
             </div>
               </div>
       <div>
@@ -131,7 +131,7 @@
         </h2>
 
         <div class="form-check form-group my-2 col-4" style="margin-left: 20px">
-          <input class="form-check-input"  type="checkbox"  [checked]="prerada" id="prerada" (change)="prerada = !prerada" [(ngModel)]="prerada">
+          <input class="form-check-input"  type="checkbox"  [checked]="prerada" name="prerada"  (change)="prerada = !prerada" [(ngModel)]="prerada">
           <label class="form-check-label" for="podnosiPunomopcnik">
             Delo je prerada nekog drugog dela
           </label>
@@ -153,11 +153,11 @@
           <div class="row pb-2" >
             <div class="form-group col-3">
               <label for="ime_podnosioca">Naslov:</label>
-              <input type="text" class="form-control" name="ime_podnosioca" [(ngModel)]="prijava.podaciOPreradi.naslov">
+              <input type="text" class="form-control" name="ime_podnosiocaa" [(ngModel)]="prijava.podaciOPreradi.naslov">
             </div>
             <div class="form-group col-3">
               <label for="prezime_podnosioca">Prezime:</label>
-              <input type="text" class="form-control" name="prezime_podnosioca" [(ngModel)]="prijava.punomocnik.prezime">
+              <input type="text" class="form-control" name="prezime_podnosiocaa" [(ngModel)]="prijava.punomocnik.prezime">
             </div>
           </div>
     
@@ -166,23 +166,23 @@
           <h4 class="form-title">Adresa</h4>
           <div class="form-group">
             <label for="ulicaIBroj">Ulica</label>
-            <input id="ulicaIBroj"  name="ulica" type="text" class="form-control"  [(ngModel)]="prijava.punomocnik.adresa.ulica" required>
+            <input id="ulicaIBroj"  name="ulica3" type="text" class="form-control"  [(ngModel)]="prijava.punomocnik.adresa.ulica" required>
           </div>
           <div class="form-group">
             <label for="ulicaIBroj">Broj</label>
-            <input id="ulicaIBroj"  name="Broj" type="number" class="form-control"  [(ngModel)]="prijava.punomocnik.adresa.broj" required>
+            <input id="ulicaIBroj"  name="Broj3" type="number" class="form-control"  [(ngModel)]="prijava.punomocnik.adresa.broj" required>
           </div>
           <div class="form-group">
             <label for="postanskiBroj">Poštanski broj</label>
-            <input id="postanskiBroj"   name="postanskiBroj" type="text" class="form-control"  [(ngModel)]="prijava.punomocnik.adresa.postanskiBroj" required>
+            <input id="postanskiBroj"   name="postanskiBroj3" type="text" class="form-control"  [(ngModel)]="prijava.punomocnik.adresa.postanskiBroj" required>
           </div>
           <div class="form-group">
             <label for="mesto">Mesto</label>
-            <input id="mesto"  name="mesto" type="text" class="form-control" [(ngModel)]="prijava.punomocnik.adresa.mesto" required>
+            <input id="mesto"  name="mesto3" type="text" class="form-control" [(ngModel)]="prijava.punomocnik.adresa.mesto" required>
           </div>
           <div class="form-group">
             <label for="drzava">Država prebivališta/sedišta</label>
-            <input id="drzava"   name="drzava" type="text" class="form-control" [(ngModel)]="prijava.punomocnik.adresa.drzava" required>
+            <input id="drzava"   name="drzava3" type="text" class="form-control" [(ngModel)]="prijava.punomocnik.adresa.drzava" required>
           </div>
             </div>
 
@@ -192,7 +192,7 @@
             <div>
               Vrsta dela
             </div>
-          <select class="form-select" #vrstaDela aria-label="vrsta dela"  name ="tipZiga" [(ngModel)]="prijava.vrstaDela"  >
+          <select class="form-select" #vrstaDela aria-label="vrsta dela"  name ="tipDela" [(ngModel)]="prijava.vrstaDela"  >
             <option value="KNJIZEVNO_DELO" selected>Knjizevno delo</option>
             <option value="MUZICKO_DELO">Muzicko delo</option>
             <option value="LIKOVNO_DELO">Likovno delo</option>
@@ -213,7 +213,7 @@
           <div>
           Forma Zapisa
           </div>
-        <select class="form-select" #vrstaDela aria-label="vrsta dela"  name ="tipZiga" [(ngModel)]="prijava.vrstaDela"  >
+        <select class="form-select" #vrstaDela aria-label="vrsta dela"  name ="forma" [(ngModel)]="prijava.vrstaDela"  >
           <option value="STAMPANI_TEKST" selected>Stampani tekst</option>
           <option value="OPTICKI_DISK">Opticki disk</option>
           <option value="OSTALO">Ostalo</option>
@@ -230,7 +230,7 @@
         </div>
   
         <div class="form-check form-group my-2 col-4" style="margin-left: 20px">
-          <input class="form-check-input"  type="checkbox"  [checked]="prijava.radnomOdnosu" id="prerada" (change)="prijava.radnomOdnosu = !prijava.radnomOdnosu" [(ngModel)]="prijava.radnomOdnosu">
+          <input class="form-check-input"  type="checkbox"  [checked]="prijava.radnomOdnosu" name="prerada" (change)="prijava.radnomOdnosu = !prijava.radnomOdnosu" [(ngModel)]="prijava.radnomOdnosu">
           <label class="form-check-label" for="podnosiPunomopcnik">
             Delo je stvoreno u radnom odnosu
           </label>
