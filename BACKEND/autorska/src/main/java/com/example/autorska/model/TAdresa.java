@@ -1,6 +1,7 @@
 
 package com.example.autorska.model;
 
+import com.example.autorska.dto.AdresaDTO;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlElement;
@@ -65,6 +66,18 @@ public class TAdresa {
     protected String mesto;
     @XmlElement(required = true)
     protected String drzava;
+
+    public TAdresa() {
+
+    }
+    public TAdresa(AdresaDTO adresa) {
+        this.ulica = adresa.ulica;
+        this.broj = adresa.broj;
+        this.postanskiBroj = adresa.postanskiBroj;
+        this.mesto = adresa.mesto;
+        this.drzava = adresa.drzava;
+
+    }
 
     /**
      * Gets the value of the ulica property.

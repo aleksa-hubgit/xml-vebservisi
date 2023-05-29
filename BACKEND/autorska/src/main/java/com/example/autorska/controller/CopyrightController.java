@@ -21,7 +21,7 @@ public class CopyrightController {
 
     @PostMapping(produces = "application/xml", consumes = "application/xml")
     public void createRequest(@RequestBody CopyrightRequestDTO request) throws JAXBException, XMLDBException {
-
+        System.out.println(request);
         copyrightService.createRequest(request);
 
     }

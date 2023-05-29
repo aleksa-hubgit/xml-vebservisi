@@ -30,54 +30,54 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Autorksa }
+     * Create an instance of {@link Autorska }
      * 
      * @return
-     *     the new instance of {@link Autorksa }
+     *     the new instance of {@link Autorska }
      */
-    public Autorksa createAutorksa() {
-        return new Autorksa();
+    public Autorska createAutorksa() {
+        return new Autorska();
     }
 
     /**
-     * Create an instance of {@link Autorksa.PodaciOAutorima }
+     * Create an instance of {@link Autorska.PodaciOAutorima }
      * 
      * @return
-     *     the new instance of {@link Autorksa.PodaciOAutorima }
+     *     the new instance of {@link Autorska.PodaciOAutorima }
      */
-    public Autorksa.PodaciOAutorima createAutorksaPodaciOAutorima() {
-        return new Autorksa.PodaciOAutorima();
+    public Autorska.PodaciOAutorima createAutorksaPodaciOAutorima() {
+        return new Autorska.PodaciOAutorima();
     }
 
     /**
-     * Create an instance of {@link Autorksa.PodaciOAutorima.Autori }
+     * Create an instance of {@link Autorska.PodaciOAutorima.Autori }
      * 
      * @return
-     *     the new instance of {@link Autorksa.PodaciOAutorima.Autori }
+     *     the new instance of {@link Autorska.PodaciOAutorima.Autori }
      */
-    public Autorksa.PodaciOAutorima.Autori createAutorksaPodaciOAutorimaAutori() {
-        return new Autorksa.PodaciOAutorima.Autori();
+    public Autorska.PodaciOAutorima.Autori createAutorksaPodaciOAutorimaAutori() {
+        return new Autorska.PodaciOAutorima.Autori();
     }
 
     /**
-     * Create an instance of {@link Autorksa.PodaciOPreradi }
+     * Create an instance of {@link Autorska.PodaciOPreradi }
      * 
      * @return
-     *     the new instance of {@link Autorksa.PodaciOPreradi }
+     *     the new instance of {@link Autorska.PodaciOPreradi }
      */
-    public Autorksa.PodaciOPreradi createAutorksaPodaciOPreradi() {
-        return new Autorksa.PodaciOPreradi();
+    public Autorska.PodaciOPreradi createAutorksaPodaciOPreradi() {
+        return new Autorska.PodaciOPreradi();
     }
 
 
     /**
-     * Create an instance of {@link Autorksa.PodaciONaslovu }
+     * Create an instance of {@link Autorska.PodaciONaslovu }
      * 
      * @return
-     *     the new instance of {@link Autorksa.PodaciONaslovu }
+     *     the new instance of {@link Autorska.PodaciONaslovu }
      */
-    public Autorksa.PodaciONaslovu createAutorksaPodaciONaslovu() {
-        return new Autorksa.PodaciONaslovu();
+    public Autorska.PodaciONaslovu createAutorksaPodaciONaslovu() {
+        return new Autorska.PodaciONaslovu();
     }
 
     /**
@@ -121,23 +121,23 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Autorksa.PodaciOAutorima.Autori.Autor }
+     * Create an instance of {@link Autorska.PodaciOAutorima.Autori.Autor }
      * 
      * @return
-     *     the new instance of {@link Autorksa.PodaciOAutorima.Autori.Autor }
+     *     the new instance of {@link Autorska.PodaciOAutorima.Autori.Autor }
      */
-    public Autorksa.PodaciOAutorima.Autori.Autor createAutorksaPodaciOAutorimaAutoriAutor() {
-        return new Autorksa.PodaciOAutorima.Autori.Autor();
+    public Autorska.PodaciOAutorima.Autori.Autor createAutorksaPodaciOAutorimaAutoriAutor() {
+        return new Autorska.PodaciOAutorima.Autori.Autor();
     }
 
     /**
-     * Create an instance of {@link Autorksa.PodaciOPreradi.Autor }
+     * Create an instance of {@link Autorska.PodaciOPreradi.Autor }
      * 
      * @return
-     *     the new instance of {@link Autorksa.PodaciOPreradi.Autor }
+     *     the new instance of {@link Autorska.PodaciOPreradi.Autor }
      */
-    public Autorksa.PodaciOPreradi.Autor createAutorksaPodaciOPreradiAutor() {
-        return new Autorksa.PodaciOPreradi.Autor();
+    public Autorska.PodaciOPreradi.Autor createAutorksaPodaciOPreradiAutor() {
+        return new Autorska.PodaciOPreradi.Autor();
     }
 
 }

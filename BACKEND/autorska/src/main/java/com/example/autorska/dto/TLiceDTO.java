@@ -3,7 +3,15 @@ package com.example.autorska.dto;
 import com.example.autorska.model.TFizickoLice;
 import com.example.autorska.model.TLice;
 import com.example.autorska.model.TPravnoLice;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class TLiceDTO {
 
     private KontaktInformacijeDTO kontakt;

@@ -1,6 +1,7 @@
 
 package com.example.autorska.model;
 
+import com.example.autorska.dto.KontaktInformacijeDTO;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlElement;
@@ -38,6 +39,13 @@ public class TKontaktInformacije {
     protected String brojTelefona;
     @XmlElement(name = "e_posta", required = true)
     protected String ePosta;
+
+    public TKontaktInformacije() {
+    }
+    public TKontaktInformacije(KontaktInformacijeDTO kontakt) {
+        this.brojTelefona = kontakt.brojTelefona;
+        this.ePosta = kontakt.ePosta;
+    }
 
     /**
      * Gets the value of the brojTelefona property.

@@ -1,6 +1,7 @@
 
 package com.example.autorska.model;
 
+import com.example.autorska.dto.*;
 import jakarta.xml.bind.annotation.*;
 
 import javax.xml.datatype.XMLGregorianCalendar;
@@ -130,7 +131,7 @@ import java.util.List;
     "potpis"
 })
 @XmlRootElement(name = "autorksa")
-public class Autorksa {
+public class Autorska {
 
     @XmlElement(name = "podnosilac_prijave", required = true)
     protected TLice podnosilacPrijave;
@@ -443,6 +444,14 @@ public class Autorksa {
         protected Autori autori;
         protected boolean anonimno;
 
+        public PodaciOAutorima(PodaciOAutorimaDTO podaciOAutorima, TLice autor) {
+            this.anonimno = podaciOAutorima.anonimno;
+            this.autori = new Autori(podaciOAutorima.autori);
+            this.autor = autor;
+        }
+
+        public PodaciOAutorima() {
+        }
         /**
          * Gets the value of the autor property.
          * 
@@ -556,6 +565,12 @@ public class Autorksa {
             @XmlElement(required = true)
             protected List<Autor> autor;
 
+            public Autori(AutoriDTO autori) {
+                for (AutorDTO autor : autori.autor) {
+                    this.autor.add(new Autor(autor));
+                }
+            }
+
             /**
              * Gets the value of the autor property.
              * 
@@ -624,6 +639,14 @@ public class Autorksa {
                 @XmlElement(name = "godina_smrti", required = true)
                 @XmlSchemaType(name = "date")
                 protected XMLGregorianCalendar godinaSmrti;
+
+                public Autor(AutorDTO autor) {
+                    this.ime = autor.ime;
+                    this.prezime = autor.prezime;
+                    this.godinaSmrti = autor.godinaSmrti;
+                }
+
+                public Autor(){}
 
                 /**
                  * Gets the value of the ime property.
@@ -736,6 +759,13 @@ public class Autorksa {
         @XmlElement(name = "alternativni_naslov", required = true)
         protected String alternativniNaslov;
 
+        public PodaciONaslovu(PodaciONaslovuDTO podaciONaslovu) {
+            this.naslov = podaciONaslovu.naslov;
+            this.alternativniNaslov = podaciONaslovu.alternativniNaslov;
+        }
+        public PodaciONaslovu() {
+        }
+
         /**
          * Gets the value of the naslov property.
          * 
@@ -830,6 +860,11 @@ public class Autorksa {
         @XmlElement(required = true)
         protected Autor autor;
 
+        public PodaciOPreradi(PodaciOPreradiDTO podaciOPreradi) {
+            this.naslov = podaciOPreradi.naslov;
+            this.autor = new Autor(podaciOPreradi.autor);
+        }
+
         /**
          * Gets the value of the naslov property.
          * 
@@ -910,6 +945,12 @@ public class Autorksa {
             protected String ime;
             @XmlElement(required = true)
             protected String prezime;
+
+            public Autor(){}
+            public Autor(AutorDTO autor) {
+                this.ime = autor.ime;
+                this.prezime = autor.prezime;
+            }
 
             /**
              * Gets the value of the ime property.
