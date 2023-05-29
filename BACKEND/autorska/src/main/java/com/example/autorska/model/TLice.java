@@ -1,8 +1,8 @@
 
 package com.example.autorska.model;
 
-import jakarta.xml.bind.annotation.*;
 
+import javax.xml.bind.annotation.*;
 
 /**
  * <p>Java class for TLice complex type.

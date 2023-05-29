@@ -46,5 +46,19 @@ public class CopyrightRequestDTO {
     }
 
 
-
+    @Override
+    public String toString() {
+        return "CopyrightRequestDTO{" +
+                "podnosilacPrijave=" + podnosilacPrijave +
+                ", pseudonim='" + pseudonim + '\'' +
+                ", punomocnik=" + punomocnik +
+                ", podaciONaslovu=" + podaciONaslovu +
+                ", podaciOPreradi=" + podaciOPreradi +
+                ", vrstaDela='" + vrstaDela + '\'' +
+                ", podaciOAutorima=" + podaciOAutorima +
+                ", radnomOdnosu=" + radnomOdnosu +
+                ", namenaDela='" + namenaDela + '\'' +
+                ", potpis='" + potpis + '\'' +
+                '}';
+    }
 }

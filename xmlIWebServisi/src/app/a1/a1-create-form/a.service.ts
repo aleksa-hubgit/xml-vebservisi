@@ -13,7 +13,7 @@ export class AService {
 
 
   sendRequest(prijava: CopyrightRequestDTO) {
-    const xml = JsonToXML.parse('prijavaZaAutorskaPrava', prijava);
+    const xml = JsonToXML.parse('autorskaPrijava', prijava);
     const url = this.url + 'createRequest';
     return this._http.post<any>(url, xml, {
       headers: new HttpHeaders({

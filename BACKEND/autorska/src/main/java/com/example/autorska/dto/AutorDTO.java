@@ -22,4 +22,13 @@ public class AutorDTO {
         this.prezime = autor.getPrezime();
         this.godinaSmrti = autor.getGodinaSmrti();
     }
+
+    @Override
+    public String toString() {
+        return "AutorDTO{" +
+                "ime='" + ime + '\'' +
+                ", prezime='" + prezime + '\'' +
+                ", godinaSmrti=" + godinaSmrti +
+                '}';
+    }
 }

@@ -23,4 +23,15 @@ public class AdresaDTO {
         this.drzava = adresa.getDrzava();
 
     }
+
+    @Override
+    public String toString() {
+        return "AdresaDTO{" +
+                "ulica='" + ulica + '\'' +
+                ", broj='" + broj + '\'' +
+                ", postanskiBroj=" + postanskiBroj +
+                ", mesto='" + mesto + '\'' +
+                ", drzava='" + drzava + '\'' +
+                '}';
+    }
 }

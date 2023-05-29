@@ -2,8 +2,8 @@
 package com.example.autorska.model;
 
 import com.example.autorska.dto.*;
-import jakarta.xml.bind.annotation.*;
 
+import javax.xml.bind.annotation.*;
 import javax.xml.datatype.XMLGregorianCalendar;
 import java.util.ArrayList;
 import java.util.List;
@@ -434,7 +434,6 @@ public class Autorska {
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {
-        "autor",
         "autori",
         "anonimno"
     })
@@ -542,6 +541,7 @@ public class Autorska {
             protected List<Autor> autor;
 
             public Autori(AutoriDTO autori) {
+                this.autor = new ArrayList<>();
                 for (AutorDTO autor : autori.autor) {
                     this.autor.add(new Autor(autor));
                 }

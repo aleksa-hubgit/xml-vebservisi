@@ -15,4 +15,12 @@ public class PodaciOPreradiDTO {
         this.naslov = podaciOPreradi.getNaslov();
         this.autor = new AutorDTO(podaciOPreradi.getAutor());
     }
+
+    @Override
+    public String toString() {
+        return "PodaciOPreradiDTO{" +
+                "naslov='" + naslov + '\'' +
+                ", autor=" + autor +
+                '}';
+    }
 }
