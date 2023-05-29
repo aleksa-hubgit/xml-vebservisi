@@ -130,14 +130,6 @@ public class ObjectFactory {
         return new Autorska.PodaciOAutorima.Autori.Autor();
     }
 
-    /**
-     * Create an instance of {@link Autorska.PodaciOPreradi.Autor }
-     * 
-     * @return
-     *     the new instance of {@link Autorska.PodaciOPreradi.Autor }
-     */
-    public Autorska.PodaciOPreradi.Autor createAutorksaPodaciOPreradiAutor() {
-        return new Autorska.PodaciOPreradi.Autor();
-    }
+
 
 }

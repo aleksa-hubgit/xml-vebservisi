@@ -1,6 +1,7 @@
 package com.example.autorska.dto;
 
 
+import com.example.autorska.model.Autorska;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -34,7 +35,15 @@ public class CopyrightRequestDTO {
     private String namenaDela;
 
     private String potpis;
-    
+
+
+    public CopyrightRequestDTO(Autorska autorska){
+        this.podnosilacPrijave = new TLiceDTO(autorska.getPodnosilacPrijave());
+        this.pseudonim = autorska.getPseudonim();
+        this.punomocnik = new TLiceDTO(autorska.getPunomocnik());
+        this.podaciONaslovu = new PodaciONaslovuDTO(autorska.getPodaciONaslovu());
+        this.podaciOPreradi = new PodaciOPreradiDTO(autorska.getPodaciOPreradi());
+    }
 
 
 
