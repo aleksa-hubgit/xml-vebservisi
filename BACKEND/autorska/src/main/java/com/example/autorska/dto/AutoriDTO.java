@@ -11,4 +11,21 @@ import java.util.List;
 public class AutoriDTO {
 
     public List<AutorDTO> autor;
+
+    @Override
+    public String toString() {
+
+        String r = "";
+        if (autor == null) {
+            return r;
+        }
+
+        for (AutorDTO a : autor) {
+            if (a == null) {
+                continue;
+            }
+            r += a.toString() + "\n";
+        }
+        return r;
+    }
 }

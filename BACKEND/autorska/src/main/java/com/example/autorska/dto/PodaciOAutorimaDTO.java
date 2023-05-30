@@ -12,4 +12,12 @@ public class PodaciOAutorimaDTO {
     public AutoriDTO autori;
     public boolean anonimno;
 
+    @Override
+    public String toString() {
+        return "PodaciOAutorimaDTO{" +
+                "autor=" + autor +
+                ", autori=" + autori +
+                ", anonimno=" + anonimno +
+                '}';
+    }
 }

@@ -16,4 +16,12 @@ public class PodaciONaslovuDTO {
         this.naslov = podaciONaslovu.getNaslov();
         this.alternativniNaslov = podaciONaslovu.getAlternativniNaslov();
     }
+
+    @Override
+    public String toString() {
+        return "PodaciONaslovuDTO{" +
+                "naslov='" + naslov + '\'' +
+                ", alternativniNaslov='" + alternativniNaslov + '\'' +
+                '}';
+    }
 }

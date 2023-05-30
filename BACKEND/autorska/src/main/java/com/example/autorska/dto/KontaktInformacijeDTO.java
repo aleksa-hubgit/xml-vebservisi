@@ -16,4 +16,12 @@ public class KontaktInformacijeDTO {
         this.brojTelefona = kontakt.getBrojTelefona();
         this.ePosta = kontakt.getEPosta();
     }
+
+    @Override
+    public String toString() {
+        return "KontaktInformacijeDTO{" +
+                "brojTelefona='" + brojTelefona + '\'' +
+                ", ePosta='" + ePosta + '\'' +
+                '}';
+    }
 }
