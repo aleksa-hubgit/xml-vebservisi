@@ -1,12 +1,8 @@
 
 package com.example.patent.model;
 
-import jakarta.xml.bind.annotation.XmlAccessType;
-import jakarta.xml.bind.annotation.XmlAccessorType;
-import jakarta.xml.bind.annotation.XmlElement;
-import jakarta.xml.bind.annotation.XmlSeeAlso;
-import jakarta.xml.bind.annotation.XmlType;
 
+import javax.xml.bind.annotation.*;
 
 /**
  * <p>Java class for TLice complex type.
@@ -35,9 +31,7 @@ import jakarta.xml.bind.annotation.XmlType;
 })
 @XmlSeeAlso({
     TPravnoLice.class,
-    TPodnosilacPrijave.class,
     TFizickoLice.class,
-    TPunomocnik.class
 })
 public abstract class TLice {
 

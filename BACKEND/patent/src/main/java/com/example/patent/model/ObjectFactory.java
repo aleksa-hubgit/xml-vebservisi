@@ -1,7 +1,7 @@
 package com.example.patent.model;
 
-import jakarta.xml.bind.annotation.XmlRegistry;
 
+import javax.xml.bind.annotation.XmlRegistry;
 
 /**
  * This object contains factory methods for each
@@ -108,29 +108,6 @@ public class ObjectFactory {
         return new TNazivPronalaska();
     }
 
-    /**
-     * Create an instance of {@link TPodnosilacPrijave }
-     *
-     */
-    public TPodnosilacPrijave createTPodnosilacPrijave() {
-        return new TPodnosilacPrijave();
-    }
-
-    /**
-     * Create an instance of {@link TPronalazac }
-     *
-     */
-    public TPronalazac createTPronalazac() {
-        return new TPronalazac();
-    }
-
-    /**
-     * Create an instance of {@link TPunomocnik }
-     *
-     */
-    public TPunomocnik createTPunomocnik() {
-        return new TPunomocnik();
-    }
 
     /**
      * Create an instance of {@link TZahtev.NacinDostavljanja }

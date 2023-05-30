@@ -2,13 +2,11 @@
 package com.example.patent.model;
 
 import java.math.BigInteger;
+import javax.xml.bind.annotation.*;
 import javax.xml.datatype.XMLGregorianCalendar;
-import jakarta.xml.bind.annotation.XmlAccessType;
-import jakarta.xml.bind.annotation.XmlAccessorType;
-import jakarta.xml.bind.annotation.XmlElement;
-import jakarta.xml.bind.annotation.XmlSchemaType;
-import jakarta.xml.bind.annotation.XmlSeeAlso;
-import jakarta.xml.bind.annotation.XmlType;
+
+import com.example.patent.dto.TDetaljiPrijaveDTO;
+import com.example.patent.dto.TDetaljiPrijaveOznakaDTO;
 
 
 /**
@@ -44,10 +42,24 @@ public class TDetaljiPrijave {
 
     @XmlElement(name = "broj_prijave", required = true)
     @XmlSchemaType(name = "positiveInteger")
-    protected BigInteger brojPrijave;
+    protected Integer brojPrijave;
     @XmlElement(name = "datum_podnosenja", required = true)
     @XmlSchemaType(name = "date")
     protected XMLGregorianCalendar datumPodnosenja;
+
+    public TDetaljiPrijave(TDetaljiPrijaveDTO prvobitnaPrijava) {
+        this.brojPrijave = prvobitnaPrijava.brojPrijave;
+        this.datumPodnosenja = prvobitnaPrijava.datumPodnosenja;
+    }
+
+    public TDetaljiPrijave() {
+    }
+
+    public TDetaljiPrijave(TDetaljiPrijaveOznakaDTO tDetaljiPrijaveOznakaDTO) {
+        this.brojPrijave = tDetaljiPrijaveOznakaDTO.brojPrijave;
+        this.datumPodnosenja = tDetaljiPrijaveOznakaDTO.datumPodnosenja;
+
+    }
 
     /**
      * Gets the value of the brojPrijave property.
@@ -57,7 +69,7 @@ public class TDetaljiPrijave {
      *     {@link BigInteger }
      *     
      */
-    public BigInteger getBrojPrijave() {
+    public Integer getBrojPrijave() {
         return brojPrijave;
     }
 
@@ -69,7 +81,7 @@ public class TDetaljiPrijave {
      *     {@link BigInteger }
      *     
      */
-    public void setBrojPrijave(BigInteger value) {
+    public void setBrojPrijave(Integer value) {
         this.brojPrijave = value;
     }
 

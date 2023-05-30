@@ -1,10 +1,12 @@
 
 package com.example.patent.model;
 
-import jakarta.xml.bind.annotation.XmlAccessType;
-import jakarta.xml.bind.annotation.XmlAccessorType;
-import jakarta.xml.bind.annotation.XmlElement;
-import jakarta.xml.bind.annotation.XmlType;
+import com.example.patent.dto.TNazivPronalaskaDTO;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
 
 
 /**
@@ -38,6 +40,13 @@ public class TNazivPronalaska {
     protected String srpskiNaziv;
     @XmlElement(name = "engleski_naziv", required = true)
     protected String engleskiNaziv;
+
+    public TNazivPronalaska(TNazivPronalaskaDTO nazivPronalaska) {
+        this.srpskiNaziv = nazivPronalaska.srpskiNaziv;
+        this.engleskiNaziv = nazivPronalaska.engleskiNaziv;
+    }
+    public TNazivPronalaska() {
+    }
 
     /**
      * Gets the value of the srpskiNaziv property.

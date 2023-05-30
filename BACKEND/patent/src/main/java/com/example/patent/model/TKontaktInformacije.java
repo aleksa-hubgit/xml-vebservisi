@@ -1,10 +1,12 @@
 
 package com.example.patent.model;
 
-import jakarta.xml.bind.annotation.XmlAccessType;
-import jakarta.xml.bind.annotation.XmlAccessorType;
-import jakarta.xml.bind.annotation.XmlElement;
-import jakarta.xml.bind.annotation.XmlType;
+import com.example.patent.dto.KontaktInformacijeDTO;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
 
 
 /**
@@ -42,6 +44,14 @@ public class TKontaktInformacije {
     protected String brojFaksa;
     @XmlElement(name = "e_posta", required = true)
     protected String ePosta;
+
+    public TKontaktInformacije(KontaktInformacijeDTO kontakt) {
+        this.brojTelefona=kontakt.brojTelefona;
+        this.brojFaksa=kontakt.brojFaksa;
+        this.ePosta=kontakt.ePosta;
+    }
+    public TKontaktInformacije() {
+    }
 
     /**
      * Gets the value of the brojTelefona property.

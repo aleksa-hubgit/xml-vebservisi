@@ -3,10 +3,15 @@ package com.example.patent.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import jakarta.xml.bind.annotation.XmlAccessType;
-import jakarta.xml.bind.annotation.XmlAccessorType;
-import jakarta.xml.bind.annotation.XmlElement;
-import jakarta.xml.bind.annotation.XmlType;
+
+import com.example.patent.dto.NacinDostavljanjaDTO;
+import com.example.patent.dto.PrethodnePrijaveDTO;
+import com.example.patent.dto.TDetaljiPrijaveOznakaDTO;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
 
 
 /**
@@ -83,11 +88,11 @@ public class TZahtev {
     @XmlElement(name = "naziv_pronalaska", required = true)
     protected TNazivPronalaska nazivPronalaska;
     @XmlElement(name = "podnosilac_prijave", required = true)
-    protected TPodnosilacPrijave podnosilacPrijave;
+    protected TLice podnosilacPrijave;
     @XmlElement(required = true)
-    protected TPronalazac pronalazac;
+    protected TLice pronalazac;
     @XmlElement(required = true)
-    protected TPunomocnik punomocnik;
+    protected TLice punomocnik;
     @XmlElement(name = "adresa_za_dostavljanje", required = true)
     protected TAdresa adresaZaDostavljanje;
     @XmlElement(name = "nacin_dostavljanja", required = true)
@@ -130,10 +135,10 @@ public class TZahtev {
      * 
      * @return
      *     possible object is
-     *     {@link TPodnosilacPrijave }
+     *     {@link TLice }
      *     
      */
-    public TPodnosilacPrijave getPodnosilacPrijave() {
+    public TLice getPodnosilacPrijave() {
         return podnosilacPrijave;
     }
 
@@ -142,10 +147,10 @@ public class TZahtev {
      * 
      * @param value
      *     allowed object is
-     *     {@link TPodnosilacPrijave }
+     *     {@link TLice }
      *     
      */
-    public void setPodnosilacPrijave(TPodnosilacPrijave value) {
+    public void setPodnosilacPrijave(TLice value) {
         this.podnosilacPrijave = value;
     }
 
@@ -154,10 +159,10 @@ public class TZahtev {
      * 
      * @return
      *     possible object is
-     *     {@link TPronalazac }
+     *     {@link TLice }
      *     
      */
-    public TPronalazac getPronalazac() {
+    public TLice getPronalazac() {
         return pronalazac;
     }
 
@@ -166,10 +171,10 @@ public class TZahtev {
      * 
      * @param value
      *     allowed object is
-     *     {@link TPronalazac }
+     *     {@link TLice }
      *     
      */
-    public void setPronalazac(TPronalazac value) {
+    public void setPronalazac(TLice value) {
         this.pronalazac = value;
     }
 
@@ -178,10 +183,10 @@ public class TZahtev {
      * 
      * @return
      *     possible object is
-     *     {@link TPunomocnik }
+     *     {@link TLice }
      *     
      */
-    public TPunomocnik getPunomocnik() {
+    public TLice getPunomocnik() {
         return punomocnik;
     }
 
@@ -190,10 +195,10 @@ public class TZahtev {
      * 
      * @param value
      *     allowed object is
-     *     {@link TPunomocnik }
+     *     {@link TLice }
      *     
      */
-    public void setPunomocnik(TPunomocnik value) {
+    public void setPunomocnik(TLice value) {
         this.punomocnik = value;
     }
 
@@ -364,6 +369,13 @@ public class TZahtev {
         protected boolean elektronsko;
         protected boolean papirno;
 
+        public NacinDostavljanja(NacinDostavljanjaDTO nacinDostavljanja) {
+            this.elektronsko = nacinDostavljanja.elektronsko;
+            this.papirno = nacinDostavljanja.papirno;
+        }
+
+        public NacinDostavljanja() {
+        }
         /**
          * Gets the value of the elektronsko property.
          * 
@@ -426,6 +438,16 @@ public class TZahtev {
 
         @XmlElement(name = "prethodna_prijava", required = true)
         protected List<TDetaljiPrijaveOznaka> prethodnaPrijava;
+
+        public PrethodnePrijave(PrethodnePrijaveDTO prethodnePrijave) {
+            for (TDetaljiPrijaveOznakaDTO tDetaljiPrijaveOznakaDTO : prethodnePrijave.detaljiPrijaveOznaka) {
+                this.prethodnaPrijava.add(new TDetaljiPrijaveOznaka(tDetaljiPrijaveOznakaDTO));
+            }
+        }
+
+        public PrethodnePrijave(){
+
+        }
 
         /**
          * Gets the value of the prethodnaPrijava property.

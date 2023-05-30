@@ -1,12 +1,11 @@
 
 package com.example.patent.model;
 
-import jakarta.xml.bind.annotation.XmlAccessType;
-import jakarta.xml.bind.annotation.XmlAccessorType;
-import jakarta.xml.bind.annotation.XmlElement;
-import jakarta.xml.bind.annotation.XmlSeeAlso;
-import jakarta.xml.bind.annotation.XmlType;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for TFizickoLice complex type.
@@ -32,9 +31,6 @@ import jakarta.xml.bind.annotation.XmlType;
 @XmlType(name = "TFizickoLice", propOrder = {
     "ime",
     "prezime"
-})
-@XmlSeeAlso({
-    TPronalazac.class
 })
 public class TFizickoLice
     extends TLice
