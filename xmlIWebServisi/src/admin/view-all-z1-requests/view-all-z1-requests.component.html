@@ -1,0 +1,57 @@
+<table mat-table [dataSource]="tableData" class="mat-elevation-z8">
+    <!-- Define table columns -->
+    <ng-container matColumnDef="ime">
+      <th mat-header-cell *matHeaderCellDef> Ime </th>
+      <td mat-cell *matCellDef="let element"> {{ element.ime }} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="prezime">
+      <th mat-header-cell *matHeaderCellDef> Prezime </th>
+      <td mat-cell *matCellDef="let element"> {{ element.prezime }} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="tip_ziga">
+      <th mat-header-cell *matHeaderCellDef> Tip tip_ziga </th>
+      <td mat-cell *matCellDef="let element"> {{ element.tip_ziga }} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="opis_znaka">
+      <th mat-header-cell *matHeaderCellDef> Opis znaka </th>
+      <td mat-cell *matCellDef="let element"> {{ element.opis_znaka }} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="detalji">
+      <th mat-header-cell *matHeaderCellDef> Detalji </th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-button color="primary" (click)="viewDetails(element)">DETALJI</button>
+      </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="prihvati">
+      <th mat-header-cell *matHeaderCellDef> Prihvati </th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-button color="primary" (click)="viewDetails(element)">PRIHVATI</button>
+      </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="odbi">
+      <th mat-header-cell *matHeaderCellDef> Odbi </th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-button color="primary" (click)="viewDetails(element)">ODBI</button>
+      </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="preuzmi">
+      <th mat-header-cell *matHeaderCellDef> Preuzmi </th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-button color="primary" (click)="viewDetails(element)">PREUZMI</button>
+      </td>
+    </ng-container>
+  
+    <!-- Define table headers -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  
+    <!-- Define table rows -->
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  

@@ -23,4 +23,38 @@ export class ZigService {
       }),
     });
   }
+
+  Print(id: Number) { const xml = JsonToXML.parse('broj', id);
+  const url = this.url + 'print';
+  return this._http.post<any>(url, xml, {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/xml',
+      'Access-Control-Allow-Origin': '*',
+      responseType: 'text',
+    }),
+  });
+  }
+  DeclineRequest(id: Number) {
+    const xml = JsonToXML.parse('broj', id);
+    const url = this.url + 'declineRequest';
+    return this._http.post<any>(url, xml, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/xml',
+        'Access-Control-Allow-Origin': '*',
+        responseType: 'text',
+      }),
+    });
+  }
+  AcceptRequest(id: Number) {
+    const xml = JsonToXML.parse('broj', id);
+    const url = this.url + 'acceptRequest';
+    return this._http.post<any>(url, xml, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/xml',
+        'Access-Control-Allow-Origin': '*',
+        responseType: 'text',
+      }),
+    });
+}
+
 }
