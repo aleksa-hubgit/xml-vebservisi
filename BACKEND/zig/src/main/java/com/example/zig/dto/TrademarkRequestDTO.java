@@ -26,6 +26,8 @@ public class TrademarkRequestDTO {
     private TakseDTO takse;
     private TPriloziDTO prilozi;
 
+    private String brojPrijave;
+
 
 
     public TrademarkRequestDTO(Prijava prijava){
@@ -37,7 +39,7 @@ public class TrademarkRequestDTO {
         this.pravoPrvenstva = new PravoPrvenstvaDTO(prijava.getPravoPrvenstva());
         this.takse = new TakseDTO(prijava.getTakse());
         this.prilozi = new TPriloziDTO(prijava.getInformacijaZavoda().getPrilozi());
-
+        this.brojPrijave = prijava.getInformacijaZavoda().getBrojPrijave();
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.example.zig.service;
 
+import com.example.zig.dto.DecisionDTO;
 import com.example.zig.dto.TLiceDTO;
 import com.example.zig.dto.TPriloziDTO;
 import com.example.zig.dto.TrademarkRequestDTO;
@@ -19,6 +20,7 @@ import org.xml.sax.SAXException;
 import org.xmldb.api.base.XMLDBException;
 
 import javax.xml.bind.JAXBException;
+import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 import javax.xml.transform.Result;
@@ -102,7 +104,13 @@ public class TrademarkService {
     private void save(Prijava prijava) throws JAXBException, XMLDBException {
         MarshallingUtils marshallingUtils = new MarshallingUtils();
         OutputStream os = marshallingUtils.marshall(prijava);
-        zigRepository.save(os, "2");
+        String id = generateNextId();
+        zigRepository.save(os, id);
+    }
+
+    private String generateNextId() {
+        return String.valueOf(zigRepository.getAll().size());
+
     }
 
     private Prijava createRequestFromDTO(TrademarkRequestDTO request) {
@@ -171,6 +179,66 @@ public class TrademarkService {
             trademarks.add(new TrademarkRequestDTO(p));
         }
         return trademarks;
+
+    }
+
+    public void createDecision(DecisionDTO decisionDTO) throws DatatypeConfigurationException, JAXBException, XMLDBException {
+        Decision decision = new Decision();
+        decision.setSifraZahteva(decisionDTO.requestId);
+        decision.setOdobren(decisionDTO.approved);
+        decision.setObrazlozenje(decisionDTO.reason);
+
+        GregorianCalendar cal = new GregorianCalendar();
+        cal.setTime(new Date());
+        XMLGregorianCalendar xCal = DatatypeFactory.newInstance()
+                .newXMLGregorianCalendar(cal);
+        decision.setDatumRazresenja(xCal);
+        this.save(decision);
+    }
+
+    private void save(Decision decision) throws JAXBException, XMLDBException {
+        MarshallingUtils marshallingUtils = new MarshallingUtils();
+        OutputStream os = marshallingUtils.marshall(decision);
+        zigRepository.saveDecision(os,decision.getSifraZahteva());
+    }
+
+    public List<Prijava> getAllApproved() {
+        List<Prijava> allRequests = zigRepository.getAll();
+        List<Prijava> answeredRequests = new ArrayList<>();
+        List<Decision> allDecisions = zigRepository.getAllDecisions();
+        List<String> answeredRequestsIds = new ArrayList<>();
+
+        for (Decision decision:allDecisions){
+            answeredRequestsIds.add(decision.getSifraZahteva());
+        }
+        for (Prijava prijava:allRequests){
+            String brojPrijave = prijava.getInformacijaZavoda().getBrojPrijave();
+            if(answeredRequestsIds.contains(brojPrijave)){
+                for (Decision decision:allDecisions){
+                    if(decision.getSifraZahteva().equals(brojPrijave) && decision.isOdobren()){
+                        answeredRequests.add(prijava);
+                    }
+                }
+            }
+        }
+        return answeredRequests;
+    }
+
+    public List<Prijava> getAllUnanswered() {
+        List<Prijava> allRequests = zigRepository.getAll();
+        List<Prijava> unansweredRequests = new ArrayList<>();
+        List<Decision> allDecisions = zigRepository.getAllDecisions();
+        List<String> answeredRequestsIds = new ArrayList<>();
+
+        for (Decision decision:allDecisions){
+            answeredRequestsIds.add(decision.getSifraZahteva());
+        }
+        for (Prijava prijava:allRequests){
+            if(!answeredRequestsIds.contains(prijava.getInformacijaZavoda().getBrojPrijave())){
+                unansweredRequests.add(prijava);
+            }
+        }
+        return unansweredRequests;
 
     }
 }

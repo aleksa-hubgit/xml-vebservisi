@@ -1,6 +1,7 @@
 package com.example.zig.util;
 
 import com.example.zig.dto.TrademarkRequestDTO;
+import com.example.zig.model.Decision;
 import com.example.zig.model.Prijava;
 import org.exist.xmldb.EXistResource;
 import org.xmldb.api.DatabaseManager;
@@ -140,6 +141,43 @@ public class DatabaseUtilities {
             return Collections.emptyList();
         } finally {
 
+            if(res != null) {
+                try {
+                    ((EXistResource)res).freeResources();
+                } catch (XMLDBException xe) {
+                    xe.printStackTrace();
+                }
+            }
+
+            if(col != null) {
+                try {
+                    col.close();
+                } catch (XMLDBException xe) {
+                    xe.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public static List<Decision> getAllDecisions(String collectionIdDecision) {
+        Collection col = null;
+        XMLResource res = null;
+        try {
+            MarshallingUtils marshallingUtils = new MarshallingUtils();
+            List<Decision> resenja = new ArrayList<>();
+            col = DatabaseManager.getCollection(conn.uri + collectionIdDecision, conn.user, conn.password);
+            col.setProperty(OutputKeys.INDENT, "yes");
+            for(String s: col.listResources()){
+                res = (XMLResource)col.getResource(s);
+                resenja.add(marshallingUtils.unmarshallFromNodeDecision(res.getContentAsDOM()));
+            }
+
+            return resenja;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
             if(res != null) {
                 try {
                     ((EXistResource)res).freeResources();

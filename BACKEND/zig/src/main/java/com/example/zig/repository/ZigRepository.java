@@ -1,6 +1,7 @@
 package com.example.zig.repository;
 
 import com.example.zig.dto.TrademarkRequestDTO;
+import com.example.zig.model.Decision;
 import com.example.zig.model.Prijava;
 import com.example.zig.util.AuthenticationUtilities;
 import com.example.zig.util.DatabaseUtilities;
@@ -21,6 +22,8 @@ import java.util.List;
 public class ZigRepository {
 
     private final String collectionId = "db/zigovi";
+    private final String collectionIdDecision = "db/resenja";
+
 
     private Collection col;
 
@@ -84,5 +87,15 @@ public class ZigRepository {
         }
 
         return resources;
+    }
+
+    public void saveDecision(OutputStream os, String sifraZahteva) throws XMLDBException {
+        String documentId = "resenje-" + sifraZahteva;
+        DatabaseUtilities.storeResource(collectionIdDecision, documentId, os);
+    }
+
+    public List<Decision> getAllDecisions() {
+        return DatabaseUtilities.getAllDecisions(collectionIdDecision);
+
     }
 }
