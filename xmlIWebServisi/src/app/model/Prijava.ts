@@ -6,6 +6,7 @@ import { Takse } from "./Takse";
 
 export class Prijava{
     constructor(
+        public sifraZahteva:string = '',
         public podnosilacPrijave:TLice = new TLice(),
         public punomocnik:TLice = new TLice(),
         public zajednickiPredstavnik:TLice = new TLice(),

@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CopyrightRequestDTO } from 'src/app/model/a1/CopyrightRequestDTO';
 import * as JsonToXML from 'js2xmlparser';
+import { Decision } from 'src/app/model/Decision';
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +26,7 @@ export class AService {
     });
   }
 
-  Print(id: Number) { const xml = JsonToXML.parse('broj', id);
+  Print(id: string) { const xml = JsonToXML.parse('broj', id);
   const url = this.url + 'print';
   return this._http.post<any>(url, xml, {
     headers: new HttpHeaders({
@@ -35,8 +36,9 @@ export class AService {
     }),
   });
   }
-  DeclineRequest(id: Number) {
-    const xml = JsonToXML.parse('broj', id);
+  DeclineRequest(id: string,obrazlozenje:string) {
+    let d:Decision = new Decision(new Date(),id,obrazlozenje,true)
+    const xml = JsonToXML.parse('decision', d);
     const url = this.url + 'declineRequest';
     return this._http.post<any>(url, xml, {
       headers: new HttpHeaders({
@@ -46,8 +48,9 @@ export class AService {
       }),
     });
   }
-  AcceptRequest(id: Number) {
-    const xml = JsonToXML.parse('broj', id);
+  AcceptRequest(id: string,obrazlozenje:string) {
+    let d:Decision = new Decision(new Date(),id,obrazlozenje,true)
+    const xml = JsonToXML.parse('decision', d);
     const url = this.url + 'acceptRequest';
     return this._http.post<any>(url, xml, {
       headers: new HttpHeaders({

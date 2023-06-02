@@ -8,6 +8,7 @@ export interface TableData {
   prezime: string;
   tip_ziga: string;
   opis_znaka: string;
+  sifraZahteva:string;
 }
 
 @Component({
@@ -22,31 +23,32 @@ export class ViewAllZ1RequestsComponent {
   constructor(private service : AService,private location: Location) {}
   
   tableData: TableData[] = [
-    { ime: 'John', prezime: 'Doe', tip_ziga: 'Work 1', opis_znaka: 'Type A' },
-    { ime: 'Jane', prezime: 'Smith', tip_ziga: 'Work 2', opis_znaka: 'Type B' },
+    { ime: 'John', prezime: 'Doe', tip_ziga: 'Work 1', opis_znaka: 'Type A', sifraZahteva:"1" },
+    { ime: 'Jane', prezime: 'Smith', tip_ziga: 'Work 2', opis_znaka: 'Type B' , sifraZahteva: "2"},
     // Add more data as needed
   ];
 
   displayedColumns: string[] = ['ime', 'prezime', 'tip_ziga', 'opis_znaka', 'detalji','prihvati' ,'odbi', 'preuzmi'];
   
   public viewDetails(a:string){
-    console.log(a)
+    alert(a)
   }
 
   
-  public Accept(id : Number){
-    this.service.AcceptRequest(id);
+  public Accept(id : string){
+
+    this.service.AcceptRequest(id,"").subscribe();
     this.Refresh();
   }
 
-  public Decline(id : Number){
-    this.service.DeclineRequest(id);
+  public Decline(id : string){
+    this.service.DeclineRequest(id,'').subscribe();
     this.Refresh();
   }
 
   
-  public Print(id : Number){
-    this.service.Print(id);
+  public Print(id : string){
+    this.service.Print(id).subscribe();
     this.Refresh();
     
   }

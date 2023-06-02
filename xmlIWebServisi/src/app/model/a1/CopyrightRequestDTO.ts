@@ -6,6 +6,7 @@ import { TLice } from "../TLice";
 
 export class CopyrightRequestDTO{
     constructor(
+        public sifraZahteva: string = '',
         public podnosilacPrijave:TLice = new TLice(),
         public pseudonim:String = "",
         public punomocnik:TLice = new TLice(),

@@ -9,6 +9,7 @@ export interface TableData {
   prezime: string;
   naziv_dela: string;
   vrsta_dela: string;
+  sifraZahteva: string;
 }
 
 @Component({
@@ -23,29 +24,29 @@ export class ViewAllA1RequestsComponent {
   constructor(private service : AService,private location: Location) {}
   
   tableData: TableData[] = [
-    { ime: 'John', prezime: 'Doe', naziv_dela: 'Work 1', vrsta_dela: 'Type A' },
-    { ime: 'Jane', prezime: 'Smith', naziv_dela: 'Work 2', vrsta_dela: 'Type B' },
+    { ime: 'John', prezime: 'Doe', naziv_dela: 'Work 1', vrsta_dela: 'Type A',sifraZahteva:'1' },
+    { ime: 'Jane', prezime: 'Smith', naziv_dela: 'Work 2', vrsta_dela: 'Type B' , sifraZahteva:"2"},
     // Add more data as needed
   ];
 
   displayedColumns: string[] = ['ime', 'prezime', 'naziv_dela', 'vrsta_dela', 'detalji','prihvati' ,'odbi', 'preuzmi'];
   
   public viewDetails(a:string){
-    console.log(a)
+    alert(a)
   }
   
-  public Accept(id : Number){
-    this.service.AcceptRequest(id);
+  public Accept(id : string){
+    this.service.AcceptRequest(id,"").subscribe();
     this.Refresh();
   }
 
-  public Decline(id : Number){
-    this.service.DeclineRequest(id);
+  public Decline(id : string){
+    this.service.DeclineRequest(id,"").subscribe();
     this.Refresh();
   }
 
-  public Print(id : Number){
-    this.service.Print(id);
+  public Print(id : string){
+    this.service.Print(id).subscribe();
     this.Refresh();
   }
 
