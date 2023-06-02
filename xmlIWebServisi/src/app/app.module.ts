@@ -14,6 +14,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button'
 import { ViewAllA1RequestsComponent } from 'src/admin/view-all-a1-requests/view-all-a1-requests.component';
+import { DetailA1Component } from 'src/admin/detail-a1/detail-a1.component';
+import { DetailZ1Component } from 'src/admin/detail-z1/detail-z1.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import { ViewAllA1RequestsComponent } from 'src/admin/view-all-a1-requests/view-
     Z1CreateFormComponent,
     ViewAllZ1RequestsComponent,
     ViewAllA1RequestsComponent,
+    DetailA1Component,
+    DetailZ1Component
   
 
   ],

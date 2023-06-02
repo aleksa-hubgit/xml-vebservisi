@@ -1,0 +1,186 @@
+
+<div>
+
+    <form  class="form-container">
+      <div>
+      <h2 class="form-title">Podaci Podnosioca prijave</h2>
+
+
+      <div class="row pb-2" *ngIf="prijava.podnosilacPrijave.ime !==''">
+        <div class="form-group col-3">
+          <label for="ime_podnosioca">Ime: {{prijava.podnosilacPrijave.ime}}</label>
+        </div>
+        <div class="form-group col-3">
+          <label for="prezime_podnosioca">Prezime: {{prijava.podnosilacPrijave.prezime}}</label>
+        </div>
+        <div class="form-group col-3">
+            <label for="prezime_podnosioca">Drzavljanstvo: {{prijava.podnosilacPrijave.adresa.drzava}}</label>
+          </div>
+      </div>
+
+      <div class="row pb-2" *ngIf="prijava.podnosilacPrijave.naziv !=='' ">
+        <div class="form-group col-4">
+          <label for="poslovno_ime_podnosioca">Poslovno ime: {{prijava.podnosilacPrijave.naziv}}</label>
+        </div>
+      </div>
+
+      <h4 class="form-title">Adresa</h4>
+      <div class="form-group">
+        <label for="ulicaIBroj">Ulica: {{prijava.podnosilacPrijave.adresa.ulica}}</label>
+      </div>
+      <div class="form-group">
+        <label for="ulicaIBroj">Broj: {{prijava.podnosilacPrijave.adresa.broj}}</label>
+      </div>
+      <div class="form-group">
+        <label for="postanskiBroj">Poštanski broj: {{prijava.podnosilacPrijave.adresa.postanskiBroj}}</label>
+      </div>
+      <div class="form-group">
+        <label for="mesto">Mesto: {{prijava.podnosilacPrijave.adresa.mesto}}</label>
+      </div>
+      <div class="form-group">
+        <label for="drzava">Država prebivališta/sedišta : {{prijava.podnosilacPrijave.adresa.drzava}}</label>
+      </div>
+      <div class="form-group">
+        <label for="mobilni">Mobilni: {{ prijava.podnosilacPrijave.kontakt.brojTelefona}}</label>
+      </div>
+      <div class="form-group">
+        <label for="email">Email: {{prijava.podnosilacPrijave.kontakt.ePosta}}</label>
+      </div>
+      <div class="row pb-2" *ngIf="prijava.pseudonim !=='' ">
+        <label for="pseu">Pseudonim ili znak autora: {{prijava.pseudonim}}  </label>
+      </div>
+      </div>
+      <div>
+
+        <div class="row">
+         
+        <form  class="form-container">
+            <div>
+              <div class="row pb-2" *ngIf="prijava.punomocnik.ime !== ''">
+            <h2 class="form-title">Podaci punomocnika</h2>
+           
+            <div class="row pb-2" >
+              <div class="form-group col-3">
+                <label for="ime_podnosioca">Ime: {{prijava.punomocnik.ime}}</label>
+              </div>
+              <div class="form-group col-3">
+                <label for="prezime_podnosioca">Prezime: {{prijava.punomocnik.prezime}}</label>
+              </div>
+            </div>
+      
+            
+      
+            <h4 class="form-title">Adresa</h4>
+            <div class="form-group">
+              <label for="ulicaIBroj">Ulica: {{prijava.punomocnik.adresa.ulica}}</label>
+            </div>
+            <div class="form-group">
+              <label for="ulicaIBroj">Broj: {{prijava.punomocnik.adresa.broj}} </label>
+            </div>
+            <div class="form-group">
+              <label for="postanskiBroj">Poštanski broj: {{prijava.punomocnik.adresa.postanskiBroj}}</label>
+            </div>
+            <div class="form-group">
+              <label for="mesto">Mesto: {{prijava.punomocnik.adresa.mesto}}</label>
+            </div>
+            <div class="form-group">
+              <label for="drzava">Država prebivališta: {{prijava.punomocnik.adresa.drzava}}</label>
+            </div>
+              </div>
+      <div>
+    <div class="form-group">
+      <div class="form-group">
+        <h2>
+          Podaci o autorskom delu
+        </h2>
+
+        <div class="form-group">
+          <label for="drzava">Naslov : {{prijava.podaciONaslovu.naslov}}</label>
+        </div>
+
+        <div class="row pb-2" *ngIf="prijava.podaciONaslovu.alternativniNaslov !== ''">
+          <label for="drzava">Alternativni naslov: {{prijava.podaciONaslovu.alternativniNaslov}}</label>
+        </div>
+
+        <div class="row pb-2" *ngIf="prijava.podaciOPreradi.naslov !=='' ">
+
+        <h2 class="form-title">Delo je prerada drugog dela </h2>
+          <h2 class="form-title">Podaci o delu koje je preradjeno</h2>
+         
+          <div class="row pb-2" >
+            <div class="form-group col-3">
+              <label for="ime_podnosioca">Naslov:{{prijava.podaciOPreradi.naslov}}</label>
+            </div>
+            <div class="form-group col-3">
+              <label for="prezime_podnosioca">Prezime:{{prijava.punomocnik.prezime}}</label>
+            </div>
+          </div>
+    
+          
+    
+          <h4 class="form-title">Adresa</h4>
+          <div class="form-group">
+            <label for="ulicaIBroj">Ulica: {{prijava.punomocnik.adresa.ulica}} </label>
+          </div>
+          <div class="form-group">
+            <label for="ulicaIBroj">Broj: {{prijava.punomocnik.adresa.broj}}</label>
+          </div>
+          <div class="form-group">
+            <label for="postanskiBroj">Poštanski broj</label>
+            <input id="postanskiBroj"   name="postanskiBroj3" type="text" class="form-control"  [(ngModel)]="prijava.punomocnik.adresa.postanskiBroj" required>
+          </div>
+          <div class="form-group">
+            <label for="mesto">Mesto</label>
+            <input id="mesto"  name="mesto3" type="text" class="form-control" [(ngModel)]="prijava.punomocnik.adresa.mesto" required>
+          </div>
+          <div class="form-group">
+            <label for="drzava">Država prebivališta/sedišta</label>
+            <input id="drzava"   name="drzava3" type="text" class="form-control" [(ngModel)]="prijava.punomocnik.adresa.drzava" required>
+          </div>
+            </div>
+
+
+        <div>
+          <div class="form-group">
+            <label>
+              Vrsta dela: {{prijava.vrstaDela}}
+            </label>
+         
+        </div>
+      </div>
+
+      <div>
+        <div class="form-group">
+          <label>
+            Format dela: {{prijava.vrstaDela}}
+          </label>
+       
+      </div>
+    </div>
+  
+
+     
+
+        <div class="form-group">
+          <label for="namena"> Namena dela: {{prijava.namenaDela}}</label>
+
+          <div class="row pb-2" *ngIf="prijava.radnomOdnosu">
+            <label for="drzava">Delo je napravljeno u radnom odnosu</label>
+          </div>
+  
+        </div>
+  
+       
+
+        <div class="form-group">
+          <label for="namena">Potpis: {{prijava.potpis}}</label>
+        </div>
+      </div>
+
+    </div>
+    </div>
+    </div>
+    </form>
+    </div>
+
+
