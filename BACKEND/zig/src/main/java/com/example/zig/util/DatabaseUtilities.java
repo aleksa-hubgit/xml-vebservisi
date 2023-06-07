@@ -1,7 +1,6 @@
 package com.example.zig.util;
 
-import com.example.zig.dto.TrademarkRequestDTO;
-import com.example.zig.model.Decision;
+import com.example.zig.model.decision.Decision;
 import com.example.zig.model.Prijava;
 import org.exist.xmldb.EXistResource;
 import org.xmldb.api.DatabaseManager;
