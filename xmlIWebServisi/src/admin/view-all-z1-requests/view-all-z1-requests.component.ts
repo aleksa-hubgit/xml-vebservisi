@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AService } from 'src/app/a1/a1-create-form/a.service';
 import { Location } from '@angular/common';
+import { ZigService } from 'src/app/z1/zig.service';
 
 
 export interface TableData {
@@ -20,7 +21,7 @@ export interface TableData {
 
 export class ViewAllZ1RequestsComponent {
 
-  constructor(private service : AService,private location: Location) {}
+  constructor(private service : ZigService,private location: Location) {}
   
   tableData: TableData[] = [
     { ime: 'John', prezime: 'Doe', tip_ziga: 'Work 1', opis_znaka: 'Type A', sifraZahteva:"1" },
@@ -48,7 +49,7 @@ export class ViewAllZ1RequestsComponent {
 
   
   public Print(id : string){
-    this.service.Print(id).subscribe();
+    this.service.Print(2).subscribe();
     this.Refresh();
     
   }

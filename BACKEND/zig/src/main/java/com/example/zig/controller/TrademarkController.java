@@ -37,7 +37,7 @@ public class TrademarkController {
 
     @PostMapping(value ="handleRequest", consumes = "application/xml")
     public void handleRequest(@RequestBody DecisionDTO decisionDTO) throws DatatypeConfigurationException, JAXBException, XMLDBException {
-
+        System.out.println(decisionDTO);
         trademarkService.createDecision(decisionDTO);
 
     }

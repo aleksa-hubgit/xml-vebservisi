@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Prijava } from '../model/Prijava';
 import * as JsonToXML from 'js2xmlparser';
+import { Decision } from '../model/Decision';
 
 @Injectable({
   providedIn: 'root'
@@ -34,9 +35,10 @@ export class ZigService {
     }),
   });
   }
-  DeclineRequest(id: Number) {
-    const xml = JsonToXML.parse('broj', id);
-    const url = this.url + 'declineRequest';
+  DeclineRequest(id: string,obrazlozenje:string) {
+    let d:Decision = new Decision(id,obrazlozenje,false)
+    const xml = JsonToXML.parse('decision', d);
+    const url = this.url + 'handleRequest';
     return this._http.post<any>(url, xml, {
       headers: new HttpHeaders({
         'Content-Type': 'application/xml',
@@ -45,9 +47,10 @@ export class ZigService {
       }),
     });
   }
-  AcceptRequest(id: Number) {
-    const xml = JsonToXML.parse('broj', id);
-    const url = this.url + 'acceptRequest';
+  AcceptRequest(id: string,obrazlozenje:string) {
+    let d:Decision = new Decision(id,obrazlozenje,true)
+    const xml = JsonToXML.parse('decision', d);
+    const url = this.url + 'handleRequest';
     return this._http.post<any>(url, xml, {
       headers: new HttpHeaders({
         'Content-Type': 'application/xml',
