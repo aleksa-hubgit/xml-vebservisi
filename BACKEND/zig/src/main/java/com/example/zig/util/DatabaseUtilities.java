@@ -3,9 +3,13 @@ package com.example.zig.util;
 import com.example.zig.model.decision.Decision;
 import com.example.zig.model.Prijava;
 import org.exist.xmldb.EXistResource;
+import org.exist.xmldb.RemoteBinaryResource;
+import org.exist.xmldb.RemoteXMLResource;
+import org.w3c.dom.Node;
 import org.xmldb.api.DatabaseManager;
 import org.xmldb.api.base.Collection;
 import org.xmldb.api.base.Database;
+import org.xmldb.api.base.Resource;
 import org.xmldb.api.base.XMLDBException;
 import org.xmldb.api.modules.CollectionManagementService;
 import org.xmldb.api.modules.XMLResource;
@@ -33,6 +37,8 @@ public class DatabaseUtilities {
 
 
 
+
+
     public static void storeResource(String collectionId, String documentId, OutputStream outputStream) throws XMLDBException {
         Collection col = null;
         XMLResource res = null;
@@ -42,11 +48,12 @@ public class DatabaseUtilities {
             System.out.println("[INFO] Retrieving the collection: " + collectionId);
             col = getOrCreateCollection(collectionId);
 
-            System.out.println("[INFO] Inserting the document: " + documentId);
-            res = (XMLResource) col.createResource(documentId, XMLResource.RESOURCE_TYPE);
+            System.out.println("[INFO] Inserting the document: " + documentId + " with type " + XMLResource.RESOURCE_TYPE);
+            res = (XMLResource) col.createResource(documentId + ".xml", XMLResource.RESOURCE_TYPE);
 
             res.setContent(outputStream);
             System.out.println("[INFO] Storing the document: " + res.getId());
+
 
             col.storeResource(res);
             System.out.println("[INFO] Done.");
@@ -128,9 +135,15 @@ public class DatabaseUtilities {
             List<Prijava> zahtevi = new ArrayList<>();
             col = DatabaseManager.getCollection(conn.uri + collectionId, conn.user, conn.password);
             col.setProperty(OutputKeys.INDENT, "yes");
+            System.out.println(col.getName());
+
+
             for(String s: col.listResources()){
-                res = (XMLResource)col.getResource(s);
+                System.out.println(s);
+                res = (XMLResource) col.getResource("proba.xml");
+                res.getId();
                 zahtevi.add(marshallingUtils.unmarshallFromNode(res.getContentAsDOM()));
+
             }
 
             return zahtevi;
@@ -172,6 +185,38 @@ public class DatabaseUtilities {
             }
 
             return resenja;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            if(res != null) {
+                try {
+                    ((EXistResource)res).freeResources();
+                } catch (XMLDBException xe) {
+                    xe.printStackTrace();
+                }
+            }
+
+            if(col != null) {
+                try {
+                    col.close();
+                } catch (XMLDBException xe) {
+                    xe.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public static Node getResource(String documentId, String collectionId) {
+        Collection col = null;
+        XMLResource res = null;
+        try {
+            col = DatabaseManager.getCollection(conn.uri + collectionId, conn.user, conn.password);
+            col.setProperty(OutputKeys.INDENT, "yes");
+
+            res = (XMLResource)col.getResource(documentId);
+            return res.getContentAsDOM();
 
         } catch (Exception e) {
             e.printStackTrace();
