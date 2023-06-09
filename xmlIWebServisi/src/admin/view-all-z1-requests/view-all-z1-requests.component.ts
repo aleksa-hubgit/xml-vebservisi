@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { AService } from 'src/app/a1/a1-create-form/a.service';
 import { Location } from '@angular/common';
+import { ZigService } from 'src/app/z1/zig.service';
 
 
 export interface TableData {
@@ -20,7 +20,7 @@ export interface TableData {
 
 export class ViewAllZ1RequestsComponent {
 
-  constructor(private service : AService,private location: Location) {}
+  constructor(private service : ZigService,private location: Location) {}
   
   tableData: TableData[] = [
     { ime: 'John', prezime: 'Doe', tip_ziga: 'Work 1', opis_znaka: 'Type A', sifraZahteva:"1" },
@@ -33,21 +33,28 @@ export class ViewAllZ1RequestsComponent {
   public viewDetails(a:string){
     alert(a)
   }
+  
+  ngOnInit(): void {
+    this.service.getZahtevi().subscribe({
+    next: async (data) => {
+  data
+  }});}
+
 
   
-  public Accept(id : string){
+  public Accept(id : Number){
 
-    this.service.AcceptRequest(id,"").subscribe();
+    this.service.AcceptRequest(id).subscribe();
     this.Refresh();
   }
 
-  public Decline(id : string){
-    this.service.DeclineRequest(id,'').subscribe();
+  public Decline(id : Number){
+    this.service.DeclineRequest(id).subscribe();
     this.Refresh();
   }
 
   
-  public Print(id : string){
+  public Print(id : Number){
     this.service.Print(id).subscribe();
     this.Refresh();
     
@@ -55,6 +62,8 @@ export class ViewAllZ1RequestsComponent {
   public Refresh(): void {
     this.location.go(this.location.path());
   }
+
+  
 }
 
 
