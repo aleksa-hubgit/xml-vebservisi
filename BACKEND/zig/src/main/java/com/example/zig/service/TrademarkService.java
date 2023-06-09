@@ -161,13 +161,10 @@ public class TrademarkService {
 
     }
 
-    public List<TrademarkRequestDTO> getAll() {
+    public List<Prijava> getAll() {
         List<Prijava> prijavas = zigRepository.getAll();
-        List<TrademarkRequestDTO> trademarks = new ArrayList<>();
-        for (Prijava p:prijavas){
-            trademarks.add(new TrademarkRequestDTO(p));
-        }
-        return trademarks;
+
+        return prijavas;
 
     }
 
