@@ -227,4 +227,8 @@ public class TrademarkService {
         return unansweredRequests;
 
     }
+
+    public Prijava getOneById(String id) {
+        return zigRepository.getOneById(id);
+    }
 }

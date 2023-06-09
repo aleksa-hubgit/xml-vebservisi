@@ -3,13 +3,10 @@ package com.example.zig.util;
 import com.example.zig.model.decision.Decision;
 import com.example.zig.model.Prijava;
 import org.exist.xmldb.EXistResource;
-import org.exist.xmldb.RemoteBinaryResource;
-import org.exist.xmldb.RemoteXMLResource;
 import org.w3c.dom.Node;
 import org.xmldb.api.DatabaseManager;
 import org.xmldb.api.base.Collection;
 import org.xmldb.api.base.Database;
-import org.xmldb.api.base.Resource;
 import org.xmldb.api.base.XMLDBException;
 import org.xmldb.api.modules.CollectionManagementService;
 import org.xmldb.api.modules.XMLResource;
@@ -134,8 +131,6 @@ public class DatabaseUtilities {
             List<Prijava> zahtevi = new ArrayList<>();
             col = DatabaseManager.getCollection(conn.uri + collectionId, conn.user, conn.password);
             col.setProperty(OutputKeys.INDENT, "yes");
-            System.out.println(col.getName());
-
 
             for(String s: col.listResources()){
                 res = (XMLResource) col.getResource(s);
@@ -215,6 +210,47 @@ public class DatabaseUtilities {
 
             res = (XMLResource)col.getResource(documentId);
             return res.getContentAsDOM();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            if(res != null) {
+                try {
+                    ((EXistResource)res).freeResources();
+                } catch (XMLDBException xe) {
+                    xe.printStackTrace();
+                }
+            }
+
+            if(col != null) {
+                try {
+                    col.close();
+                } catch (XMLDBException xe) {
+                    xe.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public static Prijava getOneById(String collectionId, String documentId) {
+        documentId += ".xml";
+        Collection col = null;
+        XMLResource res = null;
+        try {
+            col = DatabaseManager.getCollection(conn.uri + collectionId, conn.user, conn.password);
+            col.setProperty(OutputKeys.INDENT, "yes");
+
+            res = (XMLResource)col.getResource(documentId);
+
+
+            if(res == null) {
+                return null;
+            } else {
+
+                MarshallingUtils marshallingUtils = new MarshallingUtils();
+                return marshallingUtils.unmarshallFromNode(res.getContentAsDOM());
+            }
 
         } catch (Exception e) {
             e.printStackTrace();

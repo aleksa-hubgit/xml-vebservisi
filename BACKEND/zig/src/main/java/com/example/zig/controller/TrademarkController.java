@@ -51,6 +51,13 @@ public class TrademarkController {
 
     }
 
+    @GetMapping(value="getOne/{id}", produces = "application/xml")
+    public ResponseEntity<Prijava> getOneById(@PathVariable String id){
+        System.out.println("ALOOOOOO");
+        Prijava prijava = trademarkService.getOneById(id);
+        return new ResponseEntity<>(prijava, HttpStatus.OK);
+    }
+
     @GetMapping(value="getAllApproved", produces = MediaType.APPLICATION_XML_VALUE)
     public ResponseEntity<List<TrademarkRequestDTO>> getAllApproved(){
         List<Prijava> trademarks = trademarkService.getAllApproved();

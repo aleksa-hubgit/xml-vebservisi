@@ -96,4 +96,8 @@ public class ZigRepository {
         return DatabaseUtilities.getAllDecisions(collectionIdDecision);
 
     }
+
+    public Prijava getOneById(String id) {
+        return DatabaseUtilities.getOneById(collectionId, id);
+    }
 }
