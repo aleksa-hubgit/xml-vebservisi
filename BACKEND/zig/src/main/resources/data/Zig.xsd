@@ -110,14 +110,7 @@
     <xs:complexType name="TPrilozi">
         <xs:sequence>
             <xs:element name="Primerak_znaka" type="xs:string"/>
-            <xs:element name="Spisak_robe_i_usluga">
-                <xs:complexType>
-                    <xs:sequence>
-                        <xs:element maxOccurs="unbounded" minOccurs="0" name="Roba_ili_usluga"
-                            type="xs:string"/>
-                    </xs:sequence>
-                </xs:complexType>
-            </xs:element>
+            <xs:element name="Spisak_robe_i_usluga" type="xs:string"/>
             <xs:element name="Punomocje" type="xs:string"/>
             <xs:element name="Naknadno_dostavljeno_punomocje" type="xs:boolean"/>
             <xs:element name="Generalno_punomocje" type="xs:string"/>
@@ -128,17 +121,17 @@
     </xs:complexType>
     <xs:simpleType name="TTip_ziga">
         <xs:restriction base="xs:string">
-            <xs:enumeration value="INDIVIDUALNI_ZIG"/>
-            <xs:enumeration value="KOLEKTIVNI_ZIG"/>
-            <xs:enumeration value="GARANTNI_ZIG"/>
+            <xs:enumeration value="INDIVIDUALNI"/>
+            <xs:enumeration value="KOLEKTIVNI"/>
+            <xs:enumeration value="GARANTNI"/>
         </xs:restriction>
     </xs:simpleType>
     <xs:simpleType name="TTip_znaka">
         <xs:restriction base="xs:string">
-            <xs:enumeration value="VERBALNI_ZNAK"/>
-            <xs:enumeration value="GRAFICKI_ZNAK"/>
-            <xs:enumeration value="KOMBINOVANI_ZNAK"/>
-            <xs:enumeration value="TRODIMENZIONALNI_ZNAK"/>
+            <xs:enumeration value="VERBALNI"/>
+            <xs:enumeration value="GRAFICKI"/>
+            <xs:enumeration value="KOMBINOVANI"/>
+            <xs:enumeration value="TRODIMENZIONALNI"/>
             <xs:enumeration value="DRUGA_VRSTA"/>
         </xs:restriction>
     </xs:simpleType>

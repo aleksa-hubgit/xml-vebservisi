@@ -2,33 +2,21 @@ package com.example.zig.service;
 
 import com.example.zig.dto.DecisionDTO;
 import com.example.zig.dto.TLiceDTO;
-import com.example.zig.dto.TPriloziDTO;
 import com.example.zig.dto.TrademarkRequestDTO;
 import com.example.zig.model.*;
+import com.example.zig.model.decision.Decision;
 import com.example.zig.repository.ZigRepository;
 import com.example.zig.util.MarshallingUtils;
 import com.example.zig.util.PdfTransformer;
 import com.itextpdf.text.DocumentException;
-import org.apache.fop.apps.FOUserAgent;
-import org.apache.fop.apps.Fop;
-import org.apache.fop.apps.FopFactory;
-import org.apache.fop.apps.MimeConstants;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.xml.sax.SAXException;
 import org.xmldb.api.base.XMLDBException;
 
 import javax.xml.bind.JAXBException;
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
-import javax.xml.transform.Result;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.sax.SAXResult;
-import javax.xml.transform.stream.StreamSource;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -39,7 +27,7 @@ import java.util.List;
 public class TrademarkService {
 
 
-    public static final String INPUT_FILE = "./src/main/resources/data/z1.xml";
+    public static final String INPUT_FILE = "./src/main/resources/data/5.xml";
 
     public static final String XSL_FILE = "./src/main/resources/data/z1.xsl";
 
@@ -109,14 +97,15 @@ public class TrademarkService {
     }
 
     private String generateNextId() {
-        return String.valueOf(zigRepository.getAll().size());
+        return String.valueOf(zigRepository.getAll().size() + 1);
 
     }
 
     private Prijava createRequestFromDTO(TrademarkRequestDTO request) {
         Prijava prijava = new Prijava();
         Prijava.InformacijaZavoda informacijaZavoda = new Prijava.InformacijaZavoda();
-        informacijaZavoda.setBrojPrijave("1");
+        String id = generateNextId();
+        informacijaZavoda.setBrojPrijave(id);
         Date date = new Date();
         XMLGregorianCalendar gregorianDate = createGregorianDate(date);
         informacijaZavoda.setDatumPodnosenja(gregorianDate);
@@ -172,13 +161,10 @@ public class TrademarkService {
 
     }
 
-    public List<TrademarkRequestDTO> getAll() {
+    public List<Prijava> getAll() {
         List<Prijava> prijavas = zigRepository.getAll();
-        List<TrademarkRequestDTO> trademarks = new ArrayList<>();
-        for (Prijava p:prijavas){
-            trademarks.add(new TrademarkRequestDTO(p));
-        }
-        return trademarks;
+
+        return prijavas;
 
     }
 
@@ -240,5 +226,9 @@ public class TrademarkService {
         }
         return unansweredRequests;
 
+    }
+
+    public Prijava getOneById(String id) {
+        return zigRepository.getOneById(id);
     }
 }

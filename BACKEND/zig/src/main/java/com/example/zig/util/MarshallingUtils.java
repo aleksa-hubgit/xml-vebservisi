@@ -1,6 +1,6 @@
 package com.example.zig.util;
 
-import com.example.zig.model.Decision;
+import com.example.zig.model.decision.Decision;
 import com.example.zig.model.Prijava;
 import org.w3c.dom.Node;
 
@@ -28,7 +28,7 @@ public class MarshallingUtils {
     }
 
     public OutputStream marshall(Decision resenje) throws JAXBException {
-        JAXBContext context = JAXBContext.newInstance("com.example.zig.model");
+        JAXBContext context = JAXBContext.newInstance("com.example.zig.model.decision");
         Marshaller marshaller = context.createMarshaller();
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
         OutputStream os = new ByteArrayOutputStream();

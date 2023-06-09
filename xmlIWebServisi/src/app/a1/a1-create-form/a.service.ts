@@ -37,7 +37,7 @@ export class AService {
   });
   }
   DeclineRequest(id: string,obrazlozenje:string) {
-    let d:Decision = new Decision(new Date(),id,obrazlozenje,true)
+    let d:Decision = new Decision(id,obrazlozenje,true)
     const xml = JsonToXML.parse('decision', d);
     const url = this.url + 'declineRequest';
     return this._http.post<any>(url, xml, {
@@ -49,7 +49,7 @@ export class AService {
     });
   }
   AcceptRequest(id: string,obrazlozenje:string) {
-    let d:Decision = new Decision(new Date(),id,obrazlozenje,true)
+    let d:Decision = new Decision(id,obrazlozenje,true)
     const xml = JsonToXML.parse('decision', d);
     const url = this.url + 'acceptRequest';
     return this._http.post<any>(url, xml, {

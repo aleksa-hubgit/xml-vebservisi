@@ -533,23 +533,23 @@ public class Prijava {
     })
     public static class InformacijeOZigu {
 
-        @XmlElement(name = "tipZiga", namespace = "http://www.ftn.uns.ac.rs/zig", required = true)
+        @XmlElement(name = "Tip_ziga", namespace = "http://www.ftn.uns.ac.rs/zig", required = true)
         @XmlSchemaType(name = "string")
         protected TTipZiga tipZiga;
-        @XmlElement(name = "tipZnaka", namespace = "http://www.ftn.uns.ac.rs/zig", required = true)
+        @XmlElement(name = "Tip_znaka", namespace = "http://www.ftn.uns.ac.rs/zig", required = true)
         @XmlSchemaType(name = "string")
         protected TTipZnaka tipZnaka;
-        @XmlElement(name = "izgledZnaka", namespace = "http://www.ftn.uns.ac.rs/zig", required = true)
+        @XmlElement(name = "Izgled_znaka", namespace = "http://www.ftn.uns.ac.rs/zig", required = true)
         protected String izgledZnaka;
-        @XmlElement(name = "bojeZnaka", namespace = "http://www.ftn.uns.ac.rs/zig", required = true)
+        @XmlElement(name = "Boje_znaka", namespace = "http://www.ftn.uns.ac.rs/zig", required = true)
         protected Prijava.InformacijeOZigu.BojeZnaka bojeZnaka;
-        @XmlElement(name = "transliteracijaZnaka", namespace = "http://www.ftn.uns.ac.rs/zig")
+        @XmlElement(name = "Transliteracija_znaka", namespace = "http://www.ftn.uns.ac.rs/zig")
         protected String transliteracijaZnaka;
-        @XmlElement(name = "prevodZnaka", namespace = "http://www.ftn.uns.ac.rs/zig")
+        @XmlElement(name = "Prevod_znaka", namespace = "http://www.ftn.uns.ac.rs/zig")
         protected String prevodZnaka;
-        @XmlElement(name = "opisZnaka", namespace = "http://www.ftn.uns.ac.rs/zig", required = true)
+        @XmlElement(name = "Opis_znaka", namespace = "http://www.ftn.uns.ac.rs/zig", required = true)
         protected String opisZnaka;
-        @XmlElement(name = "nicanskaKlasifikacija", namespace = "http://www.ftn.uns.ac.rs/zig", required = true)
+        @XmlElement(name = "Nicanska_klasifikacija", namespace = "http://www.ftn.uns.ac.rs/zig", required = true)
         protected Prijava.InformacijeOZigu.NicanskaKlasifikacija nicanskaKlasifikacija;
 
         public InformacijeOZigu(InformacijeOZiguDTO informacijeOZigu) {

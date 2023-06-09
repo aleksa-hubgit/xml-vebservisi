@@ -51,8 +51,8 @@
         <prezime>Stevanovic</prezime>
     </Zajednicki_predstavnik>
     <Informacije_o_zigu>
-        <Tip_ziga>INDIVIDUALNI_ZIG</Tip_ziga>
-        <Tip_znaka>TRODIMENZIONALNI_ZNAK</Tip_znaka>
+        <Tip_ziga>INDIVIDUALNI</Tip_ziga>
+        <Tip_znaka>TRODIMENZIONALNI</Tip_znaka>
         <Izgled_znaka></Izgled_znaka>
         <Boje_znaka>
             <Boja>Crvena</Boja>

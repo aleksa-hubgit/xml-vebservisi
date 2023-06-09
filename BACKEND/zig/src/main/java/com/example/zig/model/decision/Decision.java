@@ -1,4 +1,4 @@
-package com.example.zig.model;
+package com.example.zig.model.decision;
 
 
 import lombok.Getter;

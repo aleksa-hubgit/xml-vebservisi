@@ -42,21 +42,22 @@ export class ViewAllZ1RequestsComponent {
 
 
   
-  public Accept(id : Number){
+  public Accept(id : string){
 
-    this.service.AcceptRequest(id).subscribe();
+    this.service.AcceptRequest(id,"").subscribe();
     this.Refresh();
   }
 
-  public Decline(id : Number){
-    this.service.DeclineRequest(id).subscribe();
+  public Decline(id : string){
+    this.service.DeclineRequest(id,"").subscribe();
     this.Refresh();
   }
 
   
+
   public Print(id : Number){
     this.service.Print(id).subscribe();
-    this.Refresh();
+
     
   }
   public Refresh(): void {

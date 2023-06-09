@@ -1,12 +1,10 @@
 package com.example.zig.repository;
 
-import com.example.zig.dto.TrademarkRequestDTO;
-import com.example.zig.model.Decision;
+import com.example.zig.model.decision.Decision;
 import com.example.zig.model.Prijava;
 import com.example.zig.util.AuthenticationUtilities;
 import com.example.zig.util.DatabaseUtilities;
 import org.exist.xmldb.EXistResource;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 import org.xmldb.api.DatabaseManager;
 import org.xmldb.api.base.*;
@@ -97,5 +95,9 @@ public class ZigRepository {
     public List<Decision> getAllDecisions() {
         return DatabaseUtilities.getAllDecisions(collectionIdDecision);
 
+    }
+
+    public Prijava getOneById(String id) {
+        return DatabaseUtilities.getOneById(collectionId, id);
     }
 }
