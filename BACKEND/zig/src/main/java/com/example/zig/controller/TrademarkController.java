@@ -42,9 +42,13 @@ public class TrademarkController {
 
     }
 
-    @GetMapping(value="getAll", produces= MediaType.APPLICATION_XML_VALUE)
+    @GetMapping(value="getAll", produces= "application/xml")
     public ResponseEntity<List<TrademarkRequestDTO>> getAll(){
         List<TrademarkRequestDTO> trademarks = trademarkService.getAll();
+        for (TrademarkRequestDTO trademark:trademarks){
+            System.out.println(trademark);
+        }
+
         return new ResponseEntity<>(trademarks, HttpStatus.OK);
 
     }

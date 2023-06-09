@@ -54,7 +54,6 @@ public class DatabaseUtilities {
             res.setContent(outputStream);
             System.out.println("[INFO] Storing the document: " + res.getId());
 
-
             col.storeResource(res);
             System.out.println("[INFO] Done.");
 
@@ -139,8 +138,7 @@ public class DatabaseUtilities {
 
 
             for(String s: col.listResources()){
-                System.out.println(s);
-                res = (XMLResource) col.getResource("proba.xml");
+                res = (XMLResource) col.getResource(s);
                 res.getId();
                 zahtevi.add(marshallingUtils.unmarshallFromNode(res.getContentAsDOM()));
 

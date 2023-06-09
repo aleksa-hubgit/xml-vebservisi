@@ -27,7 +27,7 @@ import java.util.List;
 public class TrademarkService {
 
 
-    public static final String INPUT_FILE = "./src/main/resources/data/z1.xml";
+    public static final String INPUT_FILE = "./src/main/resources/data/5.xml";
 
     public static final String XSL_FILE = "./src/main/resources/data/z1.xsl";
 
@@ -97,14 +97,15 @@ public class TrademarkService {
     }
 
     private String generateNextId() {
-        return String.valueOf(zigRepository.getAll().size());
+        return String.valueOf(zigRepository.getAll().size() + 1);
 
     }
 
     private Prijava createRequestFromDTO(TrademarkRequestDTO request) {
         Prijava prijava = new Prijava();
         Prijava.InformacijaZavoda informacijaZavoda = new Prijava.InformacijaZavoda();
-        informacijaZavoda.setBrojPrijave("1");
+        String id = generateNextId();
+        informacijaZavoda.setBrojPrijave(id);
         Date date = new Date();
         XMLGregorianCalendar gregorianDate = createGregorianDate(date);
         informacijaZavoda.setDatumPodnosenja(gregorianDate);
