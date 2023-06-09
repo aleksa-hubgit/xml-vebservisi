@@ -4,7 +4,7 @@
         <adresa>
             <ulica>Peagss</ulica>
             <broj>22</broj>
-            <postanski_broj>125512</postanski_broj>
+            <postanski_broj>12551</postanski_broj>
             <mesto>fasvkvas</mesto>
             <drzava>gsgas</drzava>
         </adresa>
@@ -19,7 +19,7 @@
         <adresa>
             <ulica>asvasg</ulica>
             <broj>21561</broj>
-            <postanski_broj>251512</postanski_broj>
+            <postanski_broj>25151</postanski_broj>
             <mesto>asfasggas</mesto>
             <drzava>basdbvasg</drzava>
         </adresa>
@@ -34,7 +34,7 @@
         <adresa>
             <ulica/>
             <broj/>
-            <postanski_broj>0</postanski_broj>
+            <postanski_broj>35000</postanski_broj>
             <mesto/>
             <drzava/>
         </adresa>
@@ -46,21 +46,21 @@
         <naziv/>
     </Zajednicki_predstavnik>
     <Informacije_o_zigu>
-        <Tip_ziga>KOLEKTIVNI_ZIG</Tip_ziga>
-        <tipZnaka>GRAFICKI</tipZnaka>
-        <izgledZnaka/>
-        <bojeZnaka>
+        <Tip_ziga>KOLEKTIVNI</Tip_ziga>
+        <Tip_znaka>GRAFICKI</Tip_znaka>
+        <Izgled_znaka/>
+        <Boje_znaka>
             <Boja>crvena</Boja>
             <Boja>zelena</Boja>
-        </bojeZnaka>
-        <transliteracijaZnaka>fsagas</transliteracijaZnaka>
-        <prevodZnaka>asgsag</prevodZnaka>
-        <opisZnaka>fsasffsa</opisZnaka>
-        <nicanskaKlasifikacija>
+        </Boje_znaka>
+        <Transliteracija_znaka>fsagas</Transliteracija_znaka>
+        <Prevod_znaka>asgsag</Prevod_znaka>
+        <Opis_znaka>fsasffsa</Opis_znaka>
+        <Nicanska_klasifikacija>
             <Klasa>22</Klasa>
             <Klasa>11</Klasa>
             <Klasa>33</Klasa>
-        </nicanskaKlasifikacija>
+        </Nicanska_klasifikacija>
     </Informacije_o_zigu>
     <Pravo_prvenstva>
         <Zatrazeno_pravo/>
@@ -69,7 +69,7 @@
     <Takse>
         <Osnovna_taksa>25.0</Osnovna_taksa>
         <Klasna_taksa>
-            <Broj_klasa>52</Broj_klasa>
+            <Broj_klasa>20</Broj_klasa>
             <Iznos>25.0</Iznos>
         </Klasna_taksa>
         <Taksa_za_graficko_resenje>621.0</Taksa_za_graficko_resenje>

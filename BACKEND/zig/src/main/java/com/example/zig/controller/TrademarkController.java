@@ -10,12 +10,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
 import org.xmldb.api.base.XMLDBException;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.xml.bind.JAXBException;
 import javax.xml.datatype.DatatypeConfigurationException;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,7 +56,6 @@ public class TrademarkController {
 
     @GetMapping(value="getOne/{id}", produces = "application/xml")
     public ResponseEntity<Prijava> getOneById(@PathVariable String id){
-        System.out.println("ALOOOOOO");
         Prijava prijava = trademarkService.getOneById(id);
         return new ResponseEntity<>(prijava, HttpStatus.OK);
     }
@@ -88,5 +90,19 @@ public class TrademarkController {
     @GetMapping(value = "createHTML", produces ="application/xml", consumes="application/xml")
     public ResponseEntity<String> createHtmlDocument() throws DocumentException, IOException {
         return new ResponseEntity<>(trademarkService.createHtmlDocument(), HttpStatus.OK);
+    }
+
+    @RequestMapping("/downloadPDF/{fileName}")
+    public void downloadPDFResource(HttpServletRequest request, HttpServletResponse response, @PathVariable("fileName") String fileName) throws IOException {
+        String path = "gen/" + fileName;
+        File file = new File(path);
+        if (file.exists()) {
+            String mimeType = "application/pdf";
+            response.setContentType(mimeType);
+            response.setHeader("Content-Disposition", "inline; filename=\"" + file.getName() + "\"");
+            response.setContentLength((int) file.length());
+            InputStream inputStream = new BufferedInputStream(new FileInputStream(file));
+            FileCopyUtils.copy(inputStream, response.getOutputStream());
+        }
     }
 }
