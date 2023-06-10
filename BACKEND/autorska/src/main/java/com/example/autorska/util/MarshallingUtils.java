@@ -1,6 +1,7 @@
 package com.example.autorska.util;
 
 import com.example.autorska.model.Autorska;
+import com.example.autorska.model.decision.Decision;
 import org.w3c.dom.Node;
 
 import javax.xml.bind.JAXBContext;
@@ -26,6 +27,14 @@ public class MarshallingUtils {
         return os;
     }
 
+    public OutputStream marshall(Decision resenje) throws JAXBException {
+        JAXBContext context = JAXBContext.newInstance("com.example.zig.model.decision");
+        Marshaller marshaller = context.createMarshaller();
+        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+        OutputStream os = new ByteArrayOutputStream();
+        marshaller.marshal(resenje, os);
+        return os;
+    }
 
 
     public Autorska unmarshall(String filepath) throws JAXBException {
@@ -36,5 +45,11 @@ public class MarshallingUtils {
     public Autorska unmarshallFromNode(Node node) throws JAXBException {
         Unmarshaller unmarshaller = context.createUnmarshaller();
         return (Autorska) unmarshaller.unmarshal(node);
+    }
+
+    public Decision unmarshallFromNodeDecision(Node contentAsDOM) throws JAXBException {
+        JAXBContext context = JAXBContext.newInstance("com.example.autorska.model");
+        Unmarshaller unmarshaller = context.createUnmarshaller();
+        return (Decision) unmarshaller.unmarshal(contentAsDOM);
     }
 }

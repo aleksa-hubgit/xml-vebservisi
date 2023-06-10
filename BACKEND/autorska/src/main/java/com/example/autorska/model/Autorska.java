@@ -5,6 +5,7 @@ import com.example.autorska.dto.*;
 
 import javax.xml.bind.annotation.*;
 import javax.xml.datatype.XMLGregorianCalendar;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -128,7 +129,8 @@ import java.util.List;
     "podaciOAutorima",
     "radnomOdnosu",
     "namenaDela",
-    "potpis"
+    "potpis",
+    "detaljiPrijave"
 })
 @XmlRootElement(name = "autorksa")
 public class Autorska {
@@ -153,6 +155,9 @@ public class Autorska {
     protected String namenaDela;
     @XmlElement(required = true)
     protected String potpis;
+
+    @XmlElement(name = "detalji_prijave", required = true)
+    protected TDetaljiPrijave detaljiPrijave;
 
     /**
      * Gets the value of the podnosilacPrijave property.
@@ -384,6 +389,29 @@ public class Autorska {
      */
     public void setPotpis(String value) {
         this.potpis = value;
+    }
+    /**
+     * Gets the value of the detaljiPrijave property.
+     *
+     * @return
+     *     possible object is
+     *     {@link TDetaljiPrijave }
+     *
+     */
+    public TDetaljiPrijave getDetaljiPrijave() {
+        return detaljiPrijave;
+    }
+
+    /**
+     * Sets the value of the detaljiPrijave property.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link TDetaljiPrijave }
+     *
+     */
+    public void setDetaljiPrijave(TDetaljiPrijave value) {
+        this.detaljiPrijave = value;
     }
 
 
@@ -897,6 +925,80 @@ public class Autorska {
 
 
 
+
+    }
+
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlType(name = "TDetaljiPrijave", propOrder = {
+            "brojPrijave",
+            "datumPodnosenja"
+    })
+
+    public class TDetaljiPrijave {
+
+        @XmlElement(name = "broj_prijave", required = true)
+        @XmlSchemaType(name = "positiveInteger")
+        protected String brojPrijave;
+        @XmlElement(name = "datum_podnosenja", required = true)
+        @XmlSchemaType(name = "date")
+        protected XMLGregorianCalendar datumPodnosenja;
+
+        public TDetaljiPrijave(TDetaljiPrijaveDTO prvobitnaPrijava) {
+            this.brojPrijave = prvobitnaPrijava.brojPrijave;
+            this.datumPodnosenja = prvobitnaPrijava.datumPodnosenja;
+        }
+
+        public TDetaljiPrijave() {
+        }
+
+
+        /**
+         * Gets the value of the brojPrijave property.
+         *
+         * @return
+         *     possible object is
+         *     {@link BigInteger }
+         *
+         */
+        public String getBrojPrijave() {
+            return brojPrijave;
+        }
+
+        /**
+         * Sets the value of the brojPrijave property.
+         *
+         * @param value
+         *     allowed object is
+         *     {@link BigInteger }
+         *
+         */
+        public void setBrojPrijave(String value) {
+            this.brojPrijave = value;
+        }
+
+        /**
+         * Gets the value of the datumPodnosenja property.
+         *
+         * @return
+         *     possible object is
+         *     {@link XMLGregorianCalendar }
+         *
+         */
+        public XMLGregorianCalendar getDatumPodnosenja() {
+            return datumPodnosenja;
+        }
+
+        /**
+         * Sets the value of the datumPodnosenja property.
+         *
+         * @param value
+         *     allowed object is
+         *     {@link XMLGregorianCalendar }
+         *
+         */
+        public void setDatumPodnosenja(XMLGregorianCalendar value) {
+            this.datumPodnosenja = value;
+        }
 
     }
 
