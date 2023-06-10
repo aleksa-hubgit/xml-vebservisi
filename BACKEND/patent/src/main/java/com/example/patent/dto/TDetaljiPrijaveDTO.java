@@ -10,7 +10,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TDetaljiPrijaveDTO {
-    public Integer brojPrijave;
+    public String brojPrijave;
     public XMLGregorianCalendar datumPodnosenja;
 
 

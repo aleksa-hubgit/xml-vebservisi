@@ -42,7 +42,7 @@ public class TDetaljiPrijave {
 
     @XmlElement(name = "broj_prijave", required = true)
     @XmlSchemaType(name = "positiveInteger")
-    protected Integer brojPrijave;
+    protected String brojPrijave;
     @XmlElement(name = "datum_podnosenja", required = true)
     @XmlSchemaType(name = "date")
     protected XMLGregorianCalendar datumPodnosenja;
@@ -69,7 +69,7 @@ public class TDetaljiPrijave {
      *     {@link BigInteger }
      *     
      */
-    public Integer getBrojPrijave() {
+    public String getBrojPrijave() {
         return brojPrijave;
     }
 
@@ -81,7 +81,7 @@ public class TDetaljiPrijave {
      *     {@link BigInteger }
      *     
      */
-    public void setBrojPrijave(Integer value) {
+    public void setBrojPrijave(String value) {
         this.brojPrijave = value;
     }
 

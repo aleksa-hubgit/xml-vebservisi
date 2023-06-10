@@ -29,7 +29,7 @@ public class CopyrightService {
 
     @Autowired
     private AutorskaRepository autorskaRepository;
-    public void createRequest(CopyrightRequestDTO request) throws JAXBException, XMLDBException {
+    public void createRequest(CopyrightRequestDTO request) throws JAXBException, XMLDBException, DatatypeConfigurationException {
         Autorska autorska = this.createRequestFromDTO(request);
         this.save(autorska);
     }
@@ -47,7 +47,7 @@ public class CopyrightService {
 
     }
 
-    private Autorska createRequestFromDTO(CopyrightRequestDTO request) {
+    private Autorska createRequestFromDTO(CopyrightRequestDTO request) throws DatatypeConfigurationException {
         Autorska autorska = new Autorska();
         autorska.setPseudonim(request.getPseudonim());
         autorska.setVrstaDela(request.getVrstaDela());
@@ -63,8 +63,26 @@ public class CopyrightService {
         autorska.setPunomocnik(createTLice(request.getPunomocnik()));
         autorska.setPodnosilacPrijave(createTLice(request.getPodnosilacPrijave()));
 
+        autorska.setDetaljiPrijave(createDetaljiPrijave());
+
 
         return autorska;
+    }
+
+    private Autorska.TDetaljiPrijave createDetaljiPrijave() throws DatatypeConfigurationException {
+
+        Autorska.TDetaljiPrijave detaljiPrijave = new Autorska.TDetaljiPrijave();
+
+        String id = generateNextId();
+        detaljiPrijave.setBrojPrijave(id);
+        GregorianCalendar cal = new GregorianCalendar();
+        cal.setTime(new Date());
+        XMLGregorianCalendar xCal = DatatypeFactory.newInstance()
+                .newXMLGregorianCalendar(cal);
+        detaljiPrijave.setDatumPodnosenja(xCal);
+        return detaljiPrijave;
+
+
     }
 
     private TLice createTLice(TLiceDTO zajednickiPredstavnik) {

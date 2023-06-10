@@ -934,7 +934,7 @@ public class Autorska {
             "datumPodnosenja"
     })
 
-    public class TDetaljiPrijave {
+    public static class TDetaljiPrijave {
 
         @XmlElement(name = "broj_prijave", required = true)
         @XmlSchemaType(name = "positiveInteger")
