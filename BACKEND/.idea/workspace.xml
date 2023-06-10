@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2179b0c5-beba-44e3-a5c5-44796802a4d8" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../xmlIWebServisi/src/app/model/TAdresa.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../xmlIWebServisi/src/app/model/TAdresa.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../xmlIWebServisi/src/app/model/TPrilozi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../xmlIWebServisi/src/app/model/TPrilozi.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../xmlIWebServisi/src/admin/view-all-z1-requests/view-all-z1-requests.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../xmlIWebServisi/src/admin/view-all-z1-requests/view-all-z1-requests.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../xmlIWebServisi/src/app/z1/zig.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../xmlIWebServisi/src/app/z1/zig.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -21,6 +20,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "nodejs_package_manager_path": "npm",
@@ -36,6 +36,7 @@
       <option name="presentableId" value="Default" />
       <updated>1685120031880</updated>
       <workItem from="1685120033280" duration="99000" />
+      <workItem from="1686352186487" duration="9000" />
     </task>
     <servers />
   </component>

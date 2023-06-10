@@ -60,4 +60,11 @@ export class ZigService {
     });
 }
 
+getZahtevi() {
+  return this._http.get(this.url + 'getAll', {
+    headers: new HttpHeaders().set('Content-Type', 'application/xml'),
+    responseType: 'text',
+  });
+}
+
 }

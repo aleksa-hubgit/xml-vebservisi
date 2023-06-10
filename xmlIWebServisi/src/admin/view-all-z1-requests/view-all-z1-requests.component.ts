@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { AService } from 'src/app/a1/a1-create-form/a.service';
 import { Location } from '@angular/common';
 import { ZigService } from 'src/app/z1/zig.service';
 
@@ -34,6 +33,13 @@ export class ViewAllZ1RequestsComponent {
   public viewDetails(a:string){
     alert(a)
   }
+  
+  ngOnInit(): void {
+    this.service.getZahtevi().subscribe({
+    next: async (data) => {
+  data
+  }});}
+
 
   
   public Accept(id : string){
@@ -43,19 +49,22 @@ export class ViewAllZ1RequestsComponent {
   }
 
   public Decline(id : string){
-    this.service.DeclineRequest(id,'').subscribe();
+    this.service.DeclineRequest(id,"").subscribe();
     this.Refresh();
   }
 
   
-  public Print(id : string){
-    this.service.Print(2).subscribe();
-    this.Refresh();
+
+  public Print(id : Number){
+    this.service.Print(id).subscribe();
+
     
   }
   public Refresh(): void {
     this.location.go(this.location.path());
   }
+
+  
 }
 
 
