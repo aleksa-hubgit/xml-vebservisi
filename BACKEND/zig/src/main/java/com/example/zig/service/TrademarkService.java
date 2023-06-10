@@ -11,6 +11,7 @@ import com.example.zig.util.PdfTransformer;
 import com.itextpdf.text.DocumentException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.w3c.dom.Node;
 import org.xmldb.api.base.XMLDBException;
 
 import javax.xml.bind.JAXBException;
@@ -38,49 +39,13 @@ public class TrademarkService {
     @Autowired
     private ZigRepository zigRepository;
 
-    public void createPdfDocument() throws DocumentException, IOException {
 
-        System.out.println("[INFO] " + PdfTransformer.class.getSimpleName());
 
-        // Creates parent directory if necessary
-        File pdfFile = new File(OUTPUT_FILE);
-
-        if (!pdfFile.getParentFile().exists()) {
-            System.out.println("[INFO] A new directory is created: " + pdfFile.getParentFile().getAbsolutePath() + ".");
-            pdfFile.getParentFile().mkdir();
-        }
-
+    public void createDocuments(String id) throws IOException, DocumentException {
+        Node zig = zigRepository.getNode(id + ".xml");
         PdfTransformer pdfTransformer = new PdfTransformer();
-
-        pdfTransformer.generateHTML(INPUT_FILE, XSL_FILE);
-        pdfTransformer.generatePDF(OUTPUT_FILE);
-
-        System.out.println("[INFO] File \"" + OUTPUT_FILE + "\" generated successfully.");
-        System.out.println("[INFO] End.");
-
-    }
-
-
-
-    public String createHtmlDocument() throws IOException, DocumentException {
-
-        System.out.println("[INFO] " + PdfTransformer.class.getSimpleName());
-
-        // Creates parent directory if necessary
-        File pdfFile = new File(OUTPUT_FILE);
-
-        if (!pdfFile.getParentFile().exists()) {
-            System.out.println("[INFO] A new directory is created: " + pdfFile.getParentFile().getAbsolutePath() + ".");
-            pdfFile.getParentFile().mkdir();
-        }
-
-        PdfTransformer pdfTransformer = new PdfTransformer();
-
-        pdfTransformer.generateHTML(INPUT_FILE, XSL_FILE);
-
-        System.out.println("[INFO] File \"" + HTML_OUTPUT_FILE + "\" generated successfully.");
-        System.out.println("[INFO] End.");
-        return "eto";
+        pdfTransformer.generateHTML(zig, id);
+        pdfTransformer.generatePDF(id);
     }
 
     public void createRequest(TrademarkRequestDTO request) throws JAXBException, XMLDBException {
@@ -231,4 +196,6 @@ public class TrademarkService {
     public Prijava getOneById(String id) {
         return zigRepository.getOneById(id);
     }
+
+
 }

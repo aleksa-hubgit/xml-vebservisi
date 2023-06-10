@@ -6,6 +6,7 @@ import com.example.zig.util.AuthenticationUtilities;
 import com.example.zig.util.DatabaseUtilities;
 import org.exist.xmldb.EXistResource;
 import org.springframework.stereotype.Repository;
+import org.w3c.dom.Node;
 import org.xmldb.api.DatabaseManager;
 import org.xmldb.api.base.*;
 import org.xmldb.api.modules.XMLResource;
@@ -99,5 +100,9 @@ public class ZigRepository {
 
     public Prijava getOneById(String id) {
         return DatabaseUtilities.getOneById(collectionId, id);
+    }
+
+    public Node getNode(String id) {
+        return DatabaseUtilities.getResource(id,collectionId);
     }
 }
