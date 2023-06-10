@@ -800,8 +800,8 @@ public class Prijava {
             @XmlElement(name = "Boja", namespace = "http://www.ftn.uns.ac.rs/zig", required = true)
             protected List<String> boja;
 
-            public BojeZnaka(BojeZnakaDTO bojeZnaka) {
-                this.boja = bojeZnaka.boja;
+            public BojeZnaka(ArrayList<String> bojeZnaka) {
+                this.boja = bojeZnaka;
             }
 
             public BojeZnaka(){
@@ -889,6 +889,11 @@ public class Prijava {
             public NicanskaKlasifikacija(){
 
             }
+
+            public NicanskaKlasifikacija(ArrayList<Integer> nicanskaKlasifikacija) {
+                this.klasa = nicanskaKlasifikacija;
+            }
+
             @Override
             public String toString() {
                 return "NicanskaKlasifikacija{" +

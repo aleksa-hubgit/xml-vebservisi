@@ -28,14 +28,6 @@ import java.util.List;
 public class TrademarkService {
 
 
-    public static final String INPUT_FILE = "./src/main/resources/data/5.xml";
-
-    public static final String XSL_FILE = "./src/main/resources/data/z1.xsl";
-
-    public static final String OUTPUT_FILE = "gen/bookstore.pdf";
-
-    public static final String HTML_OUTPUT_FILE = "gen/bookstore.html";
-
     @Autowired
     private ZigRepository zigRepository;
 
@@ -94,16 +86,17 @@ public class TrademarkService {
         TAdresa adresa = new TAdresa(zajednickiPredstavnik.getAdresa());
         TKontaktInformacije kontaktInformacije = new TKontaktInformacije(zajednickiPredstavnik.getKontakt());
         if (zajednickiPredstavnik.getNaziv().equals("")){
-            TPravnoLice lice = new TPravnoLice();
-            lice.setNaziv(zajednickiPredstavnik.getNaziv());
-            lice.setAdresa(adresa);
-            lice.setKontakt(kontaktInformacije);
-            return lice;
-        }
-        else{
             TFizickoLice lice = new TFizickoLice();
             lice.setIme(zajednickiPredstavnik.getIme());
             lice.setPrezime(zajednickiPredstavnik.getPrezime());
+            lice.setAdresa(adresa);
+            lice.setKontakt(kontaktInformacije);
+            return lice;
+
+        }
+        else{
+            TPravnoLice lice = new TPravnoLice();
+            lice.setNaziv(zajednickiPredstavnik.getNaziv());
             lice.setAdresa(adresa);
             lice.setKontakt(kontaktInformacije);
             return lice;
