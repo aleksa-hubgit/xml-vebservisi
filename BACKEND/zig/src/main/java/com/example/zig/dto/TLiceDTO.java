@@ -20,11 +20,12 @@ public class TLiceDTO {
 
 
     public TLiceDTO(TLice podnosilacPrijave) {
-        if (podnosilacPrijave.getClass().getName().equals("TFizickoLice")){
+        if (podnosilacPrijave.getClass().getName().equals("com.example.zig.model.TFizickoLice")){
             this.ime = ((TFizickoLice)podnosilacPrijave).getIme();
             this.prezime = ((TFizickoLice)podnosilacPrijave).getPrezime();
         }
         else{
+            System.out.println(podnosilacPrijave.getClass().getName());
             this.naziv = ((TPravnoLice) podnosilacPrijave).getNaziv();
         }
 

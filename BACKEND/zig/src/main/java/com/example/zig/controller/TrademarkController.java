@@ -61,24 +61,15 @@ public class TrademarkController {
     }
 
     @GetMapping(value="getAllApproved", produces = MediaType.APPLICATION_XML_VALUE)
-    public ResponseEntity<List<TrademarkRequestDTO>> getAllApproved(){
+    public ResponseEntity<List<Prijava>> getAllApproved(){
         List<Prijava> trademarks = trademarkService.getAllApproved();
-        List<TrademarkRequestDTO> trademarksDTOs= new ArrayList<>();
-        for (Prijava prijava:trademarks){
-            trademarksDTOs.add(new TrademarkRequestDTO(prijava));
-        }
-        return new ResponseEntity<>(trademarksDTOs, HttpStatus.OK);
+        return new ResponseEntity<>(trademarks, HttpStatus.OK);
     }
 
     @GetMapping(value="getAllUnanswered", produces = MediaType.APPLICATION_XML_VALUE)
-    public ResponseEntity<List<TrademarkRequestDTO>> getAllUnanswered(){
+    public ResponseEntity<List<Prijava>> getAllUnanswered(){
         List<Prijava> trademarks = trademarkService.getAllUnanswered();
-        List<TrademarkRequestDTO> trademarksDTOs= new ArrayList<>();
-        for (Prijava prijava:trademarks){
-            trademarksDTOs.add(new TrademarkRequestDTO(prijava));
-        }
-
-        return new ResponseEntity<>(trademarksDTOs, HttpStatus.OK);
+        return new ResponseEntity<>(trademarks, HttpStatus.OK);
     }
 
 

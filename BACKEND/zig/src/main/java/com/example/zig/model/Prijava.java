@@ -563,6 +563,8 @@ public class Prijava {
             this.nicanskaKlasifikacija = new NicanskaKlasifikacija(informacijeOZigu.nicanskaKlasifikacija);
         }
         public InformacijeOZigu() {
+            this.bojeZnaka = new BojeZnaka();
+            this.nicanskaKlasifikacija = new NicanskaKlasifikacija();
         }
 
         @Override
@@ -805,7 +807,7 @@ public class Prijava {
             }
 
             public BojeZnaka(){
-
+                this.boja = new ArrayList<>();
             }
 
             @Override
@@ -887,7 +889,7 @@ public class Prijava {
                 this.klasa = nicanskaKlasifikacija.klasa;
             }
             public NicanskaKlasifikacija(){
-
+                this.klasa = new ArrayList<>();
             }
 
             public NicanskaKlasifikacija(ArrayList<Integer> nicanskaKlasifikacija) {
