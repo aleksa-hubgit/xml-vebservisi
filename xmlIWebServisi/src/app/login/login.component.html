@@ -3,7 +3,13 @@
   <form (submit)="login()">
     <div class="form-group">
       <label for="email">Email</label>
-      <input type="text" id="email" name="email" [(ngModel)]="email" required />
+      <input
+        type="text"
+        id="email"
+        name="email"
+        [(ngModel)]="loginDTO.email"
+        required
+      />
     </div>
     <div class="form-group">
       <label for="password">Lozinka</label>
@@ -11,7 +17,7 @@
         type="password"
         id="password"
         name="password"
-        [(ngModel)]="password"
+        [(ngModel)]="loginDTO.password"
         required
       />
     </div>
