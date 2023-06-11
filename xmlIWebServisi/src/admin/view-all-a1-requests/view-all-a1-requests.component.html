@@ -1,29 +1,29 @@
 <table mat-table [dataSource]="tableData" class="mat-elevation-z8">
   <!-- Define table columns -->
   <ng-container matColumnDef="ime">
-    <th mat-header-cell *matHeaderCellDef> Ime </th>
-    <td mat-cell *matCellDef="let element"> {{ element.ime }} </td>
+    <th mat-header-cell *matHeaderCellDef> Ime / Naziv </th>
+    <td mat-cell *matCellDef="let element"> {{ element.podnosilacPrijave.ime }} </td>
   </ng-container>
 
   <ng-container matColumnDef="prezime">
     <th mat-header-cell *matHeaderCellDef> Prezime </th>
-    <td mat-cell *matCellDef="let element"> {{ element.prezime }} </td>
+    <td mat-cell *matCellDef="let element"> {{ element.podnosilacPrijave.prezime  }} </td>
   </ng-container>
 
   <ng-container matColumnDef="naziv_dela">
     <th mat-header-cell *matHeaderCellDef> Naziv dela </th>
-    <td mat-cell *matCellDef="let element"> {{ element.naziv_dela }} </td>
+    <td mat-cell *matCellDef="let element"> {{ element.podaciONaslovu.naslov }} </td>
   </ng-container>
 
   <ng-container matColumnDef="vrsta_dela">
     <th mat-header-cell *matHeaderCellDef> Vrsta dela </th>
-    <td mat-cell *matCellDef="let element"> {{ element.vrsta_dela }} </td>
+    <td mat-cell *matCellDef="let element"> {{ element.vrstaDela }} </td>
   </ng-container>
 
   <ng-container matColumnDef="detalji">
     <th mat-header-cell *matHeaderCellDef> Detalji </th>
     <td mat-cell *matCellDef="let element">
-      <button mat-button color="primary" (click)="viewDetails(element)">DETALJI</button>
+      <button mat-button color="primary" (click)="viewDetails(element.sifraZahteva)">DETALJI</button>
     </td>
   </ng-container>
 
@@ -44,7 +44,7 @@
   <ng-container matColumnDef="preuzmi">
     <th mat-header-cell *matHeaderCellDef> Preuzmi </th>
     <td mat-cell *matCellDef="let element">
-      <button mat-button color="primary" (click)="viewDetails(element)">PREUZMI</button>
+      <button mat-button color="primary" (click)="viewDetails(element.sifraZahteva)">PREUZMI</button>
     </td>
   </ng-container>
 
