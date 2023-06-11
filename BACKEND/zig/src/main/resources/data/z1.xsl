@@ -507,15 +507,15 @@
                     <tr>
                         <xsl:variable name="klase" select="zig:Prijava/zig:Informacije_o_zigu/zig:Nicanska_klasifikacija"/>
 
-                        <xsl:for-each select="zig:Prijava/zig:Informacije_o_zigu/zig:Nicanska_klasifikacija/zig:Klasa">
+                        <xsl:for-each select="//*[position() &gt;= 1 and position() &lt;= 23]">
                             <xsl:choose>
                                 <xsl:when test="position() = $klase">
-                                    <td style="background-color: red; padding-left: 5pt; text-align: left; font-size: 9pt;">
+                                    <td style="background-color: red; padding-left: 2pt; text-align: left; font-size: 7pt;">
                                         <xsl:value-of select="position()"/>
                                     </td>
                                 </xsl:when>
                                 <xsl:otherwise>
-                                    <td style="padding-left: 5pt; text-align: left; font-size: 9pt;">
+                                    <td style="padding-left: 2pt; text-align: left; font-size: 7pt;">
                                         <xsl:value-of select="position()"/>
                                     </td>
                                 </xsl:otherwise>
@@ -525,15 +525,15 @@
 
                     <tr>
                         <xsl:variable name="klase" select="zig:Prijava/zig:Informacije_o_zigu/zig:Nicanska_klasifikacija"/>
-                        <xsl:for-each select="zig:Prijava/zig:Informacije_o_zigu/zig:Nicanska_klasifikacija/zig:Klasa">
+                        <xsl:for-each select="//*[position() &gt;= 24 and position() &lt;= 45]">
                             <xsl:choose>
                                 <xsl:when test="position()+23 = $klase">
-                                    <td style="background-color: red; padding-left: 5pt; text-align: left; font-size: 9pt;">
+                                    <td style="background-color: red; padding-left: 2pt; text-align: left; font-size: 7pt;">
                                         <xsl:value-of select="position()+23"/>
                                     </td>
                                 </xsl:when>
                                 <xsl:otherwise>
-                                    <td style="padding-left: 5pt; text-align: left; font-size: 9pt;"><xsl:value-of select="position()+23"/></td>
+                                    <td style="padding-left: 2pt; text-align: left; font-size: 7pt;"><xsl:value-of select="position()+23"/></td>
                                 </xsl:otherwise>
                             </xsl:choose>
                         </xsl:for-each>

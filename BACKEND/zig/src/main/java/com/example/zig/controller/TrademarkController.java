@@ -81,16 +81,15 @@ public class TrademarkController {
         return new ResponseEntity<>(trademarksDTOs, HttpStatus.OK);
     }
 
-    @GetMapping(value="createPDF")
-    public void createPdfDocument() throws DocumentException, IOException {
-        trademarkService.createPdfDocument();
 
+
+    @GetMapping(value = "createDocuments/{id}")
+    public void createDocuments(@PathVariable String id) throws DocumentException, IOException {
+
+        trademarkService.createDocuments(id);
     }
 
-    @GetMapping(value = "createHTML", produces ="application/xml", consumes="application/xml")
-    public ResponseEntity<String> createHtmlDocument() throws DocumentException, IOException {
-        return new ResponseEntity<>(trademarkService.createHtmlDocument(), HttpStatus.OK);
-    }
+
 
     @RequestMapping("/downloadPDF/{fileName}")
     public void downloadPDFResource(HttpServletRequest request, HttpServletResponse response, @PathVariable("fileName") String fileName) throws IOException {
@@ -98,6 +97,20 @@ public class TrademarkController {
         File file = new File(path);
         if (file.exists()) {
             String mimeType = "application/pdf";
+            response.setContentType(mimeType);
+            response.setHeader("Content-Disposition", "inline; filename=\"" + file.getName() + "\"");
+            response.setContentLength((int) file.length());
+            InputStream inputStream = new BufferedInputStream(new FileInputStream(file));
+            FileCopyUtils.copy(inputStream, response.getOutputStream());
+        }
+    }
+
+    @RequestMapping("/downloadHTML/{fileName}")
+    public void downloadHTMLResource(HttpServletRequest request, HttpServletResponse response, @PathVariable("fileName") String fileName) throws IOException {
+        String path = "src/main/resources/data/gen/" + fileName;
+        File file = new File(path);
+        if (file.exists()) {
+            String mimeType = "application/html";
             response.setContentType(mimeType);
             response.setHeader("Content-Disposition", "inline; filename=\"" + file.getName() + "\"");
             response.setContentLength((int) file.length());

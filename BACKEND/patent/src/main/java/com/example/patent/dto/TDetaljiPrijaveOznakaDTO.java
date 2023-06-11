@@ -4,7 +4,6 @@ package com.example.patent.dto;
 import com.example.patent.model.TDetaljiPrijaveOznaka;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-import org.exist.xquery.functions.xmldb.XMLDBGetChildResources;
 
 import javax.xml.datatype.XMLGregorianCalendar;
 
@@ -13,7 +12,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
 public class TDetaljiPrijaveOznakaDTO {
 
     public String dvoslovnaOznaka;
-    public Integer brojPrijave;
+    public String brojPrijave;
     public XMLGregorianCalendar datumPodnosenja;
 
     public TDetaljiPrijaveOznakaDTO(TDetaljiPrijaveOznaka detaljiPrijaveOznaka) {

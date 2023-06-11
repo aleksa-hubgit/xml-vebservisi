@@ -1,6 +1,7 @@
 package com.example.autorska.repository;
 
 import com.example.autorska.model.Autorska;
+import com.example.autorska.model.decision.Decision;
 import com.example.autorska.util.AuthenticationUtilities;
 import com.example.autorska.util.DatabaseUtilities;
 import org.exist.xmldb.EXistResource;
@@ -18,6 +19,8 @@ import java.util.List;
 @Repository
 public class AutorskaRepository {
     private final String collectionId = "db/autorski";
+    private final String collectionIdDecision = "db/aResenja";
+
 
     private Collection col;
 
@@ -84,4 +87,18 @@ public class AutorskaRepository {
     }
 
 
+    public void saveDecision(OutputStream os, String sifraZahteva) throws XMLDBException {
+        String documentId = "resenje-" + sifraZahteva;
+        DatabaseUtilities.storeResource(collectionIdDecision, documentId, os);
+    }
+
+    public Autorska getOneById(String id) {
+        return DatabaseUtilities.getOneById(collectionId, id);
+
+    }
+
+    public List<Decision> getAllDecisions() {
+        return DatabaseUtilities.getAllDecisions(collectionIdDecision);
+
+    }
 }

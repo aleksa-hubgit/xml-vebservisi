@@ -1,9 +1,11 @@
 package com.example.patent.service;
 
 
+import com.example.patent.dto.DecisionDTO;
 import com.example.patent.dto.PatentRequestDTO;
 import com.example.patent.dto.TLiceDTO;
 import com.example.patent.model.*;
+import com.example.patent.model.decision.Decision;
 import com.example.patent.repository.PatentRepository;
 import com.example.patent.util.MarshallingUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +18,10 @@ import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 import java.io.OutputStream;
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 @Service
 public class PatentService {
@@ -35,7 +39,20 @@ public class PatentService {
 
         MarshallingUtils marshallingUtils = new MarshallingUtils();
         OutputStream os = marshallingUtils.marshall(prijava);
-        patentRepository.save(os, "2");
+        String id = generateNextId();
+
+        patentRepository.save(os, id);
+    }
+
+    private void save(Decision decision) throws JAXBException, XMLDBException {
+        MarshallingUtils marshallingUtils = new MarshallingUtils();
+        OutputStream os = marshallingUtils.marshall(decision);
+        patentRepository.saveDecision(os,decision.getSifraZahteva());
+    }
+
+    public  String generateNextId() {
+        return String.valueOf(patentRepository.getAll().size() + 1);
+
     }
 
     private Prijava createRequestFromDTO(PatentRequestDTO request) throws DatatypeConfigurationException {
@@ -78,10 +95,12 @@ public class PatentService {
         }
     }
 
-    private static TDetaljiPrijavePatent getDetaljiPrijavePatent() throws DatatypeConfigurationException {
+    private  TDetaljiPrijavePatent getDetaljiPrijavePatent() throws DatatypeConfigurationException {
         TDetaljiPrijavePatent detaljiPrijave = new TDetaljiPrijavePatent();
         detaljiPrijave.setPotpis("potpis");
-        detaljiPrijave.setBrojPrijave(1);
+
+        String id = generateNextId();
+        detaljiPrijave.setBrojPrijave(id);
         GregorianCalendar cal = new GregorianCalendar();
         cal.setTime(new Date());
         XMLGregorianCalendar xCal = DatatypeFactory.newInstance()
@@ -89,5 +108,71 @@ public class PatentService {
         detaljiPrijave.setDatumPodnosenja(xCal);
         detaljiPrijave.setPriznatiDatumPodnosenja(xCal);
         return detaljiPrijave;
+    }
+
+    public void createDecision(DecisionDTO decisionDTO) throws DatatypeConfigurationException, JAXBException, XMLDBException {
+
+        Decision decision = new Decision();
+        decision.setSifraZahteva(decisionDTO.requestId);
+        decision.setOdobren(decisionDTO.approved);
+        decision.setObrazlozenje(decisionDTO.reason);
+
+        GregorianCalendar cal = new GregorianCalendar();
+        cal.setTime(new Date());
+        XMLGregorianCalendar xCal = DatatypeFactory.newInstance()
+                .newXMLGregorianCalendar(cal);
+        decision.setDatumRazresenja(xCal);
+        this.save(decision);
+    }
+
+    public List<Prijava> getAll() {
+        List<Prijava> prijavas = patentRepository.getAll();
+
+        return prijavas;
+    }
+
+    public Prijava getOneById(String id) {
+        return patentRepository.getOneById(id);
+
+    }
+
+    public List<Prijava> getAllApproved() {
+        List<Prijava> allRequests = patentRepository.getAll();
+        List<Prijava> answeredRequests = new ArrayList<>();
+        List<Decision> allDecisions = patentRepository.getAllDecisions();
+        List<String> answeredRequestsIds = new ArrayList<>();
+
+        for (Decision decision:allDecisions){
+            answeredRequestsIds.add(decision.getSifraZahteva());
+        }
+        for (Prijava prijava:allRequests){
+            String brojPrijave = prijava.getDetaljiPrijave().getBrojPrijave();
+            if(answeredRequestsIds.contains(brojPrijave)){
+                for (Decision decision:allDecisions){
+                    if(decision.getSifraZahteva().equals(brojPrijave) && decision.isOdobren()){
+                        answeredRequests.add(prijava);
+                    }
+                }
+            }
+        }
+        return answeredRequests;
+
+    }
+
+    public List<Prijava> getAllUnanswered() {
+        List<Prijava> allRequests = patentRepository.getAll();
+        List<Prijava> unansweredRequests = new ArrayList<>();
+        List<Decision> allDecisions = patentRepository.getAllDecisions();
+        List<String> answeredRequestsIds = new ArrayList<>();
+
+        for (Decision decision:allDecisions){
+            answeredRequestsIds.add(decision.getSifraZahteva());
+        }
+        for (Prijava prijava:allRequests){
+            if(!answeredRequestsIds.contains(prijava.getDetaljiPrijave().getBrojPrijave())){
+                unansweredRequests.add(prijava);
+            }
+        }
+        return unansweredRequests;
     }
 }

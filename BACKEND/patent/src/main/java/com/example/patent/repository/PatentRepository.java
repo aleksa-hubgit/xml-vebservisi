@@ -1,6 +1,7 @@
 package com.example.patent.repository;
 
 import com.example.patent.model.Prijava;
+import com.example.patent.model.decision.Decision;
 import com.example.patent.util.AuthenticationUtilities;
 import com.example.patent.util.DatabaseUtilities;
 import org.exist.xmldb.EXistResource;
@@ -18,6 +19,8 @@ import java.util.List;
 @Repository
 public class PatentRepository {
     private final String collectionId = "db/autorski";
+    private final String collectionIdDecision = "db/pResenja";
+
 
     private Collection col;
 
@@ -84,4 +87,18 @@ public class PatentRepository {
     }
 
 
+    public void saveDecision(OutputStream os, String sifraZahteva) throws XMLDBException {
+        String documentId = "resenje-" + sifraZahteva;
+        DatabaseUtilities.storeResource(collectionIdDecision, documentId, os);
+    }
+
+    public Prijava getOneById(String id) {
+        return DatabaseUtilities.getOneById(collectionId, id);
+
+    }
+
+    public List<Decision> getAllDecisions() {
+        return DatabaseUtilities.getAllDecisions(collectionIdDecision);
+
+    }
 }

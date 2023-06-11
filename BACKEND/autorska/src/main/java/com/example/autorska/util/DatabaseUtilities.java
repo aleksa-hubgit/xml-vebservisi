@@ -1,6 +1,7 @@
 package com.example.autorska.util;
 
 import com.example.autorska.model.Autorska;
+import com.example.autorska.model.decision.Decision;
 import org.exist.xmldb.EXistResource;
 import org.xmldb.api.DatabaseManager;
 import org.xmldb.api.base.Collection;
@@ -42,7 +43,7 @@ public class DatabaseUtilities {
             col = getOrCreateCollection(collectionId);
 
             System.out.println("[INFO] Inserting the document: " + documentId);
-            res = (XMLResource) col.createResource(documentId, XMLResource.RESOURCE_TYPE);
+            res = (XMLResource) col.createResource(documentId + ".xml", XMLResource.RESOURCE_TYPE);
 
             res.setContent(outputStream);
             System.out.println("[INFO] Storing the document: " + res.getId());
@@ -156,4 +157,83 @@ public class DatabaseUtilities {
             }
         }
     }
-}
+
+    public static Autorska getOneById(String collectionId, String documentId) {
+        documentId += ".xml";
+        Collection col = null;
+        XMLResource res = null;
+        try {
+            col = DatabaseManager.getCollection(conn.uri + collectionId, conn.user, conn.password);
+            col.setProperty(OutputKeys.INDENT, "yes");
+
+            res = (XMLResource)col.getResource(documentId);
+
+
+            if(res == null) {
+                return null;
+            } else {
+
+                MarshallingUtils marshallingUtils = new MarshallingUtils();
+                return marshallingUtils.unmarshallFromNode(res.getContentAsDOM());
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            if(res != null) {
+                try {
+                    ((EXistResource)res).freeResources();
+                } catch (XMLDBException xe) {
+                    xe.printStackTrace();
+                }
+            }
+
+            if(col != null) {
+                try {
+                    col.close();
+                } catch (XMLDBException xe) {
+                    xe.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public static List<Decision> getAllDecisions(String collectionIdDecision) {
+        Collection col = null;
+        XMLResource res = null;
+        try {
+            MarshallingUtils marshallingUtils = new MarshallingUtils();
+            List<Decision> resenja = new ArrayList<>();
+            col = DatabaseManager.getCollection(conn.uri + collectionIdDecision, conn.user, conn.password);
+            col.setProperty(OutputKeys.INDENT, "yes");
+            for(String s: col.listResources()){
+                res = (XMLResource)col.getResource(s);
+                resenja.add(marshallingUtils.unmarshallFromNodeDecision(res.getContentAsDOM()));
+            }
+
+            return resenja;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            if(res != null) {
+                try {
+                    ((EXistResource)res).freeResources();
+                } catch (XMLDBException xe) {
+                    xe.printStackTrace();
+                }
+            }
+
+            if(col != null) {
+                try {
+                    col.close();
+                } catch (XMLDBException xe) {
+                    xe.printStackTrace();
+                }
+            }
+        }
+    }
+    }
+

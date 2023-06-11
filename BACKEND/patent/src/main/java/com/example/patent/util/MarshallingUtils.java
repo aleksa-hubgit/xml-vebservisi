@@ -1,6 +1,7 @@
 package com.example.patent.util;
 
 import com.example.patent.model.Prijava;
+import com.example.patent.model.decision.Decision;
 import org.w3c.dom.Node;
 
 import javax.xml.bind.JAXBContext;
@@ -26,6 +27,15 @@ public class MarshallingUtils {
         return os;
     }
 
+    public OutputStream marshall(Decision resenje) throws JAXBException {
+        JAXBContext context = JAXBContext.newInstance("com.example.patent.model.decision");
+        Marshaller marshaller = context.createMarshaller();
+        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+        OutputStream os = new ByteArrayOutputStream();
+        marshaller.marshal(resenje, os);
+        return os;
+    }
+
 
 
     public Prijava unmarshall(String filepath) throws JAXBException {
@@ -36,5 +46,11 @@ public class MarshallingUtils {
     public Prijava unmarshallFromNode(Node node) throws JAXBException {
         Unmarshaller unmarshaller = context.createUnmarshaller();
         return (Prijava) unmarshaller.unmarshal(node);
+    }
+
+    public Decision unmarshallFromNodeDecision(Node contentAsDOM) throws JAXBException {
+        JAXBContext context = JAXBContext.newInstance("com.example.patent.model");
+        Unmarshaller unmarshaller = context.createUnmarshaller();
+        return (Decision) unmarshaller.unmarshal(contentAsDOM);
     }
 }
