@@ -17,6 +17,7 @@ export class ZigService {
     let result:string= Parser.xml2json(xml, { compact: true });
   
     let res = JSON.parse(result);
+    if (Array.isArray(res['List']['item'])){
     for (let user of res.List.item){
       let p: Prijava = new Prijava();
       if(user['podnosilacPrijave']['ime'] === undefined){ 
@@ -33,6 +34,25 @@ export class ZigService {
         p.podnosilacPrijave.ime = user['podnosilacPrijave']['naziv']['_text']
       }
       prijave.push(p);
+    }}
+    else{
+      let user = res['List']['item'];
+      let p: Prijava = new Prijava();
+      if(user['podnosilacPrijave']['ime'] === undefined){ 
+         p.podnosilacPrijave.ime = user['podnosilacPrijave']['naziv']['_text']
+      }
+      else{
+      p.podnosilacPrijave.ime = user['podnosilacPrijave']['ime']['_text'];
+      p.podnosilacPrijave.prezime = user['podnosilacPrijave']['prezime']['_text'];
+      }
+      p.informacijeOZigu.tipZiga = user['informacijeOZigu']['tipZiga']['_text'];
+      p.informacijeOZigu.opisZnaka= user['informacijeOZigu']['opisZnaka']['_text'];
+      p.sifraZahteva = user['informacijaZavoda']['brojPrijave']['_text'];
+      if(p.podnosilacPrijave.ime === ''){
+        p.podnosilacPrijave.ime = user['podnosilacPrijave']['naziv']['_text']
+      }
+      prijave.push(p);
+
     }
     
     return prijave;
