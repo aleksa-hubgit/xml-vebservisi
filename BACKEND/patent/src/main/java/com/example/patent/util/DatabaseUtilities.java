@@ -43,7 +43,7 @@ public class DatabaseUtilities {
             col = getOrCreateCollection(collectionId);
 
             System.out.println("[INFO] Inserting the document: " + documentId);
-            res = (XMLResource) col.createResource(documentId, XMLResource.RESOURCE_TYPE);
+            res = (XMLResource) col.createResource(documentId + ".xml", XMLResource.RESOURCE_TYPE);
 
             res.setContent(outputStream);
             System.out.println("[INFO] Storing the document: " + res.getId());

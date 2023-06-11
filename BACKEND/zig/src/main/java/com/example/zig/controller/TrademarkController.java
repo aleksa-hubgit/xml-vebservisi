@@ -75,7 +75,7 @@ public class TrademarkController {
 
 
 
-    @GetMapping(value = "createDocuments/{id}")
+    @PostMapping(value = "createDocuments/{id}")
     public void createDocuments(@PathVariable String id) throws DocumentException, IOException {
 
         trademarkService.createDocuments(id);
@@ -83,11 +83,14 @@ public class TrademarkController {
 
 
 
-    @RequestMapping("/downloadPDF/{fileName}")
+    @GetMapping("/downloadPDF/{fileName}")
     public void downloadPDFResource(HttpServletRequest request, HttpServletResponse response, @PathVariable("fileName") String fileName) throws IOException {
-        String path = "gen/" + fileName;
+        String path = "gen/" + fileName + ".pdf";
+        System.out.println("USAOOO");
+        System.out.println(path);
         File file = new File(path);
         if (file.exists()) {
+            System.out.println("File found");
             String mimeType = "application/pdf";
             response.setContentType(mimeType);
             response.setHeader("Content-Disposition", "inline; filename=\"" + file.getName() + "\"");
@@ -97,7 +100,7 @@ public class TrademarkController {
         }
     }
 
-    @RequestMapping("/downloadHTML/{fileName}")
+    @GetMapping("/downloadHTML/{fileName}")
     public void downloadHTMLResource(HttpServletRequest request, HttpServletResponse response, @PathVariable("fileName") String fileName) throws IOException {
         String path = "src/main/resources/data/gen/" + fileName;
         File file = new File(path);

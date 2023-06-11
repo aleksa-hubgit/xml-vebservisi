@@ -18,7 +18,7 @@ import java.util.List;
 
 @Repository
 public class PatentRepository {
-    private final String collectionId = "db/autorski";
+    private final String collectionId = "db/patent";
     private final String collectionIdDecision = "db/pResenja";
 
 
