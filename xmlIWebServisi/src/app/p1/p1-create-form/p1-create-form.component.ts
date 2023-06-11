@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { PatentRequestDTO } from 'src/app/model/p1/PatentRequestDTO';
 import { TDetaljiPrijaveOznakaDTO } from 'src/app/model/p1/TDetaljiPrijaveOznakaDTO';
 import { TLiceDTO } from 'src/app/model/p1/TLiceDTO';
+import { P1Service } from '../p1.service';
 
 @Component({
   selector: 'app-p1-create-form',
@@ -15,7 +16,7 @@ export class P1CreateFormComponent {
   punomocnikZaPrijem: boolean = false;
   zajednickiPredstavnik: boolean = false;
 
-  constructor() {
+  constructor(private service: P1Service) {
     this.patentRequest.prethodnePrijave.detaljiPrijaveOznaka.push(
       new TDetaljiPrijaveOznakaDTO()
     );
@@ -38,6 +39,6 @@ export class P1CreateFormComponent {
   }
 
   submitRequest() {
-    console.log(this.patentRequest);
+   this.service.sendRequest(this.patentRequest).subscribe();
   }
 }

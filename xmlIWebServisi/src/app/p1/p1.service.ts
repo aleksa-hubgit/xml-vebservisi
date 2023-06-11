@@ -10,7 +10,7 @@ export class P1Service {
   url = 'http://localhost:9002/patent/';
 
   sendRequest(prijava: PatentRequestDTO) {
-    const xml = JsonToXML.parse('autorskaPrijava', prijava);
+    const xml = JsonToXML.parse('patentPrijava', prijava);
     const url = this.url + 'createRequest';
     return this._http.post<any>(url, xml, {
       headers: new HttpHeaders({
