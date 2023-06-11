@@ -10,13 +10,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
 import org.xmldb.api.base.XMLDBException;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.xml.bind.JAXBException;
 import javax.xml.datatype.DatatypeConfigurationException;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -85,6 +87,34 @@ public class CopyrightController {
         copyrightService.createDocuments(id);
     }
 
+
+    @RequestMapping("/downloadPDF/{fileName}")
+    public void downloadPDFResource(HttpServletRequest request, HttpServletResponse response, @PathVariable("fileName") String fileName) throws IOException {
+        String path = "gen/" + fileName;
+        File file = new File(path);
+        if (file.exists()) {
+            String mimeType = "application/pdf";
+            response.setContentType(mimeType);
+            response.setHeader("Content-Disposition", "inline; filename=\"" + file.getName() + "\"");
+            response.setContentLength((int) file.length());
+            InputStream inputStream = new BufferedInputStream(new FileInputStream(file));
+            FileCopyUtils.copy(inputStream, response.getOutputStream());
+        }
+    }
+
+    @RequestMapping("/downloadHTML/{fileName}")
+    public void downloadHTMLResource(HttpServletRequest request, HttpServletResponse response, @PathVariable("fileName") String fileName) throws IOException {
+        String path = "src/main/resources/data/gen/" + fileName;
+        File file = new File(path);
+        if (file.exists()) {
+            String mimeType = "application/html";
+            response.setContentType(mimeType);
+            response.setHeader("Content-Disposition", "inline; filename=\"" + file.getName() + "\"");
+            response.setContentLength((int) file.length());
+            InputStream inputStream = new BufferedInputStream(new FileInputStream(file));
+            FileCopyUtils.copy(inputStream, response.getOutputStream());
+        }
+    }
     @PostMapping(value="report", consumes = MediaType.APPLICATION_XML_VALUE)
     public void generateReport(@RequestBody ReportDTO reportDTO) throws JAXBException, XMLDBException, DocumentException, FileNotFoundException {
         copyrightService.generateReport(reportDTO);
