@@ -55,6 +55,7 @@ export class ViewAllZ1RequestsComponent {
 
   public Print(id: Number) {
     this.service.Print(id).subscribe();
+    window.open("http://localhost:9000/downloadPDF/" + id);
   }
   public Refresh(): void {
     this.location.go(this.location.path());

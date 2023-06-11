@@ -54,7 +54,7 @@ export class ZigService {
 
   Print(id: Number) {
     const xml = JsonToXML.parse('broj', id);
-    const url = this.url + 'print';
+    const url = this.url + 'createDocuments/' + id;
     return this._http.post<any>(url, xml, {
       headers: new HttpHeaders({
         'Content-Type': 'application/xml',
