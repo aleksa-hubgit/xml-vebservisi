@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { RegisterDTO } from '../model/loginRegister/RegisterDTO';
+import { LoginRegisterService } from '../login-register.service';
 
 @Component({
   selector: 'app-registration',
@@ -6,21 +8,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./registration.component.css'],
 })
 export class RegistrationComponent {
-  name: string;
-  surname: string;
-  email: string;
-  password: string;
-  constructor() {
-    this.name = '';
-    this.surname = '';
-    this.email = '';
-    this.password = '';
-  }
+  registerDto: RegisterDTO = new RegisterDTO();
+  constructor(private service: LoginRegisterService) {}
 
-  register() {
-    // You can add your registration logic here
-    console.log(
-      `Name: ${this.name}, Surname: ${this.surname}, Email: ${this.email}, Password: ${this.password}`
-    );
-  }
+  register() {}
 }

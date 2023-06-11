@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { LoginRegisterService } from '../login-register.service';
+import { LoginDTO } from '../model/loginRegister/LoginDTO';
 
 @Component({
   selector: 'app-login',
@@ -6,15 +8,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
-  email: string;
-  password: string;
-  constructor() {
-    this.email = '';
-    this.password = '';
-  }
+  loginDTO: LoginDTO = new LoginDTO();
+  constructor(private service: LoginRegisterService) {}
 
   login() {
     // You can add your login logic here
-    console.log(`Username: ${this.email}, Password: ${this.password}`);
+    console.log(
+      `Username: ${this.loginDTO.email}, Password: ${this.loginDTO.password}`
+    );
+
+    this.service.login(this.loginDTO).subscribe();
   }
 }
