@@ -106,6 +106,10 @@ public class TZahtev {
     @XmlElement(name = "dodatni_podaci")
     protected boolean dodatniPodaci;
 
+
+    public TZahtev() {
+        this.prethodnePrijave = new PrethodnePrijave();
+    }
     /**
      * Gets the value of the nazivPronalaska property.
      * 
@@ -446,7 +450,7 @@ public class TZahtev {
         }
 
         public PrethodnePrijave(){
-
+            this.prethodnaPrijava = new ArrayList<>();
         }
 
         /**
