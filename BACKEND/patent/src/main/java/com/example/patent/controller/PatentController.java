@@ -3,8 +3,10 @@ package com.example.patent.controller;
 
 import com.example.patent.dto.DecisionDTO;
 import com.example.patent.dto.PatentRequestDTO;
+import com.example.patent.dto.ReportDTO;
 import com.example.patent.model.Prijava;
 import com.example.patent.service.PatentService;
+import com.itextpdf.text.DocumentException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -14,6 +16,7 @@ import org.xmldb.api.base.XMLDBException;
 
 import javax.xml.bind.JAXBException;
 import javax.xml.datatype.DatatypeConfigurationException;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -72,5 +75,10 @@ public class PatentController {
         }
 
         return new ResponseEntity<>(trademarksDTOs, HttpStatus.OK);
+    }
+
+    @PostMapping(value="report", consumes = MediaType.APPLICATION_XML_VALUE)
+    public void generateReport(@RequestBody ReportDTO reportDTO) throws JAXBException, XMLDBException, DocumentException, FileNotFoundException {
+        patentService.generateReport(reportDTO);
     }
 }

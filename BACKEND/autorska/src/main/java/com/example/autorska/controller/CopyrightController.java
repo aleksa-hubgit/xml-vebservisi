@@ -2,6 +2,7 @@ package com.example.autorska.controller;
 
 import com.example.autorska.dto.CopyrightRequestDTO;
 import com.example.autorska.dto.DecisionDTO;
+import com.example.autorska.dto.ReportDTO;
 import com.example.autorska.model.Autorska;
 import com.example.autorska.service.CopyrightService;
 import com.itextpdf.text.DocumentException;
@@ -14,6 +15,7 @@ import org.xmldb.api.base.XMLDBException;
 
 import javax.xml.bind.JAXBException;
 import javax.xml.datatype.DatatypeConfigurationException;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -81,5 +83,10 @@ public class CopyrightController {
     public void createDocuments(@PathVariable String id) throws DocumentException, IOException {
 
         copyrightService.createDocuments(id);
+    }
+
+    @PostMapping(value="report", consumes = MediaType.APPLICATION_XML_VALUE)
+    public void generateReport(@RequestBody ReportDTO reportDTO) throws JAXBException, XMLDBException, DocumentException, FileNotFoundException {
+        copyrightService.generateReport(reportDTO);
     }
 }

@@ -2,6 +2,7 @@ package com.example.zig.controller;
 
 
 import com.example.zig.dto.DecisionDTO;
+import com.example.zig.dto.ReportDTO;
 import com.example.zig.dto.TrademarkRequestDTO;
 import com.example.zig.model.Prijava;
 import com.example.zig.service.TrademarkService;
@@ -108,5 +109,10 @@ public class TrademarkController {
             InputStream inputStream = new BufferedInputStream(new FileInputStream(file));
             FileCopyUtils.copy(inputStream, response.getOutputStream());
         }
+    }
+
+    @PostMapping(value="report", consumes = MediaType.APPLICATION_XML_VALUE)
+    public void generateReport(@RequestBody ReportDTO reportDTO) throws JAXBException, XMLDBException, DocumentException, FileNotFoundException {
+        trademarkService.generateReport(reportDTO);
     }
 }
