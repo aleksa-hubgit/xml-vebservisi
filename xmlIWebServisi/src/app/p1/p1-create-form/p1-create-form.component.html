@@ -1,5 +1,12 @@
 <form>
   <h2>ЗАХТЕВ ЗА ПРИЗНАЊЕ ПАТЕНТА</h2>
+  <label>Потпис:</label>
+  <input
+    type="text"
+    name="potpis"
+    [(ngModel)]="patentRequest.potpis"
+    required
+  />
 
   <h3>Поље број I - НАЗИВ ПРОНАЛАСКА (54)</h3>
   <p>
@@ -12,7 +19,7 @@
     <input
       type="text"
       name="nazivPronalaskaSrpski"
-      [(ngModel)]="pronalazak.srpskiNaziv"
+      [(ngModel)]="patentRequest.nazivPronalaska.srpskiNaziv"
       required
     />
   </div>
@@ -21,7 +28,7 @@
     <input
       type="text"
       name="nazivPronalaskaEngleski"
-      [(ngModel)]="pronalazak.engleskiNaziv"
+      [(ngModel)]="patentRequest.nazivPronalaska.engleskiNaziv"
       required
     />
   </div>
@@ -29,39 +36,70 @@
   <h3>Поље број II - ПОДНОСИЛАЦ ПРИЈАВЕ (71)</h3>
   <div>
     <label>
-      ☐ Подносилац пријаве је и проналазач
       <input
         type="checkbox"
         name="podnosilacPronalazac"
         [(ngModel)]="podnosilacPronalazac"
         (click)="togglePronalazac()"
       />
+      Подносилац пријаве је и проналазач
     </label>
   </div>
   <div>
-    <label>Име и презиме / Пословно име:</label>
+    <label>Назив:</label>
     <input
       type="text"
       name="imePrezimePoslovnoIme"
-      [(ngModel)]="lice.naziv"
+      [(ngModel)]="patentRequest.podnosilacPrijave.naziv"
+      required
+    />
+  </div>
+  <div>
+    <label>Име:</label>
+    <input
+      type="text"
+      name="ime"
+      [(ngModel)]="patentRequest.podnosilacPrijave.ime"
+      required
+    />
+    <label>Презиме:</label>
+    <input
+      type="text"
+      name="prezime"
+      [(ngModel)]="patentRequest.podnosilacPrijave.prezime"
       required
     />
   </div>
   <div>
     <label>Улица и број, поштански број, место и држава:</label>
-    <input type="text" name="adresa" [(ngModel)]="lice.adresa.ulica" required />
-    <input type="text" name="broj" [(ngModel)]="lice.adresa.broj" required />
+    <input
+      type="text"
+      name="adresa"
+      [(ngModel)]="patentRequest.podnosilacPrijave.adresa.ulica"
+      required
+    />
+    <input
+      type="text"
+      name="broj"
+      [(ngModel)]="patentRequest.podnosilacPrijave.adresa.broj"
+      required
+    />
     <input
       type="text"
       name="postanskiBroj"
-      [(ngModel)]="lice.adresa.postanskiBroj"
+      [(ngModel)]="patentRequest.podnosilacPrijave.adresa.postanskiBroj"
       required
     />
-    <input type="text" name="mesto" [(ngModel)]="lice.adresa.mesto" required />
+    <input
+      type="text"
+      name="mesto"
+      [(ngModel)]="patentRequest.podnosilacPrijave.adresa.mesto"
+      required
+    />
     <input
       type="text"
       name="drzava"
-      [(ngModel)]="lice.adresa.drzava"
+      [(ngModel)]="patentRequest.podnosilacPrijave.adresa.drzava"
       required
     />
   </div>
@@ -70,26 +108,34 @@
     <input
       type="text"
       name="brojTelefona"
-      [(ngModel)]="lice.kontakt.brojTelefona"
+      [(ngModel)]="patentRequest.podnosilacPrijave.kontakt.brojTelefona"
       required
     />
   </div>
   <div>
     <label>Број факса:</label>
-    <input type="text" name="brojFaksa" [(ngModel)]="lice.kontakt.brojFaksa" />
+    <input
+      type="text"
+      name="brojFaksa"
+      [(ngModel)]="patentRequest.podnosilacPrijave.kontakt.brojFaksa"
+    />
   </div>
   <div>
     <label>Е-пошта:</label>
     <input
       type="email"
       name="email"
-      [(ngModel)]="lice.kontakt.ePosta"
+      [(ngModel)]="patentRequest.podnosilacPrijave.kontakt.ePosta"
       required
     />
   </div>
   <div>
     <label>Држављанство:</label>
-    <input type="text" name="drzavljanstvo" [(ngModel)]="lice.adresa.drzava" />
+    <input
+      type="text"
+      name="drzavljanstvo"
+      [(ngModel)]="patentRequest.podnosilacPrijave.adresa.drzava"
+    />
     <span>(попунити само за физичка лица)</span>
   </div>
   <div>
@@ -132,60 +178,93 @@
     потписану изјаву проналазача да не жели да буде наведен.
   </p>
   <div>
-    <label>Име и презиме:</label>
-    <input type="text" name="imePrezime" required />
-    <span>(презиме уписати великим словима)</span>
+    <label>Назив:</label>
+    <input
+      type="text"
+      name="imePrezimePoslovnoIme"
+      [(ngModel)]="patentRequest.pronalazac.naziv"
+      required
+    />
+  </div>
+  <div>
+    <label>Име:</label>
+    <input
+      type="text"
+      name="ime"
+      [(ngModel)]="patentRequest.pronalazac.ime"
+      required
+    />
+    <label>Презиме:</label>
+    <input
+      type="text"
+      name="prezime"
+      [(ngModel)]="patentRequest.pronalazac.prezime"
+      required
+    />
   </div>
   <div>
     <label>Улица и број, поштански број, место и држава:</label>
     <input
       type="text"
       name="adresa"
-      [(ngModel)]="pronalazac.adresa.ulica"
+      [(ngModel)]="patentRequest.pronalazac.adresa.ulica"
       required
     />
     <input
       type="text"
       name="broj"
-      [(ngModel)]="pronalazac.adresa.broj"
+      [(ngModel)]="patentRequest.pronalazac.adresa.broj"
       required
     />
     <input
       type="text"
       name="postanskiBroj"
-      [(ngModel)]="pronalazac.adresa.postanskiBroj"
+      [(ngModel)]="patentRequest.pronalazac.adresa.postanskiBroj"
       required
     />
     <input
       type="text"
       name="mesto"
-      [(ngModel)]="pronalazac.adresa.mesto"
+      [(ngModel)]="patentRequest.pronalazac.adresa.mesto"
       required
     />
     <input
       type="text"
       name="drzava"
-      [(ngModel)]="pronalazac.adresa.drzava"
+      [(ngModel)]="patentRequest.pronalazac.adresa.drzava"
       required
     />
   </div>
   <div>
     <label>Број телефона:</label>
-    <input type="text" name="brojTelefona" required />
+    <input
+      type="text"
+      name="brojTelefona"
+      [(ngModel)]="patentRequest.pronalazac.kontakt.brojTelefona"
+      required
+    />
   </div>
   <div>
     <label>Број факса:</label>
-    <input type="text" name="brojFaksa" />
+    <input
+      type="text"
+      name="brojFaksa"
+      [(ngModel)]="patentRequest.pronalazac.kontakt.brojFaksa"
+    />
   </div>
   <div>
     <label>Е-пошта:</label>
-    <input type="email" name="email" required />
+    <input
+      type="email"
+      name="email"
+      [(ngModel)]="patentRequest.pronalazac.kontakt.ePosta"
+      required
+    />
   </div>
 
   <div>
     <label>
-      ☐ Остали проналазачи су наведени у додатном листу 1 у наставку овог
-      захтева
+      Остали проналазачи су наведени у додатном листу 1 у наставку овог захтева
       <input type="checkbox" name="ostaliPronalazaci" />
     </label>
   </div>
@@ -194,19 +273,31 @@
   <div>
     <label>
       ☐ ПУНОМОЋНИК ЗА ЗАСТУПАЊЕ
-      <input type="checkbox" name="punomocnikZaZastupanje" />
+      <input
+        type="checkbox"
+        name="punomocnikZaZastupanje"
+        [(ngModel)]="punomocnikZaZastupanje"
+      />
     </label>
   </div>
   <div>
     <label>
       ☐ ПУНОМОЋНИК ЗА ПРИЈЕМ ПИСМЕНА
-      <input type="checkbox" name="punomocnikZaPrijem" />
+      <input
+        type="checkbox"
+        name="punomocnikZaPrijem"
+        [(ngModel)]="punomocnikZaPrijem"
+      />
     </label>
   </div>
   <div>
     <label>
       ☐ ЗАЈЕДНИЧКИ ПРЕДСТАВНИК
-      <input type="checkbox" name="zajednickiPredstavnik" />
+      <input
+        type="checkbox"
+        name="zajednickiPredstavnik"
+        [(ngModel)]="zajednickiPredstavnik"
+      />
     </label>
   </div>
   <p>
@@ -223,21 +314,80 @@
     органом ако подносиоци нису именовали заједничког пуномоћника за заступање
   </p>
   <div>
-    <label>Име и презиме / Пословно име:</label>
-    <input type="text" name="imePrezimePoslovnoIme" required />
-    <span>(презиме / пословно име уписати великим словима)</span>
+    <label>Назив:</label>
+    <input
+      type="text"
+      name="imePrezimePoslovnoIme"
+      [(ngModel)]="patentRequest.punomocnik.naziv"
+      required
+    />
   </div>
   <div>
-    <label>Улица и број, поштански број и место:</label>
-    <input type="text" name="adresa" required />
+    <label>Име:</label>
+    <input
+      type="text"
+      name="ime"
+      [(ngModel)]="patentRequest.punomocnik.ime"
+      required
+    />
+    <label>Презиме:</label>
+    <input
+      type="text"
+      name="prezime"
+      [(ngModel)]="patentRequest.punomocnik.prezime"
+      required
+    />
+  </div>
+  <div>
+    <label>Улица и број, поштански број, место и држава:</label>
+    <input
+      type="text"
+      name="adresa"
+      [(ngModel)]="patentRequest.punomocnik.adresa.ulica"
+      required
+    />
+    <input
+      type="text"
+      name="broj"
+      [(ngModel)]="patentRequest.punomocnik.adresa.broj"
+      required
+    />
+    <input
+      type="text"
+      name="postanskiBroj"
+      [(ngModel)]="patentRequest.punomocnik.adresa.postanskiBroj"
+      required
+    />
+    <input
+      type="text"
+      name="mesto"
+      [(ngModel)]="patentRequest.punomocnik.adresa.mesto"
+      required
+    />
+    <input
+      type="text"
+      name="drzava"
+      [(ngModel)]="patentRequest.punomocnik.adresa.drzava"
+      required
+    />
   </div>
   <div>
     <label>Број телефона:</label>
-    <input type="text" name="brojTelefona" required />
+    <input
+      type="text"
+      name="brojTelefona"
+      required
+      [(ngModel)]="patentRequest.punomocnik.kontakt.brojTelefona"
+    />
   </div>
   <div>
     <label>Е-пошта:</label>
-    <input type="email" name="email" required />
+    <input
+      type="email"
+      name="email"
+      required
+      [(ngModel)]="patentRequest.punomocnik.kontakt.ePosta"
+    />
   </div>
 
   <h3>Поље број V</h3>
@@ -247,14 +397,44 @@
     наведене адресе)
   </p>
   <div>
-    <label>Улица и број, поштански број и место:</label>
-    <input type="text" name="dostavaAdresa" required />
+    <div>
+      <label>Улица и број, поштански број, место и држава:</label>
+      <input
+        type="text"
+        name="adresa"
+        [(ngModel)]="patentRequest.adresaZaDostavljanje.ulica"
+        required
+      />
+      <input
+        type="text"
+        name="broj"
+        [(ngModel)]="patentRequest.adresaZaDostavljanje.broj"
+        required
+      />
+      <input
+        type="text"
+        name="postanskiBroj"
+        [(ngModel)]="patentRequest.adresaZaDostavljanje.postanskiBroj"
+        required
+      />
+      <input
+        type="text"
+        name="mesto"
+        [(ngModel)]="patentRequest.adresaZaDostavljanje.mesto"
+        required
+      />
+    </div>
   </div>
 
   <h3>Поље број VI</h3>
   <p>НАЧИН ДОСТАВЉАЊА</p>
   <div>
-    <input type="checkbox" id="elektronski" name="nacinDostavljanja" />
+    <input
+      type="checkbox"
+      id="elektronski"
+      name="nacinDostavljanja"
+      [(ngModel)]="patentRequest.nacinDostavljanja.elektronsko"
+    />
     <label for="elektronski"
       >Подносилац пријаве је сагласан да Завод врши достављање писмена искључиво
       електронским путем у форми електронског документа (у овом случају
@@ -262,7 +442,12 @@
     >
   </div>
   <div>
-    <input type="checkbox" id="papirno" name="nacinDostavljanja" />
+    <input
+      type="checkbox"
+      id="papirno"
+      name="nacinDostavljanja"
+      [(ngModel)]="patentRequest.nacinDostavljanja.papirno"
+    />
     <label for="papirno"
       >Подносилац пријаве је сагласан да Завод врши достављање писмена у
       папирној форми</label
@@ -271,46 +456,89 @@
 
   <h3>Поље број VII</h3>
   <div>
-    <input type="checkbox" id="dopunska" name="tipPrijave" />
-    <label for="dopunska">☐ ДОПУНСКА ПРИЈАВА</label>
-  </div>
-  <div>
-    <input type="checkbox" id="izdvojena" name="tipPrijave" />
-    <label for="izdvojena">☐ ИЗДВОЈЕНА ПРИЈАВА</label>
+    <label for="tipPrijave">Тип пријаве:</label>
+    <select
+      name="tipPrijave"
+      id="tipPrijave"
+      [(ngModel)]="patentRequest.tipPrijave"
+    >
+      <option value="dopunska">ДОПУНСКА ПРИЈАВА</option>
+      <option value="izdvojena">ИЗДВОЈЕНА ПРИЈАВА</option>
+    </select>
   </div>
   <label for="brojPrijave"
     >Број првобитне пријаве / основне пријаве, односно основног патента:</label
   >
-  <input type="text" id="brojPrijave" name="brojPrijave" />
+  <input
+    type="text"
+    id="brojPrijave"
+    name="brojPrijave"
+    [(ngModel)]="patentRequest.prvobitnaPrijava.brojPrijave"
+  />
   <label for="datumPrijave"
     >Датум подношења првобитнe пријаве / основне пријаве:</label
   >
-  <input type="text" id="datumPrijave" name="datumPrijave" />
+  <input
+    type="date"
+    id="datumPrijave"
+    name="datumPrijave"
+    [(ngModel)]="patentRequest.prvobitnaPrijava.datumPodnosenja"
+  />
 
   <h3>Поље број VIII</h3>
-  <label for="datumPrijave1">Датум подношења раније пријаве 1:</label>
-  <input type="text" id="datumPrijave1" name="datumPrijave1" />
-  <label for="brojPrijave1">Број раније пријаве 1:</label>
-  <input type="text" id="brojPrijave1" name="brojPrijave1" />
-  <label for="oznakaDrzave1"
-    >Двословна ознака државе, регионалне или међународне организације 1:</label
-  >
-  <input type="text" id="oznakaDrzave1" name="oznakaDrzave1" />
-
-  <label for="datumPrijave2">Датум подношења раније пријаве 2:</label>
-  <input type="text" id="datumPrijave2" name="datumPrijave2" />
-  <label for="brojPrijave2">Број раније пријаве 2:</label>
-  <input type="text" id="brojPrijave2" name="brojPrijave2" />
-  <label for="oznakaDrzave2"
-    >Двословна ознака државе, регионалне или међународне организације 2:</label
-  >
-  <input type="text" id="oznakaDrzave2" name="oznakaDrzave2" />
+  <table>
+    <thead>
+      <th>Број раније пријаве</th>
+      <th>Датум подношења раније пријаве</th>
+      <th>Број раније пријаве</th>
+      <th>Двословна ознака државе, регионалне или међународне организације</th>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="
+          let item of patentRequest.prethodnePrijave.detaljiPrijaveOznaka;
+          let i = index
+        "
+      >
+        <td>{{ i + 1 }}.</td>
+        <td>
+          <input
+            type="date"
+            id="datumPrijave1"
+            [name]="'datumPrijave' + i"
+            [(ngModel)]="item.datumPodnosenja"
+          />
+        </td>
+        <td>
+          <input
+            type="text"
+            id="brojPrijave1"
+            [name]="'brojPrijave' + i"
+            [(ngModel)]="item.brojPrijave"
+          />
+        </td>
+        <td>
+          <input
+            type="text"
+            id="oznakaDrzave1"
+            [name]="'oznakaDrzave' + i"
+            [(ngModel)]="item.dvoslovnaOznaka"
+          />
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div>
+    <button (click)="dodajPrethodnuPrijavu()">Додај</button>
+    <button (click)="izbaciPrethodnuPrijavu()">Уклони</button>
+  </div>
 
   <input type="checkbox" id="ostalaPrava" name="ostalaPrava" />
-  <label for="ostalaPrava"
-    >☐ Подаци о осталим правима првенства су наведени у додатном листу 2 у
-    наставку овог захтева</label
+  <label for="ostalaPrava">
+    Подаци о осталим правима првенства су наведени у додатном листу 2 у наставку
+    овог захтева</label
   >
-
-  <button type="submit">Поднеси захтев</button>
+  <div>
+    <button type="submit" (click)="submitRequest()">Поднеси захтев</button>
+  </div>
 </form>

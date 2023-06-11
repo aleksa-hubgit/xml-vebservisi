@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
+import { PatentRequestDTO } from 'src/app/model/p1/PatentRequestDTO';
+import { TDetaljiPrijaveOznakaDTO } from 'src/app/model/p1/TDetaljiPrijaveOznakaDTO';
 import { TLiceDTO } from 'src/app/model/p1/TLiceDTO';
-import { TNazivPronalaskaDTO } from 'src/app/model/p1/TNazivPronalaskaDTO';
 
 @Component({
   selector: 'app-p1-create-form',
@@ -8,16 +9,35 @@ import { TNazivPronalaskaDTO } from 'src/app/model/p1/TNazivPronalaskaDTO';
   styleUrls: ['./p1-create-form.component.css'],
 })
 export class P1CreateFormComponent {
-  pronalazak: TNazivPronalaskaDTO = new TNazivPronalaskaDTO();
-  lice: TLiceDTO = new TLiceDTO();
-  pronalazac: TLiceDTO = new TLiceDTO();
+  patentRequest: PatentRequestDTO = new PatentRequestDTO();
   podnosilacPronalazac: boolean = false;
+  punomocnikZaZastupanje: boolean = false;
+  punomocnikZaPrijem: boolean = false;
+  zajednickiPredstavnik: boolean = false;
+
+  constructor() {
+    this.patentRequest.prethodnePrijave.detaljiPrijaveOznaka.push(
+      new TDetaljiPrijaveOznakaDTO()
+    );
+  }
   togglePronalazac() {
     this.podnosilacPronalazac = !this.podnosilacPronalazac;
     if (this.podnosilacPronalazac) {
-      this.pronalazac = this.lice;
+      this.patentRequest.pronalazac = this.patentRequest.podnosilacPrijave;
     } else {
-      this.pronalazac = new TLiceDTO();
+      this.patentRequest.pronalazac = new TLiceDTO();
     }
+  }
+  dodajPrethodnuPrijavu() {
+    this.patentRequest.prethodnePrijave.detaljiPrijaveOznaka.push(
+      new TDetaljiPrijaveOznakaDTO()
+    );
+  }
+  izbaciPrethodnuPrijavu() {
+    this.patentRequest.prethodnePrijave.detaljiPrijaveOznaka.pop();
+  }
+
+  submitRequest() {
+    console.log(this.patentRequest);
   }
 }
