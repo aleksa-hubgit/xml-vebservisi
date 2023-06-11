@@ -1,0 +1,316 @@
+<form>
+  <h2>ЗАХТЕВ ЗА ПРИЗНАЊЕ ПАТЕНТА</h2>
+
+  <h3>Поље број I - НАЗИВ ПРОНАЛАСКА (54)</h3>
+  <p>
+    * Назив проналаска треба да јасно и сажето изражава суштину проналаска и не
+    сме да садржи измишљене или комерцијалне називе, жигове, имена, шифре,
+    уобичајене скраћенице за производе и сл.
+  </p>
+  <div>
+    <label>На српском језику:</label>
+    <input
+      type="text"
+      name="nazivPronalaskaSrpski"
+      [(ngModel)]="pronalazak.srpskiNaziv"
+      required
+    />
+  </div>
+  <div>
+    <label>На енглеском језику:</label>
+    <input
+      type="text"
+      name="nazivPronalaskaEngleski"
+      [(ngModel)]="pronalazak.engleskiNaziv"
+      required
+    />
+  </div>
+
+  <h3>Поље број II - ПОДНОСИЛАЦ ПРИЈАВЕ (71)</h3>
+  <div>
+    <label>
+      ☐ Подносилац пријаве је и проналазач
+      <input
+        type="checkbox"
+        name="podnosilacPronalazac"
+        [(ngModel)]="podnosilacPronalazac"
+        (click)="togglePronalazac()"
+      />
+    </label>
+  </div>
+  <div>
+    <label>Име и презиме / Пословно име:</label>
+    <input
+      type="text"
+      name="imePrezimePoslovnoIme"
+      [(ngModel)]="lice.naziv"
+      required
+    />
+  </div>
+  <div>
+    <label>Улица и број, поштански број, место и држава:</label>
+    <input type="text" name="adresa" [(ngModel)]="lice.adresa.ulica" required />
+    <input type="text" name="broj" [(ngModel)]="lice.adresa.broj" required />
+    <input
+      type="text"
+      name="postanskiBroj"
+      [(ngModel)]="lice.adresa.postanskiBroj"
+      required
+    />
+    <input type="text" name="mesto" [(ngModel)]="lice.adresa.mesto" required />
+    <input
+      type="text"
+      name="drzava"
+      [(ngModel)]="lice.adresa.drzava"
+      required
+    />
+  </div>
+  <div>
+    <label>Број телефона:</label>
+    <input
+      type="text"
+      name="brojTelefona"
+      [(ngModel)]="lice.kontakt.brojTelefona"
+      required
+    />
+  </div>
+  <div>
+    <label>Број факса:</label>
+    <input type="text" name="brojFaksa" [(ngModel)]="lice.kontakt.brojFaksa" />
+  </div>
+  <div>
+    <label>Е-пошта:</label>
+    <input
+      type="email"
+      name="email"
+      [(ngModel)]="lice.kontakt.ePosta"
+      required
+    />
+  </div>
+  <div>
+    <label>Држављанство:</label>
+    <input type="text" name="drzavljanstvo" [(ngModel)]="lice.adresa.drzava" />
+    <span>(попунити само за физичка лица)</span>
+  </div>
+  <div>
+    <label>
+      ☐ Остали подносиоци пријаве су наведени у додатном листу 1 у наставку овог
+      захтева
+      <input type="checkbox" name="ostaliPodnosioci" />
+    </label>
+  </div>
+  <p>
+    * Ако више лица подноси пријаву, потребно је одредити једно од тих лица као
+    заједничког представника и доставити изјаву о заједничком представнику
+    потписaну од стране свих подносилаца или именовати заједничког пуномоћника
+    за заступање и доставити пуномоћје
+  </p>
+
+  <h3>Поље број III - ПРОНАЛАЗАЧ (72)</h3>
+  <p>
+    (ако су сви проналазачи уједно и подносиоци пријаве, поље број III се не
+    попуњава)
+  </p>
+  <p>
+    * Ако сви подносиоци пријаве нису и проналазачи, доставља се изјава
+    подносилаца пријаве о основу стицања права на подношење пријаве у односу на
+    проналазаче који нису и подносиоци пријаве и у том случају у поље број III
+    се уносе подаци о свим проналазачим
+  </p>
+  <div>
+    <label>
+      ☐ Проналазач не жели да буде наведен у пријави
+      <input type="checkbox" name="nezeljenPronalazac" />
+    </label>
+    <p>
+      (ако проналазач не жели да буде наведен у пријави поље број III се не
+      попуњава)
+    </p>
+  </div>
+  <p>
+    * Ако проналазач не жели да буде наведен у пријави, потребно је доставити
+    потписану изјаву проналазача да не жели да буде наведен.
+  </p>
+  <div>
+    <label>Име и презиме:</label>
+    <input type="text" name="imePrezime" required />
+    <span>(презиме уписати великим словима)</span>
+  </div>
+  <div>
+    <label>Улица и број, поштански број, место и држава:</label>
+    <input
+      type="text"
+      name="adresa"
+      [(ngModel)]="pronalazac.adresa.ulica"
+      required
+    />
+    <input
+      type="text"
+      name="broj"
+      [(ngModel)]="pronalazac.adresa.broj"
+      required
+    />
+    <input
+      type="text"
+      name="postanskiBroj"
+      [(ngModel)]="pronalazac.adresa.postanskiBroj"
+      required
+    />
+    <input
+      type="text"
+      name="mesto"
+      [(ngModel)]="pronalazac.adresa.mesto"
+      required
+    />
+    <input
+      type="text"
+      name="drzava"
+      [(ngModel)]="pronalazac.adresa.drzava"
+      required
+    />
+  </div>
+  <div>
+    <label>Број телефона:</label>
+    <input type="text" name="brojTelefona" required />
+  </div>
+  <div>
+    <label>Број факса:</label>
+    <input type="text" name="brojFaksa" />
+  </div>
+  <div>
+    <label>Е-пошта:</label>
+    <input type="email" name="email" required />
+  </div>
+
+  <div>
+    <label>
+      ☐ Остали проналазачи су наведени у додатном листу 1 у наставку овог
+      захтева
+      <input type="checkbox" name="ostaliPronalazaci" />
+    </label>
+  </div>
+
+  <h3>Поље број IV</h3>
+  <div>
+    <label>
+      ☐ ПУНОМОЋНИК ЗА ЗАСТУПАЊЕ
+      <input type="checkbox" name="punomocnikZaZastupanje" />
+    </label>
+  </div>
+  <div>
+    <label>
+      ☐ ПУНОМОЋНИК ЗА ПРИЈЕМ ПИСМЕНА
+      <input type="checkbox" name="punomocnikZaPrijem" />
+    </label>
+  </div>
+  <div>
+    <label>
+      ☐ ЗАЈЕДНИЧКИ ПРЕДСТАВНИК
+      <input type="checkbox" name="zajednickiPredstavnik" />
+    </label>
+  </div>
+  <p>
+    * Пуномоћник за заступање је лице које по овлашћењу подносиоца пријаве
+    предузима радње у управном поступку у границама пуномоћја
+  </p>
+  <p>
+    * Пуномоћник за пријем писмена је лице које је подносилац пријаве одредио
+    као лице коме се упућују сва писмена насловљена на подносиоца
+  </p>
+  <p>
+    * Заједничи преставник је подносилац пријаве кога су подносиоци пријаве, у
+    случају да пријаву подноси више лица, одредили да иступа у поступку пред
+    органом ако подносиоци нису именовали заједничког пуномоћника за заступање
+  </p>
+  <div>
+    <label>Име и презиме / Пословно име:</label>
+    <input type="text" name="imePrezimePoslovnoIme" required />
+    <span>(презиме / пословно име уписати великим словима)</span>
+  </div>
+  <div>
+    <label>Улица и број, поштански број и место:</label>
+    <input type="text" name="adresa" required />
+  </div>
+  <div>
+    <label>Број телефона:</label>
+    <input type="text" name="brojTelefona" required />
+  </div>
+  <div>
+    <label>Е-пошта:</label>
+    <input type="email" name="email" required />
+  </div>
+
+  <h3>Поље број V</h3>
+  <p>
+    (ово поље се попуњава ако подносилац пријаве, заједнички представник или
+    пуномоћник жели да се достављање поднесака врши на другој адреси од његове
+    наведене адресе)
+  </p>
+  <div>
+    <label>Улица и број, поштански број и место:</label>
+    <input type="text" name="dostavaAdresa" required />
+  </div>
+
+  <h3>Поље број VI</h3>
+  <p>НАЧИН ДОСТАВЉАЊА</p>
+  <div>
+    <input type="checkbox" id="elektronski" name="nacinDostavljanja" />
+    <label for="elektronski"
+      >Подносилац пријаве је сагласан да Завод врши достављање писмена искључиво
+      електронским путем у форми електронског документа (у овом случају
+      неопходна је регистрација на порталу „еУправе”)</label
+    >
+  </div>
+  <div>
+    <input type="checkbox" id="papirno" name="nacinDostavljanja" />
+    <label for="papirno"
+      >Подносилац пријаве је сагласан да Завод врши достављање писмена у
+      папирној форми</label
+    >
+  </div>
+
+  <h3>Поље број VII</h3>
+  <div>
+    <input type="checkbox" id="dopunska" name="tipPrijave" />
+    <label for="dopunska">☐ ДОПУНСКА ПРИЈАВА</label>
+  </div>
+  <div>
+    <input type="checkbox" id="izdvojena" name="tipPrijave" />
+    <label for="izdvojena">☐ ИЗДВОЈЕНА ПРИЈАВА</label>
+  </div>
+  <label for="brojPrijave"
+    >Број првобитне пријаве / основне пријаве, односно основног патента:</label
+  >
+  <input type="text" id="brojPrijave" name="brojPrijave" />
+  <label for="datumPrijave"
+    >Датум подношења првобитнe пријаве / основне пријаве:</label
+  >
+  <input type="text" id="datumPrijave" name="datumPrijave" />
+
+  <h3>Поље број VIII</h3>
+  <label for="datumPrijave1">Датум подношења раније пријаве 1:</label>
+  <input type="text" id="datumPrijave1" name="datumPrijave1" />
+  <label for="brojPrijave1">Број раније пријаве 1:</label>
+  <input type="text" id="brojPrijave1" name="brojPrijave1" />
+  <label for="oznakaDrzave1"
+    >Двословна ознака државе, регионалне или међународне организације 1:</label
+  >
+  <input type="text" id="oznakaDrzave1" name="oznakaDrzave1" />
+
+  <label for="datumPrijave2">Датум подношења раније пријаве 2:</label>
+  <input type="text" id="datumPrijave2" name="datumPrijave2" />
+  <label for="brojPrijave2">Број раније пријаве 2:</label>
+  <input type="text" id="brojPrijave2" name="brojPrijave2" />
+  <label for="oznakaDrzave2"
+    >Двословна ознака државе, регионалне или међународне организације 2:</label
+  >
+  <input type="text" id="oznakaDrzave2" name="oznakaDrzave2" />
+
+  <input type="checkbox" id="ostalaPrava" name="ostalaPrava" />
+  <label for="ostalaPrava"
+    >☐ Подаци о осталим правима првенства су наведени у додатном листу 2 у
+    наставку овог захтева</label
+  >
+
+  <button type="submit">Поднеси захтев</button>
+</form>

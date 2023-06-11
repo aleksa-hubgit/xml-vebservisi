@@ -16,6 +16,9 @@ import { MatButtonModule } from '@angular/material/button'
 import { ViewAllA1RequestsComponent } from 'src/admin/view-all-a1-requests/view-all-a1-requests.component';
 import { DetailA1Component } from 'src/admin/detail-a1/detail-a1.component';
 import { DetailZ1Component } from 'src/admin/detail-z1/detail-z1.component';
+import { LoginComponent } from './login/login.component';
+import { RegistrationComponent } from './registration/registration.component';
+import { P1CreateFormComponent } from './p1/p1-create-form/p1-create-form.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,10 @@ import { DetailZ1Component } from 'src/admin/detail-z1/detail-z1.component';
     ViewAllZ1RequestsComponent,
     ViewAllA1RequestsComponent,
     DetailA1Component,
-    DetailZ1Component
+    DetailZ1Component,
+    LoginComponent,
+    RegistrationComponent,
+    P1CreateFormComponent
   
 
   ],
