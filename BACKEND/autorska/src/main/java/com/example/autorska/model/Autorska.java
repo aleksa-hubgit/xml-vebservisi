@@ -4,9 +4,13 @@ package com.example.autorska.model;
 import com.example.autorska.dto.*;
 
 import javax.xml.bind.annotation.*;
+import javax.xml.datatype.DatatypeConfigurationException;
+import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 
@@ -414,6 +418,11 @@ public class Autorska {
         this.detaljiPrijave = value;
     }
 
+    public void addAutor(TLiceDTO autor) throws DatatypeConfigurationException {
+
+        this.podaciOAutorima.autori.autor.add(new PodaciOAutorima.Autori.Autor(autor));
+    }
+
 
     /**
      * <p>Java class for anonymous complex type.
@@ -470,7 +479,7 @@ public class Autorska {
         protected Autori autori;
         protected boolean anonimno;
 
-        public PodaciOAutorima(PodaciOAutorimaDTO podaciOAutorima, TLice autor) {
+        public PodaciOAutorima(PodaciOAutorimaDTO podaciOAutorima) {
             this.autori = new Autori();
             this.anonimno = podaciOAutorima.anonimno;
             for(AutorDTO autorDTO : podaciOAutorima.autori) {
@@ -659,6 +668,19 @@ public class Autorska {
                 }
 
                 public Autor(){}
+
+                public Autor(TLiceDTO autor) throws DatatypeConfigurationException {
+                    this.ime = autor.getIme();
+                    this.prezime = autor.getPrezime();
+                    GregorianCalendar cal = new GregorianCalendar();
+                    cal.setTime(new Date());
+
+                    XMLGregorianCalendar xCal = DatatypeFactory.newInstance()
+                            .newXMLGregorianCalendar(cal);
+
+                    this.godinaSmrti = xCal;
+
+                }
 
                 /**
                  * Gets the value of the ime property.

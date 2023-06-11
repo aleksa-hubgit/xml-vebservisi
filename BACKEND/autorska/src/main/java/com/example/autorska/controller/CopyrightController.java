@@ -4,6 +4,7 @@ import com.example.autorska.dto.CopyrightRequestDTO;
 import com.example.autorska.dto.DecisionDTO;
 import com.example.autorska.model.Autorska;
 import com.example.autorska.service.CopyrightService;
+import com.itextpdf.text.DocumentException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -13,6 +14,7 @@ import org.xmldb.api.base.XMLDBException;
 
 import javax.xml.bind.JAXBException;
 import javax.xml.datatype.DatatypeConfigurationException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -74,4 +76,10 @@ public class CopyrightController {
         return new ResponseEntity<>(trademarksDTOs, HttpStatus.OK);
     }
 
+
+    @GetMapping(value = "createDocuments/{id}")
+    public void createDocuments(@PathVariable String id) throws DocumentException, IOException {
+
+        copyrightService.createDocuments(id);
+    }
 }

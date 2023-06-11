@@ -8,14 +8,19 @@ import com.example.autorska.model.*;
 import com.example.autorska.model.decision.Decision;
 import com.example.autorska.repository.AutorskaRepository;
 import com.example.autorska.util.MarshallingUtils;
+import com.example.autorska.util.PdfTransformer;
+import com.itextpdf.text.DocumentException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.w3c.dom.Node;
 import org.xmldb.api.base.XMLDBException;
 
 import javax.xml.bind.JAXBException;
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Date;
@@ -57,8 +62,11 @@ public class CopyrightService {
         autorska.setPodaciONaslovu(new Autorska.PodaciONaslovu(request.getPodaciONaslovu()));
         autorska.setPodaciOPreradi(new Autorska.PodaciOPreradi(request.getPodaciOPreradi()));
 
-        TLice autor = createTLice(request.getPodaciOAutorima().autor);
-        autorska.setPodaciOAutorima(new Autorska.PodaciOAutorima(request.getPodaciOAutorima(),autor));
+
+
+
+        autorska.setPodaciOAutorima(new Autorska.PodaciOAutorima(request.getPodaciOAutorima()));
+        autorska.addAutor(request.getPodaciOAutorima().autor);
 
         autorska.setPunomocnik(createTLice(request.getPunomocnik()));
         autorska.setPodnosilacPrijave(createTLice(request.getPodnosilacPrijave()));
@@ -83,16 +91,19 @@ public class CopyrightService {
         TAdresa adresa = new TAdresa(zajednickiPredstavnik.getAdresa());
         TKontaktInformacije kontaktInformacije = new TKontaktInformacije(zajednickiPredstavnik.getKontakt());
         if (zajednickiPredstavnik.getNaziv().equals("")){
-            TPravnoLice lice = new TPravnoLice();
-            lice.setNaziv(zajednickiPredstavnik.getNaziv());
-            lice.setAdresa(adresa);
-            lice.setKontakt(kontaktInformacije);
-            return lice;
-        }
-        else{
             TFizickoLice lice = new TFizickoLice();
             lice.setIme(zajednickiPredstavnik.getIme());
             lice.setPrezime(zajednickiPredstavnik.getPrezime());
+            lice.setAdresa(adresa);
+            lice.setKontakt(kontaktInformacije);
+            return lice;
+
+
+
+        }
+        else{
+            TPravnoLice lice = new TPravnoLice();
+            lice.setNaziv(zajednickiPredstavnik.getNaziv());
             lice.setAdresa(adresa);
             lice.setKontakt(kontaktInformacije);
             return lice;
@@ -168,5 +179,14 @@ public class CopyrightService {
             }
         }
         return unansweredRequests;
+    }
+
+    public void createDocuments(String id) throws IOException, DocumentException {
+
+
+        Node zig = autorskaRepository.getNode(id + ".xml");
+        PdfTransformer pdfTransformer = new PdfTransformer();
+        pdfTransformer.generateHTML(zig, id);
+        pdfTransformer.generatePDF(id);
     }
 }

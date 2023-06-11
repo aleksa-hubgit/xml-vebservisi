@@ -4,6 +4,7 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.tool.xml.XMLWorkerHelper;
+import org.w3c.dom.Node;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -26,7 +27,9 @@ public class PdfTransformer {
 
     private static TransformerFactory transformerFactory;
 
-    public static final String HTML_FILE = "gen/bookstore.html";
+    public static final String DOCUMENT_LOCATION = "gen/";
+
+    public static final String XSL_PATH = "src/main/resources/data/a1.xsl";
 
 
     static {
@@ -48,19 +51,19 @@ public class PdfTransformer {
      * @throws IOException
      * @throws DocumentException
      */
-    public void generatePDF(String filePath) throws IOException, DocumentException {
+    public void generatePDF(String fileName) throws IOException, DocumentException {
 
         // Step 1
         Document document = new Document();
 
         // Step 2
-        PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filePath));
+        PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(DOCUMENT_LOCATION+ fileName+".pdf"));
 
         // Step 3
         document.open();
 
         // Step 4
-        XMLWorkerHelper.getInstance().parseXHtml(writer, document, new FileInputStream(HTML_FILE));
+        XMLWorkerHelper.getInstance().parseXHtml(writer, document, new FileInputStream(DOCUMENT_LOCATION+fileName+".html"));
 
         // Step 5
         document.close();
@@ -88,12 +91,12 @@ public class PdfTransformer {
         return document;
     }
 
-    public void generateHTML(String xmlPath, String xslPath) throws FileNotFoundException {
+    public void generateHTML(Node node, String fileName) throws FileNotFoundException {
 
         try {
 
             // Initialize Transformer instance
-            StreamSource transformSource = new StreamSource(new File(xslPath));
+            StreamSource transformSource = new StreamSource(new File(XSL_PATH));
             Transformer transformer = transformerFactory.newTransformer(transformSource);
             transformer.setOutputProperty("{http://xml.apache.org/xalan}indent-amount", "2");
             transformer.setOutputProperty(OutputKeys.INDENT, "yes");
@@ -102,8 +105,8 @@ public class PdfTransformer {
             transformer.setOutputProperty(OutputKeys.METHOD, "xhtml");
 
             // Transform DOM to HTML
-            DOMSource source = new DOMSource(buildDocument(xmlPath));
-            StreamResult result = new StreamResult(new FileOutputStream(HTML_FILE));
+            DOMSource source = new DOMSource(node);
+            StreamResult result = new StreamResult(new FileOutputStream(DOCUMENT_LOCATION + fileName + ".html"));
             transformer.transform(source, result);
 
         } catch (TransformerConfigurationException e) {
