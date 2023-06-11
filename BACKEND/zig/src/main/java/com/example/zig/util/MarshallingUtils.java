@@ -48,7 +48,7 @@ public class MarshallingUtils {
     }
 
     public Decision unmarshallFromNodeDecision(Node contentAsDOM) throws JAXBException {
-        JAXBContext context = JAXBContext.newInstance("com.example.zig.model");
+        JAXBContext context = JAXBContext.newInstance("com.example.zig.model.decision");
         Unmarshaller unmarshaller = context.createUnmarshaller();
         return (Decision) unmarshaller.unmarshal(contentAsDOM);
     }

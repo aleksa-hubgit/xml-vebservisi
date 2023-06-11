@@ -28,6 +28,7 @@ public class InformacijeOZiguDTO {
             this.izgledZnaka = informacijeOZigu.getIzgledZnaka();
 
             this.bojeZnaka = new ArrayList<>();
+
             for (String boja:informacijeOZigu.getBojeZnaka().getBoja()){
                 this.bojeZnaka.add(boja);
             }
