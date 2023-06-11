@@ -3,24 +3,36 @@ package com.example.autorska.service;
 
 import com.example.autorska.dto.CopyrightRequestDTO;
 import com.example.autorska.dto.DecisionDTO;
+import com.example.autorska.dto.ReportDTO;
 import com.example.autorska.dto.TLiceDTO;
 import com.example.autorska.model.*;
 import com.example.autorska.model.decision.Decision;
 import com.example.autorska.repository.AutorskaRepository;
 import com.example.autorska.util.MarshallingUtils;
+import com.example.autorska.util.PdfTransformer;
+import com.itextpdf.text.*;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.w3c.dom.Node;
 import org.xmldb.api.base.XMLDBException;
 
 import javax.xml.bind.JAXBException;
 import javax.xml.datatype.DatatypeConfigurationException;
+import javax.xml.datatype.DatatypeConstants;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.stream.Stream;
 
 @Service
 public class CopyrightService {
@@ -57,8 +69,11 @@ public class CopyrightService {
         autorska.setPodaciONaslovu(new Autorska.PodaciONaslovu(request.getPodaciONaslovu()));
         autorska.setPodaciOPreradi(new Autorska.PodaciOPreradi(request.getPodaciOPreradi()));
 
-        TLice autor = createTLice(request.getPodaciOAutorima().autor);
-        autorska.setPodaciOAutorima(new Autorska.PodaciOAutorima(request.getPodaciOAutorima(),autor));
+
+
+
+        autorska.setPodaciOAutorima(new Autorska.PodaciOAutorima(request.getPodaciOAutorima()));
+        autorska.addAutor(request.getPodaciOAutorima().autor);
 
         autorska.setPunomocnik(createTLice(request.getPunomocnik()));
         autorska.setPodnosilacPrijave(createTLice(request.getPodnosilacPrijave()));
@@ -83,16 +98,19 @@ public class CopyrightService {
         TAdresa adresa = new TAdresa(zajednickiPredstavnik.getAdresa());
         TKontaktInformacije kontaktInformacije = new TKontaktInformacije(zajednickiPredstavnik.getKontakt());
         if (zajednickiPredstavnik.getNaziv().equals("")){
-            TPravnoLice lice = new TPravnoLice();
-            lice.setNaziv(zajednickiPredstavnik.getNaziv());
-            lice.setAdresa(adresa);
-            lice.setKontakt(kontaktInformacije);
-            return lice;
-        }
-        else{
             TFizickoLice lice = new TFizickoLice();
             lice.setIme(zajednickiPredstavnik.getIme());
             lice.setPrezime(zajednickiPredstavnik.getPrezime());
+            lice.setAdresa(adresa);
+            lice.setKontakt(kontaktInformacije);
+            return lice;
+
+
+
+        }
+        else{
+            TPravnoLice lice = new TPravnoLice();
+            lice.setNaziv(zajednickiPredstavnik.getNaziv());
             lice.setAdresa(adresa);
             lice.setKontakt(kontaktInformacije);
             return lice;
@@ -168,5 +186,95 @@ public class CopyrightService {
             }
         }
         return unansweredRequests;
+    }
+
+    public void createDocuments(String id) throws IOException, DocumentException {
+
+
+        Node zig = autorskaRepository.getNode(id + ".xml");
+        PdfTransformer pdfTransformer = new PdfTransformer();
+        pdfTransformer.generateHTML(zig, id);
+        pdfTransformer.generatePDF(id);
+    }
+
+    public void generateReport(ReportDTO reportDTO) throws FileNotFoundException, DocumentException {
+        String[] datum_delovi = reportDTO.startDate.split("-");
+        GregorianCalendar gc = new GregorianCalendar(Integer.parseInt(datum_delovi[0]), Integer.parseInt(datum_delovi[1]),Integer.parseInt(datum_delovi[2]));
+        XMLGregorianCalendar startDate = getDateXML(gc.getTime());
+
+        datum_delovi = reportDTO.endDate.split("-");
+        GregorianCalendar gc2 = new GregorianCalendar(Integer.parseInt(datum_delovi[0]), Integer.parseInt(datum_delovi[1]),Integer.parseInt(datum_delovi[2]));
+        XMLGregorianCalendar endDate = getDateXML(gc2.getTime());
+
+
+        List<Autorska> allRequests = autorskaRepository.getAll();
+        List<Decision> allDecisions = autorskaRepository.getAllDecisions();
+
+
+        int numberOfRequests = 0;
+        int numberOfApproved = 0;
+        int numberOfRejected = 0;
+        for (Autorska request:allRequests){
+            if(startDate.compare(request.getDetaljiPrijave().getDatumPodnosenja()) == DatatypeConstants.LESSER){
+                if(endDate.compare(request.getDetaljiPrijave().getDatumPodnosenja()) == DatatypeConstants.GREATER){
+                    numberOfRequests++;
+                }
+            }
+        }
+
+        for (Decision decision:allDecisions){
+            if(startDate.compare(decision.getDatumRazresenja()) == DatatypeConstants.LESSER){
+                if(endDate.compare(decision.getDatumRazresenja()) == DatatypeConstants.GREATER){
+                    if(decision.isOdobren()){
+                        numberOfApproved++;
+                    }
+                    else{
+                        numberOfRejected++;
+                    }
+                }
+            }
+        }
+
+
+        Document document = new Document();
+        PdfWriter.getInstance(document, new FileOutputStream("gen/izvestaj.pdf"));
+        document.open();
+        Font font = FontFactory.getFont(FontFactory.TIMES_BOLD, 20, BaseColor.BLACK);
+        Chunk chunk = new Chunk("IZVESTAJ U PERIODU OD " + reportDTO.startDate + " DO " + reportDTO.endDate, font);
+        document.add(chunk);
+        document.add(new Paragraph("\n\n"));
+
+        PdfPTable table = new PdfPTable(3);
+        addTableHeader(table);
+        table.addCell(String.valueOf(numberOfRequests));
+        table.addCell(String.valueOf(numberOfApproved));
+        table.addCell(String.valueOf(numberOfRejected));
+        document.add(table);
+        document.close();
+    }
+
+    private void addTableHeader(PdfPTable table) {
+        Stream.of("Podneti zahtevi", "Prihvaceni zahtevi", "Odbijeni zahtevi")
+                .forEach(columnTitle -> {
+                    PdfPCell header = new PdfPCell();
+                    header.setBackgroundColor(BaseColor.GREEN);
+                    header.setBorderWidth(1);
+                    header.setPhrase(new Phrase(columnTitle));
+                    table.addCell(header);
+                });
+    }
+    private XMLGregorianCalendar getDateXML(Date datum) {
+        XMLGregorianCalendar xmlDate = null;
+        GregorianCalendar gc = new GregorianCalendar();
+        gc.setTime(datum);
+
+        try {
+            xmlDate = DatatypeFactory.newInstance()
+                    .newXMLGregorianCalendar(gc);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        return xmlDate;
     }
 }

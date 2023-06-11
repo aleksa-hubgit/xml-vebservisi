@@ -1,0 +1,63 @@
+<autorksa xmlns="http://www.ftn.uns.ac.rs/autorksa">
+    <podnosilac_prijave xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="TPravnoLice">
+        <adresa>
+            <ulica>Petra Kocica</ulica>
+            <broj>38</broj>
+            <postanski_broj>35000</postanski_broj>
+            <mesto>Jagodina</mesto>
+            <drzava>Srbija</drzava>
+        </adresa>
+        <kontakt>
+            <broj_telefona>066240610</broj_telefona>
+            <e_posta>stefan.milosevic.e14@gmail.com</e_posta>
+        </kontakt>
+        <naziv/>
+        <sediste></sediste>
+
+    </podnosilac_prijave>
+    <pseudonim>stefa srbin</pseudonim>
+    <punomocnik xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="TPravnoLice">
+        <adresa>
+            <ulica/>
+            <broj/>
+            <postanski_broj>35000</postanski_broj>
+            <mesto/>
+            <drzava/>
+        </adresa>
+        <kontakt>
+            <broj_telefona/>
+            <e_posta/>
+        </kontakt>
+        <naziv/>
+        <sediste></sediste>
+    </punomocnik>
+    <podaci_o_naslovu>
+        <naslov/>
+        <alternativni_naslov/>
+    </podaci_o_naslovu>
+    <podaci_o_preradi>
+        <naslov/>
+        <autor>
+            <ime/>
+            <prezime/>
+        </autor>
+    </podaci_o_preradi>
+    <vrsta_dela>MUZICKO_DELO</vrsta_dela>
+    <podaci_o_autorima>
+        <autori>
+            <autor>
+                <ime>pusa</ime>
+                <prezime>pusic</prezime>
+                <godina_smrti>1000-01-01+02:00</godina_smrti>
+            </autor>
+        </autori>
+        <anonimno>false</anonimno>
+    </podaci_o_autorima>
+    <radnom_odnosu>false</radnom_odnosu>
+    <namena_dela>evo ne znam boga mi</namena_dela>
+    <potpis>sm</potpis>
+    <detalji_prijave>
+        <broj_prijave>4</broj_prijave>
+        <datum_podnosenja>2023-06-11+02:00</datum_podnosenja>
+    </detalji_prijave>
+</autorksa>
