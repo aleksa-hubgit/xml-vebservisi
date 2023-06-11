@@ -63,27 +63,21 @@ public class CopyrightService {
         autorska.setPunomocnik(createTLice(request.getPunomocnik()));
         autorska.setPodnosilacPrijave(createTLice(request.getPodnosilacPrijave()));
 
-        autorska.setDetaljiPrijave(createDetaljiPrijave());
+
+        String id = generateNextId();
+
+        GregorianCalendar cal = new GregorianCalendar();
+        cal.setTime(new Date());
+
+        XMLGregorianCalendar xCal = DatatypeFactory.newInstance()
+                .newXMLGregorianCalendar(cal);
+
+        autorska.setDetaljiPrijave(new Autorska.TDetaljiPrijave(id, xCal));
 
 
         return autorska;
     }
 
-    private Autorska.TDetaljiPrijave createDetaljiPrijave() throws DatatypeConfigurationException {
-
-        Autorska.TDetaljiPrijave detaljiPrijave = new Autorska.TDetaljiPrijave();
-
-        String id = generateNextId();
-        detaljiPrijave.setBrojPrijave(id);
-        GregorianCalendar cal = new GregorianCalendar();
-        cal.setTime(new Date());
-        XMLGregorianCalendar xCal = DatatypeFactory.newInstance()
-                .newXMLGregorianCalendar(cal);
-        detaljiPrijave.setDatumPodnosenja(xCal);
-        return detaljiPrijave;
-
-
-    }
 
     private TLice createTLice(TLiceDTO zajednickiPredstavnik) {
         TAdresa adresa = new TAdresa(zajednickiPredstavnik.getAdresa());

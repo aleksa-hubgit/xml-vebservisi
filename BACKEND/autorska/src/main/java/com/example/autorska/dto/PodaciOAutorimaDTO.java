@@ -4,12 +4,14 @@ package com.example.autorska.dto;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @AllArgsConstructor
 @NoArgsConstructor
 public class PodaciOAutorimaDTO {
 
     public TLiceDTO autor;
-    public AutoriDTO autori;
+    public List<AutorDTO> autori;
     public boolean anonimno;
 
     @Override

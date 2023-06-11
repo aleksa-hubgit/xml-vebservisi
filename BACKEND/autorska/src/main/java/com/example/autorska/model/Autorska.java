@@ -471,8 +471,13 @@ public class Autorska {
         protected boolean anonimno;
 
         public PodaciOAutorima(PodaciOAutorimaDTO podaciOAutorima, TLice autor) {
+            this.autori = new Autori();
             this.anonimno = podaciOAutorima.anonimno;
-            this.autori = new Autori(podaciOAutorima.autori);
+            for(AutorDTO autorDTO : podaciOAutorima.autori) {
+                this.autori.autor.add(new Autori.Autor(autorDTO));
+            }
+
+
         }
 
         public PodaciOAutorima() {
@@ -575,7 +580,7 @@ public class Autorska {
                 }
             }
             public Autori(){
-
+                this.autor = new ArrayList<>();
             }
 
             /**
@@ -949,6 +954,11 @@ public class Autorska {
         }
 
         public TDetaljiPrijave() {
+        }
+
+        public TDetaljiPrijave(String id, XMLGregorianCalendar xCal) {
+            this.brojPrijave = id;
+            this.datumPodnosenja = xCal;
         }
 
 
