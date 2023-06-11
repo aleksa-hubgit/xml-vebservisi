@@ -13,15 +13,29 @@ export class ZigService {
   constructor(private _http: HttpClient) {}
 
   parseString(xml: string): Prijava[] {
-    xml = `<note>
-    <to>Tove</to>
-    <from>Jani</from>
-    <heading>Reminder</heading>
-    <body>Don't forget me this weekend!</body>
-    </note>`;
-    const result = Parser.xml2js(xml, { compact: true });
-    console.log(result);
-    return [new Prijava()];
+    let prijave:  Prijava[] = [];
+    let result:string= Parser.xml2json(xml, { compact: true });
+  
+    let res = JSON.parse(result);
+    for (let user of res.List.item){
+      let p: Prijava = new Prijava();
+      if(user['podnosilacPrijave']['ime'] === undefined){ 
+         p.podnosilacPrijave.ime = user['podnosilacPrijave']['naziv']['_text']
+      }
+      else{
+      p.podnosilacPrijave.ime = user['podnosilacPrijave']['ime']['_text'];
+      p.podnosilacPrijave.prezime = user['podnosilacPrijave']['prezime']['_text'];
+      }
+      p.informacijeOZigu.tipZiga = user['informacijeOZigu']['tipZiga']['_text'];
+      p.informacijeOZigu.opisZnaka= user['informacijeOZigu']['opisZnaka']['_text'];
+      p.sifraZahteva = user['informacijaZavoda']['brojPrijave']['_text'];
+      if(p.podnosilacPrijave.ime === ''){
+        p.podnosilacPrijave.ime = user['podnosilacPrijave']['naziv']['_text']
+      }
+      prijave.push(p);
+    }
+    
+    return prijave;
   }
 
   url = 'http://localhost:9000/trademark/';
@@ -49,6 +63,8 @@ export class ZigService {
       }),
     });
   }
+
+
   DeclineRequest(id: string, obrazlozenje: string) {
     let d: Decision = new Decision(id, obrazlozenje, false);
     const xml = JsonToXML.parse('decision', d);
@@ -61,6 +77,8 @@ export class ZigService {
       }),
     });
   }
+
+
   AcceptRequest(id: string, obrazlozenje: string) {
     let d: Decision = new Decision(id, obrazlozenje, true);
     const xml = JsonToXML.parse('decision', d);
@@ -75,9 +93,10 @@ export class ZigService {
   }
 
   getZahtevi() {
-    return this._http.get(this.url + 'getAll', {
+    return this._http.get(this.url + 'getAllUnanswered', {
       headers: new HttpHeaders().set('Content-Type', 'application/xml'),
       responseType: 'text',
     });
   }
 }
+
