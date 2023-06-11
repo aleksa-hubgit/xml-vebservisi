@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
 import { Location } from '@angular/common';
 import { ZigService } from 'src/app/z1/zig.service';
-
-
-import { parseString } from 'xml2js';
+import { Prijava } from 'src/app/model/Prijava';
 
 
 export interface TableData {
@@ -25,10 +23,7 @@ export class ViewAllZ1RequestsComponent {
 
   constructor(private service : ZigService,private location: Location) {}
   
-  tableData: TableData[] = [
-    { ime: 'John', prezime: 'Doe', tip_ziga: 'Work 1', opis_znaka: 'Type A', sifraZahteva:"1" },
-    { ime: 'Jane', prezime: 'Smith', tip_ziga: 'Work 2', opis_znaka: 'Type B' , sifraZahteva: "2"},
-    // Add more data as needed
+  tableData: Prijava[] = [
   ];
 
   displayedColumns: string[] = ['ime', 'prezime', 'tip_ziga', 'opis_znaka', 'detalji','prihvati' ,'odbi', 'preuzmi'];
@@ -40,17 +35,9 @@ export class ViewAllZ1RequestsComponent {
   ngOnInit(): void {
     this.service.getZahtevi().subscribe({
     next: async (xml) => {
-    parseString(xml, (err, result) => {
-    if (err) {
-      console.error(err);
-      return;
-    }
-  
-    // Access the converted TypeScript objects
-    const items: Item[] = result.item;
-    console.log(items);
-  });
-  }});}
+      this.tableData = this.service.parseString(xml);
+  }});
+  }
 
 
   

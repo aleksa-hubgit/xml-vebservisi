@@ -8,7 +8,17 @@ import { Decision } from '../model/Decision';
   providedIn: 'root'
 })
 export class ZigService {
+
   constructor(private _http: HttpClient) {}
+  
+  
+  
+  
+  
+  parseString(xml: string): Prijava[] {
+    return  [ new Prijava()]
+  }
+
 
   url = 'http://localhost:9000/trademark/';
 
