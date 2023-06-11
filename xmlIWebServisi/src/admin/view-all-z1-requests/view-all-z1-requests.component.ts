@@ -3,6 +3,9 @@ import { Location } from '@angular/common';
 import { ZigService } from 'src/app/z1/zig.service';
 
 
+import { parseString } from 'xml2js';
+
+
 export interface TableData {
   ime: string;
   prezime: string;
@@ -36,8 +39,17 @@ export class ViewAllZ1RequestsComponent {
   
   ngOnInit(): void {
     this.service.getZahtevi().subscribe({
-    next: async (data) => {
-  data
+    next: async (xml) => {
+    parseString(xml, (err, result) => {
+    if (err) {
+      console.error(err);
+      return;
+    }
+  
+    // Access the converted TypeScript objects
+    const items: Item[] = result.item;
+    console.log(items);
+  });
   }});}
 
 
@@ -68,3 +80,89 @@ export class ViewAllZ1RequestsComponent {
 }
 
 
+class Adresa {
+  ulica?: string;
+  broj?: string;
+  postanskiBroj?: string;
+  mesto?: string;
+  drzava?: string;
+}
+
+class Kontakt {
+  brojTelefona?: string;
+  brojFaksa?: string;
+  eposta?: string;
+}
+
+class PodnosilacPrijave {
+  adresa?: Adresa;
+  kontakt?: Kontakt;
+  naziv?: string;
+}
+
+class Punomocnik {
+  adresa?: Adresa;
+  kontakt?: Kontakt;
+  naziv?: string;
+}
+
+class ZajednickiPredstavnik {
+  adresa?: Adresa;
+  kontakt?: Kontakt;
+  naziv?: string;
+}
+
+class InformacijeOZigu {
+  tipZiga?: string;
+  tipZnaka?: string;
+  izgledZnaka?: string;
+  bojeZnaka?: string;
+  transliteracijaZnaka?: string;
+  prevodZnaka?: string;
+  opisZnaka?: string;
+  nicanskaKlasifikacija?: string;
+}
+
+class PravoPrvenstva {
+  zatrazenoPravo?: string;
+  osnov?: string;
+}
+
+class KlasnaTaksa {
+  brojKlasa?: number;
+  iznos?: number;
+}
+
+class Takse {
+  osnovnaTaksa?: number;
+  klasnaTaksa?: KlasnaTaksa;
+  taksaZaGrafickoResenje?: number;
+  ukupnaTaksa?: number;
+}
+
+class Prilozi {
+  primerakZnaka?: boolean;
+  spisakRobeIUsluga?: boolean;
+  punomocje?: boolean;
+  naknadnoDostavljenoPunomocje?: boolean;
+  generalnoPunomocje?: boolean;
+  opstiAkt?: boolean;
+  dokazOPravuPrvenstva?: boolean;
+  dokazOUplatiTakse?: boolean;
+}
+
+class InformacijaZavoda {
+  brojPrijave?: number;
+  datumPodnosenja?: number;
+  prilozi?: Prilozi;
+}
+
+class Item {
+  podnosilacPrijave?: PodnosilacPrijave;
+  punomocnik?: Punomocnik;
+  zajednickiPredstavnik?: ZajednickiPredstavnik;
+  informacijeOZigu?: InformacijeOZigu;
+  pravoPrvenstva?: PravoPrvenstva;
+  takse?: Takse;
+  informacijaZavoda?: InformacijaZavoda;
+}
